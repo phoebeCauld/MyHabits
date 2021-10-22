@@ -22,6 +22,8 @@
 		2D70134F2721A8F300F78FA5 /* HabbitsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D70134E2721A8F300F78FA5 /* HabbitsCell.swift */; };
 		2D7013512721C7EA00F78FA5 /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7013502721C7EA00F78FA5 /* AddViewController.swift */; };
 		2D7013532721C7FE00F78FA5 /* AddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7013522721C7FE00F78FA5 /* AddView.swift */; };
+		2D70135627228C3900F78FA5 /* ManageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D70135527228C3900F78FA5 /* ManageData.swift */; };
+		2D70135827234ED200F78FA5 /* DaysButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D70135727234ED200F78FA5 /* DaysButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +44,8 @@
 		2D70134E2721A8F300F78FA5 /* HabbitsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabbitsCell.swift; sourceTree = "<group>"; };
 		2D7013502721C7EA00F78FA5 /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
 		2D7013522721C7FE00F78FA5 /* AddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddView.swift; sourceTree = "<group>"; };
+		2D70135527228C3900F78FA5 /* ManageData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageData.swift; sourceTree = "<group>"; };
+		2D70135727234ED200F78FA5 /* DaysButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaysButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +80,7 @@
 			children = (
 				2D70132B2720969400F78FA5 /* AppDelegate.swift */,
 				2D70132D2720969400F78FA5 /* SceneDelegate.swift */,
+				2D70135427228C1200F78FA5 /* Modal */,
 				2D7013452720999300F78FA5 /* Controller */,
 				2D7013442720998900F78FA5 /* View */,
 				2D7013312720969400F78FA5 /* Main.storyboard */,
@@ -83,7 +88,6 @@
 				2D7013372720969600F78FA5 /* Assets.xcassets */,
 				2D7013392720969600F78FA5 /* LaunchScreen.storyboard */,
 				2D70133C2720969600F78FA5 /* Info.plist */,
-				2D7013342720969400F78FA5 /* MyHabbits.xcdatamodeld */,
 			);
 			path = MyHabbits;
 			sourceTree = "<group>";
@@ -93,6 +97,7 @@
 			children = (
 				2D7013422720998200F78FA5 /* ListView.swift */,
 				2D7013522721C7FE00F78FA5 /* AddView.swift */,
+				2D7013592723509400F78FA5 /* buttons */,
 				2D70134E2721A8F300F78FA5 /* HabbitsCell.swift */,
 			);
 			path = View;
@@ -108,6 +113,23 @@
 				2D7013502721C7EA00F78FA5 /* AddViewController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		2D70135427228C1200F78FA5 /* Modal */ = {
+			isa = PBXGroup;
+			children = (
+				2D7013342720969400F78FA5 /* MyHabbits.xcdatamodeld */,
+				2D70135527228C3900F78FA5 /* ManageData.swift */,
+			);
+			path = Modal;
+			sourceTree = "<group>";
+		};
+		2D7013592723509400F78FA5 /* buttons */ = {
+			isa = PBXGroup;
+			children = (
+				2D70135727234ED200F78FA5 /* DaysButton.swift */,
+			);
+			path = buttons;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -183,12 +205,14 @@
 			files = (
 				2D7013432720998200F78FA5 /* ListView.swift in Sources */,
 				2D70134F2721A8F300F78FA5 /* HabbitsCell.swift in Sources */,
+				2D70135827234ED200F78FA5 /* DaysButton.swift in Sources */,
 				2D7013302720969400F78FA5 /* ViewController.swift in Sources */,
 				2D7013512721C7EA00F78FA5 /* AddViewController.swift in Sources */,
 				2D70134B27213A0E00F78FA5 /* CalendarViewController.swift in Sources */,
 				2D7013362720969400F78FA5 /* MyHabbits.xcdatamodeld in Sources */,
 				2D70134727209AF500F78FA5 /* TabBarController.swift in Sources */,
 				2D70134927209C0B00F78FA5 /* Constants.swift in Sources */,
+				2D70135627228C3900F78FA5 /* ManageData.swift in Sources */,
 				2D7013532721C7FE00F78FA5 /* AddView.swift in Sources */,
 				2D70134D27213A6800F78FA5 /* ProgressViewController.swift in Sources */,
 				2D70132C2720969400F78FA5 /* AppDelegate.swift in Sources */,

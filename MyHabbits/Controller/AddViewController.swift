@@ -6,11 +6,10 @@
 //
 
 import UIKit
-
+import CoreData
 class AddViewController: UIViewController {
-    private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     private let addView = AddView()
-    private var habbits = [Habbit]()
+    public var completion: ((String,Date) -> Void)?
     override func viewDidLoad() {
         super.viewDidLoad()
         addView.setView(view)
@@ -21,19 +20,18 @@ class AddViewController: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneButtonPressed))
     }
     
-    @objc func doneButtonPressed(){
-        let newHabbit = Habbit(context: self.context)
-        guard let name = addView.nameTextField.text else { return }
-        newHabbit.title = name
-        saveHabbit()     
+    @objc func dayButtonPressed(_ sender: UIButton){
+//        if sender.backgroundColor == .white {
+//            sender.backgroundColor = .systemBlue
+//        }
+//        else if sender.backgroundColor == .systemBlue {
+//            sender.backgroundColor = .white
+//        }
     }
     
-    private func saveHabbit(){
-        do {
-            try context.save()
-        } catch let error as NSError {
-            print("Failed with saving data: \(error.localizedDescription)")
-        }
+    @objc func doneButtonPressed(){
+        guard let name = addView.nameTextField.text, addView.nameTextField.hasText else { return }
+        let date = Date()
+        completion?(name, date)
     }
-
 }

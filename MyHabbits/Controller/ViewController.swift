@@ -9,19 +9,23 @@ import UIKit
 import CoreData
 
 class ViewController: UIViewController {
-    private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
     private let listView = ListView()
-    private var habbits = [Habbit]()
+    private var habbits = [NSManagedObject]()
+    private let coreData = CoreData()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         listView.setupView(view)
         setDelegates()
         configNavBar()
-        loadData()
+        coreData.loadData(usersHabbits: &habbits)
+        listView.tableView.reloadData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        loadData()
+        coreData.loadData(usersHabbits: &habbits)
+        listView.tableView.reloadData()
     }
     
     private func setDelegates(){
@@ -39,31 +43,15 @@ class ViewController: UIViewController {
     @objc
     private func addButtonPressed(){
         let addVC = AddViewController()
+        addVC.navigationItem.largeTitleDisplayMode = .never
+        addVC.completion = { title, date in
+            DispatchQueue.main.async {
+                self.coreData.loadData(usersHabbits: &self.habbits)
+                self.listView.tableView.reloadData()
+            }
+        }
         navigationController?.pushViewController(addVC, animated: true)
     }
-    
-   //MARK: - Core Data Methods
-    
-    func save(){
-        do {
-            try context.save()
-        } catch let error as NSError {
-            print("failed with saving data: \(error.localizedDescription)")
-        }
-    }
-    
-    func loadData(){
-        let request: NSFetchRequest<Habbit> = Habbit.fetchRequest()
-        
-        do {
-            habbits = try context.fetch(request)
-            print("data is loaded")
-        } catch let error as NSError {
-            print("failed with fetch request: \(error.localizedDescription)")
-        }
-        listView.tableView.reloadData()
-    }
-    
 }
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
@@ -73,7 +61,8 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Constants.cellIdentifier, for: indexPath) as! HabbitsCell
-        cell.title.text = habbits[indexPath.row].title
+        let text = habbits[indexPath.row].value(forKey: "title") as? String
+        cell.title.text = text
         cell.checkGoal.text = "1/10"
         return cell
     }

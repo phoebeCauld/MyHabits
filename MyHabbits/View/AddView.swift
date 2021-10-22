@@ -8,7 +8,7 @@
 import UIKit
 
 class AddView: UIView {
-
+    let dayButton = DaysButton()
     let name: UILabel = {
         let label = UILabel()
         label.text = "Name"
@@ -29,13 +29,32 @@ class AddView: UIView {
         return tf
     }()
     
+    let chooseDayLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Click on day to remind"
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    let daysStack: UIStackView = {
+        let daysStack = UIStackView()
+        daysStack.axis = .horizontal
+        daysStack.spacing = 5
+        daysStack.distribution = .fillEqually
+        daysStack.translatesAutoresizingMaskIntoConstraints = false
+        return daysStack
+    }()
+
     func setView(_ view: UIView){
         view.backgroundColor = .systemBackground
-        [name,nameTextField].forEach{view.addSubview($0)}
+        [name,nameTextField,chooseDayLabel, daysStack].forEach{view.addSubview($0)}
         setConstraints(view)
     }
     
     private func setConstraints(_ view: UIView){
+        let arrayOfButtons = dayButton.createButtons()
+        for i in arrayOfButtons {
+            daysStack.addArrangedSubview(i)
+        }
         NSLayoutConstraint.activate([
             name.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             name.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor,
@@ -46,7 +65,19 @@ class AddView: UIView {
                                                    constant: 20),
             nameTextField.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor,
                                                     constant: -20),
-            nameTextField.heightAnchor.constraint(equalToConstant: 50)
+            nameTextField.heightAnchor.constraint(equalToConstant: 50),
+            
+            chooseDayLabel.topAnchor.constraint(equalTo: nameTextField.bottomAnchor,
+                                                constant: 20),
+            chooseDayLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor,
+                                                    constant: 20),
+            daysStack.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            daysStack.topAnchor.constraint(equalTo: chooseDayLabel.bottomAnchor, constant: 10),
+            daysStack.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor,
+                                               constant: 20),
+            daysStack.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor,
+                                                constant: -20),
+            daysStack.heightAnchor.constraint(equalToConstant: 45)
         ])
     }
     
