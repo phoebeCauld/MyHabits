@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19206" systemVersion="20E232" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="DaysToRemind" representedClassName=".DaysToRemind" syncable="YES" codeGenerationType="class">
+        <attribute name="days" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="parentHabit" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Habbit" inverseName="daysArray" inverseEntity="Habbit"/>
+    </entity>
+    <entity name="Habbit" representedClassName=".Habbit" syncable="YES" codeGenerationType="class">
+        <attribute name="title" attributeType="String"/>
+        <relationship name="daysArray" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DaysToRemind" inverseName="parentHabit" inverseEntity="DaysToRemind"/>
+    </entity>
+    <elements>
+        <element name="DaysToRemind" positionX="-54" positionY="9" width="128" height="73"/>
+        <element name="Habbit" positionX="-320.796875" positionY="-0.3125" width="128" height="73"/>
+    </elements>
+</model>

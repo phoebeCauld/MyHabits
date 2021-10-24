@@ -31,16 +31,4 @@ class DaysButton: UIButton {
         }
         return arrayOfButtons
     }
-        
-//    func updateButtonStates(_ arrayButtons: [UIButton], _ sender: UIButton) {
-//        for button in arrayButtons {
-//            button.isSelected = false
-//            button.backgroundColor = .clear
-//            button.setTitleColor(.systemGreen, for: .normal)
-//        }
-//        if sender
-//        sender.isSelected = true
-//        sender.backgroundColor = .systemBlue
-//        sender.setTitleColor(.white, for: .selected)
-//    }
 }

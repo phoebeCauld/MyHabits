@@ -24,6 +24,7 @@
 		2D7013532721C7FE00F78FA5 /* AddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7013522721C7FE00F78FA5 /* AddView.swift */; };
 		2D70135627228C3900F78FA5 /* ManageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D70135527228C3900F78FA5 /* ManageData.swift */; };
 		2D70135827234ED200F78FA5 /* DaysButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D70135727234ED200F78FA5 /* DaysButton.swift */; };
+		2D70135B2724239900F78FA5 /* SelectedDayLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D70135A2724239900F78FA5 /* SelectedDayLogic.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		2D7013522721C7FE00F78FA5 /* AddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddView.swift; sourceTree = "<group>"; };
 		2D70135527228C3900F78FA5 /* ManageData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageData.swift; sourceTree = "<group>"; };
 		2D70135727234ED200F78FA5 /* DaysButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaysButton.swift; sourceTree = "<group>"; };
+		2D70135A2724239900F78FA5 /* SelectedDayLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedDayLogic.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,7 +82,7 @@
 			children = (
 				2D70132B2720969400F78FA5 /* AppDelegate.swift */,
 				2D70132D2720969400F78FA5 /* SceneDelegate.swift */,
-				2D70135427228C1200F78FA5 /* Modal */,
+				2D70135427228C1200F78FA5 /* Model */,
 				2D7013452720999300F78FA5 /* Controller */,
 				2D7013442720998900F78FA5 /* View */,
 				2D7013312720969400F78FA5 /* Main.storyboard */,
@@ -111,17 +113,18 @@
 				2D70134C27213A6800F78FA5 /* ProgressViewController.swift */,
 				2D70134A27213A0E00F78FA5 /* CalendarViewController.swift */,
 				2D7013502721C7EA00F78FA5 /* AddViewController.swift */,
+				2D70135A2724239900F78FA5 /* SelectedDayLogic.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
 		};
-		2D70135427228C1200F78FA5 /* Modal */ = {
+		2D70135427228C1200F78FA5 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				2D7013342720969400F78FA5 /* MyHabbits.xcdatamodeld */,
 				2D70135527228C3900F78FA5 /* ManageData.swift */,
 			);
-			path = Modal;
+			path = Model;
 			sourceTree = "<group>";
 		};
 		2D7013592723509400F78FA5 /* buttons */ = {
@@ -214,6 +217,7 @@
 				2D70134927209C0B00F78FA5 /* Constants.swift in Sources */,
 				2D70135627228C3900F78FA5 /* ManageData.swift in Sources */,
 				2D7013532721C7FE00F78FA5 /* AddView.swift in Sources */,
+				2D70135B2724239900F78FA5 /* SelectedDayLogic.swift in Sources */,
 				2D70134D27213A6800F78FA5 /* ProgressViewController.swift in Sources */,
 				2D70132C2720969400F78FA5 /* AppDelegate.swift in Sources */,
 				2D70132E2720969400F78FA5 /* SceneDelegate.swift in Sources */,

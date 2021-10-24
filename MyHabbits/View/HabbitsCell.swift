@@ -65,8 +65,7 @@ class HabbitsCell: UITableViewCell {
                                                constant: -(ConstantsForConstraints.viewConst)),
             cellView.bottomAnchor.constraint(equalTo: view.bottomAnchor,
                                              constant: -(ConstantsForConstraints.viewConst)),
-            cellView.heightAnchor.constraint(equalToConstant: 60),
-            checkGoal.heightAnchor.constraint(equalToConstant: ConstantsForConstraints.checkConst),
+            cellView.heightAnchor.constraint(equalToConstant: 100),
             checkGoal.widthAnchor.constraint(equalToConstant: ConstantsForConstraints.checkConst),
             
             cellStack.topAnchor.constraint(equalTo: cellView.topAnchor),
