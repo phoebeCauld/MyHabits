@@ -13,7 +13,6 @@ class AddViewController: UIViewController {
     var selectDay = SelectedDayLogic()
     var habits = [Habbit]()
     var daysToRemind = [DaysToRemind]()
-    public var completion: ((String, [DaysToRemind]) -> Void)?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,6 +38,7 @@ class AddViewController: UIViewController {
             daysToRemind.append(newDay)
         }
         coreData.saveData()
+        
     }
     
     @objc func dayButtonPressed(_ sender: UIButton){

@@ -44,14 +44,6 @@ class ViewController: UIViewController {
     private func addButtonPressed(){
         let addVC = AddViewController()
         addVC.navigationItem.largeTitleDisplayMode = .never
-//        addVC.completion = { title, days in
-//            DispatchQueue.main.async {
-//                let newHabit = Habbit(context: self.coreData.context)
-//                newHabit.title = title
-//                self.habbits.append(newHabit)
-//                self.listView.tableView.reloadData()
-//            }
-//        }
         navigationController?.pushViewController(addVC, animated: true)
     }
 }
@@ -63,10 +55,10 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Constants.cellIdentifier, for: indexPath) as! HabbitsCell
-        let text = habbits[indexPath.row].value(forKey: "title") as? String
+        let text = habbits[indexPath.row].title
         cell.title.text = text
-        if let daysArray = habbits[indexPath.row].daysArray?.value(forKey: "days") {
-            cell.checkGoal.text = "\(daysArray)"
+        if let daysArray = habbits[indexPath.row].daysArray?.count  {
+            cell.checkGoal.text = "0/\(daysArray)"
         }
         return cell
     }
