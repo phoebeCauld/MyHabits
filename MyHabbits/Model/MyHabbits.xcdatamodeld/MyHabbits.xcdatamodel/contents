@@ -5,11 +5,12 @@
         <relationship name="parentHabit" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Habbit" inverseName="daysArray" inverseEntity="Habbit"/>
     </entity>
     <entity name="Habbit" representedClassName=".Habbit" syncable="YES" codeGenerationType="class">
+        <attribute name="labelColor" optional="YES" attributeType="String"/>
         <attribute name="title" attributeType="String"/>
         <relationship name="daysArray" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DaysToRemind" inverseName="parentHabit" inverseEntity="DaysToRemind"/>
     </entity>
     <elements>
         <element name="DaysToRemind" positionX="-54" positionY="9" width="128" height="73"/>
-        <element name="Habbit" positionX="-320.796875" positionY="-0.3125" width="128" height="73"/>
+        <element name="Habbit" positionX="-320.796875" positionY="-0.3125" width="128" height="88"/>
     </elements>
 </model>
