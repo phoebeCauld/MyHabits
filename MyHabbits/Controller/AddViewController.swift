@@ -10,36 +10,29 @@ import CoreData
 class AddViewController: UIViewController {
     private let addView = AddView()
     private let coreData = ManageCoreData()
-    var selectDay = SelectedDayLogic()
-    var habits = [Habbit]()
-    var daysToRemind = [DaysToRemind]()
+    private var selectDay = SelectedDayLogic()
+    private var colorButtonLogic = SelectColorLogic()
+    private var habits = [Habbit]()
+    private var daysToRemind = [DaysToRemind]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         addView.setView(view)
+        addTargetToButtons()
         configNavBar()
     }
     
     private func configNavBar(){
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneButtonPressed))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveButtonPressed))
+    }
+    
+    private func addTargetToButtons(){
+        let colorButtons = [addView.pinkButton, addView.greenButton,addView.orangeButton,addView.blueButton]
+        colorButtons.forEach({$0.addTarget(self, action: #selector(selectColorsPressed), for: .touchUpInside)})
     }
 
+// MARK: -  Actions with buttons
     
-    @objc func doneButtonPressed(){
-        guard let name = addView.nameTextField.text else { return }
-        let newHabit = Habbit(context: coreData.context)
-        let selectedDays = selectDay.arrayOfSelected()
-        newHabit.title = name
-        
-        for day in selectedDays {
-            let newDay = DaysToRemind(context: self.coreData.context)
-            newDay.days = Int16(day)
-            newDay.parentHabit = newHabit
-            daysToRemind.append(newDay)
-        }
-        coreData.saveData()
-        
-    }
     
     @objc func dayButtonPressed(_ sender: UIButton){
         sender.isSelected = !sender.isSelected
@@ -53,4 +46,31 @@ class AddViewController: UIViewController {
             sender.setTitleColor(.systemBlue, for: .normal)
         }
     }
+    
+    @objc func selectColorsPressed(_ sender: UIButton){
+        colorButtonLogic.updateButtonStates([addView.pinkButton,
+                                             addView.blueButton,
+                                             addView.orangeButton,
+                                             addView.greenButton], sender)
+        
+    }
+    
+    @objc func saveButtonPressed(){
+        guard let name = addView.nameTextField.text else { return }
+        
+        let newHabit = Habbit(context: coreData.context)
+        let selectedColor = colorButtonLogic.selectedColor
+        newHabit.title = name
+        newHabit.labelColor = selectedColor
+        
+        let selectedDays = selectDay.arrayOfSelected()
+        for day in selectedDays {
+            let newDay = DaysToRemind(context: self.coreData.context)
+            newDay.days = Int16(day)
+            newDay.parentHabit = newHabit
+            daysToRemind.append(newDay)
+        }
+        coreData.saveData()
+    }
+
 }

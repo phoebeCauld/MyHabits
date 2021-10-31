@@ -9,7 +9,8 @@ import UIKit
 
 class AddView: UIView {
     let dayButton = DaysButton()
-    let colorButton = SelectColorButtons()
+    let colorButton = ColorButton()
+    
     let name: UILabel = {
         let label = UILabel()
         label.text = "Name"
@@ -52,20 +53,28 @@ class AddView: UIView {
         return label
     }()
     
-    
-    let colorsStack: UIStackView = {
-        let colorsStack = UIStackView()
-        colorsStack.axis = .horizontal
-        colorsStack.spacing = 15
-        colorsStack.distribution = .fillEqually
-        colorsStack.translatesAutoresizingMaskIntoConstraints = false
-        return colorsStack
+ //Create color buttons
+    let pinkButton: ColorButton = {
+        let button = ColorButton(color: Constants.Colors.pink,colorName: "pink")
+        return button
     }()
-    
+    let blueButton: ColorButton = {
+            let button = ColorButton(color: Constants.Colors.blue, colorName: "blue")
+        return button
+    }()
+    let orangeButton: ColorButton = {
+        let button = ColorButton(color: Constants.Colors.orange, colorName: "orange")
+        return button
+    }()
+    let greenButton: ColorButton = {
+        let button = ColorButton(color: Constants.Colors.green, colorName: "green")
+        return button
+    }()
 
+    
     func setView(_ view: UIView){
         view.backgroundColor = .systemBackground
-        [name,nameTextField,chooseDayLabel,daysStack,selectColorLabel,colorsStack].forEach{view.addSubview($0)}
+        [name,nameTextField,chooseDayLabel,daysStack,selectColorLabel].forEach{view.addSubview($0)}
         setConstraints(view)
     }
     
@@ -74,10 +83,14 @@ class AddView: UIView {
         for button in arrayOfButtons {
             daysStack.addArrangedSubview(button)
         }
-        let arrayOfColors = colorButton.createColorButtons()
-        for button in arrayOfColors {
-            colorsStack.addArrangedSubview(button)
-        }
+
+        let colorsStack = UIStackView(arrangedSubviews: [pinkButton,blueButton,orangeButton,greenButton])
+        colorsStack.axis = .horizontal
+        colorsStack.spacing = 15
+        colorsStack.distribution = .fillEqually
+        colorsStack.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(colorsStack)
+
         NSLayoutConstraint.activate([
             name.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,
                                      constant: 20),

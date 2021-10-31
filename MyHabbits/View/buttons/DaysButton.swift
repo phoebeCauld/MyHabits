@@ -19,7 +19,6 @@ class DaysButton: UIButton {
         dayButtons.layer.borderWidth = 1
         dayButtons.translatesAutoresizingMaskIntoConstraints = false
         dayButtons.addTarget(AddViewController(), action: #selector(AddViewController.dayButtonPressed), for: .touchUpInside)
-//        stackView.addArrangedSubview(dayButtons)
         return dayButtons
     }
     

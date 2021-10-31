@@ -46,7 +46,10 @@ class ViewController: UIViewController {
         addVC.navigationItem.largeTitleDisplayMode = .never
         navigationController?.pushViewController(addVC, animated: true)
     }
+    
 }
+
+// MARK: - TableView methods
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -56,6 +59,14 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Constants.cellIdentifier, for: indexPath) as! HabbitsCell
         let text = habbits[indexPath.row].title
+        let color = habbits[indexPath.row].labelColor
+        switch color {
+        case "pink": cell.cellView.backgroundColor = Constants.Colors.pink
+        case "blue": cell.cellView.backgroundColor = Constants.Colors.blue
+        case "orange": cell.cellView.backgroundColor = Constants.Colors.orange
+        case "green": cell.cellView.backgroundColor = Constants.Colors.green
+        default: cell.cellView.backgroundColor = Constants.Colors.defaultColor
+        }
         cell.title.text = text
         if let daysArray = habbits[indexPath.row].daysArray?.count  {
             cell.checkGoal.text = "0/\(daysArray)"

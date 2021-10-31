@@ -19,5 +19,9 @@ struct Constants {
     
     struct Colors {
         static let defaultColor: UIColor = .systemBlue
+        static let pink: UIColor = UIColor(red: 0.97, green: 0.65, blue: 0.76, alpha: 1.00)
+        static let blue: UIColor = UIColor(red: 0.47, green: 0.55, blue: 0.92, alpha: 1.00)
+        static let orange: UIColor = UIColor(red: 0.98, green: 0.69, blue: 0.63, alpha: 1.00)
+        static let green: UIColor = UIColor(red: 0.39, green: 0.80, blue: 0.85, alpha: 1.00)
     }
 }
