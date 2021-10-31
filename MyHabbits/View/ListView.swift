@@ -30,5 +30,4 @@ class ListView: UIView {
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
-
 }
