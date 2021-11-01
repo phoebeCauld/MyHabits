@@ -29,4 +29,9 @@ class ManageCoreData{
         }
     }
     
+    func deleteItem(at indexPath: IndexPath, habit: inout [Habbit]){
+        context.delete(habit[indexPath.row])
+        habit.remove(at: indexPath.row)
+    }
+    
 }

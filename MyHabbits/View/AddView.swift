@@ -9,14 +9,11 @@ import UIKit
 
 class AddView: UIView {
     let dayButton = DaysButton()
-    let colorButton = ColorButton()
     
-    let name: UILabel = {
-        let label = UILabel()
-        label.text = "Name"
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
+    let name = AddViewLabel(title: "I want to start:")
+    let chooseDayLabel = AddViewLabel(title: "Click on day to remind")
+    let selectColorLabel = AddViewLabel(title: "Select label color")
+    let addNotification = AddViewLabel(title: "Send me notification to remind")
     
     let nameTextField: UITextField = {
         let tf = UITextField()
@@ -31,12 +28,6 @@ class AddView: UIView {
         return tf
     }()
     
-    let chooseDayLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Click on day to remind"
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
     let daysStack: UIStackView = {
         let daysStack = UIStackView()
         daysStack.axis = .horizontal
@@ -46,11 +37,15 @@ class AddView: UIView {
         return daysStack
     }()
     
-    let selectColorLabel:UILabel = {
-        let label = UILabel()
-        label.text = "Select label color"
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
+    let addNotificationSwitch: UISwitch = {
+       let notificationSwitch = UISwitch()
+        return notificationSwitch
+    }()
+    
+    let notificationPicker: UIDatePicker = {
+       let picker = UIDatePicker()
+        
+        return picker
     }()
     
  //Create color buttons
@@ -83,6 +78,12 @@ class AddView: UIView {
         for button in arrayOfButtons {
             daysStack.addArrangedSubview(button)
         }
+        let notificationStack = UIStackView(arrangedSubviews: [addNotification, addNotificationSwitch])
+        notificationStack.axis = .horizontal
+        notificationStack.spacing = 10
+        notificationStack.alignment = .center
+        notificationStack.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(notificationStack)
 
         let colorsStack = UIStackView(arrangedSubviews: [pinkButton,blueButton,orangeButton,greenButton])
         colorsStack.axis = .horizontal
@@ -117,7 +118,16 @@ class AddView: UIView {
                                                 constant: -20),
             daysStack.heightAnchor.constraint(equalToConstant: 45),
             
-            selectColorLabel.topAnchor.constraint(equalTo: daysStack.bottomAnchor,
+            notificationStack.topAnchor.constraint(equalTo: daysStack.bottomAnchor,
+                                                  constant: 20),
+            notificationStack.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor,
+                                                      constant: 20),
+            notificationStack.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor,
+                                                       constant: -20),
+            notificationStack.heightAnchor.constraint(equalToConstant: 50),
+            
+            
+            selectColorLabel.topAnchor.constraint(equalTo: notificationStack.bottomAnchor,
                                                   constant: 20),
             selectColorLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor,
                                                       constant: 20),
@@ -131,6 +141,5 @@ class AddView: UIView {
             
         ])
     }
-    
 
 }
