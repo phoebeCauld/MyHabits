@@ -7,6 +7,7 @@
 
 import UIKit
 import CoreData
+
 class AddViewController: UIViewController {
     private let addView = AddView()
     private let coreData = ManageCoreData()
@@ -21,6 +22,9 @@ class AddViewController: UIViewController {
         addTargetToButtons()
         configNavBar()
     }
+    override func viewWillAppear(_ animated: Bool) {
+        
+    }
     
     private func configNavBar(){
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveButtonPressed))
@@ -32,8 +36,7 @@ class AddViewController: UIViewController {
     }
 
 // MARK: -  Actions with buttons
-    
-    
+
     @objc func dayButtonPressed(_ sender: UIButton){
         sender.isSelected = !sender.isSelected
         let key = sender.tag
@@ -56,7 +59,12 @@ class AddViewController: UIViewController {
     }
     
     @objc func saveButtonPressed(){
-        guard let name = addView.nameTextField.text else { return }
+        guard let name = addView.nameTextField.text,
+              addView.nameTextField.hasText
+        else {
+            enterTextAlert()
+            return
+        }
         
         let newHabit = Habbit(context: coreData.context)
         let selectedColor = colorButtonLogic.selectedColor
@@ -71,6 +79,13 @@ class AddViewController: UIViewController {
             daysToRemind.append(newDay)
         }
         coreData.saveData()
+        navigationController?.popViewController(animated: true)
     }
-
+    
+    func enterTextAlert(){
+        let alert = UIAlertController(title: "Empty name!", message: "Please, enter the name of your new habit", preferredStyle: .alert)
+        let action = UIAlertAction(title: "Close", style: .default, handler: nil)
+        alert.addAction(action)
+        present(alert, animated: true, completion: nil)
+    }
 }

@@ -10,8 +10,6 @@ import UIKit
 class HabbitsCell: UITableViewCell {
      let cellView: UIView = {
         let view = UIView()
-         view.layer.borderWidth = 0.5
-         view.layer.borderColor = Constants.Colors.defaultColor.cgColor
         view.layer.cornerRadius = 15
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
@@ -20,7 +18,6 @@ class HabbitsCell: UITableViewCell {
      let title: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 20, weight: .semibold)
-        label.textColor = Constants.Colors.defaultColor
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -29,7 +26,6 @@ class HabbitsCell: UITableViewCell {
      let checkGoal: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 20, weight: .semibold)
-        label.textColor = Constants.Colors.defaultColor
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -65,25 +61,25 @@ class HabbitsCell: UITableViewCell {
                                                constant: -(ConstantsForConstraints.viewConst)),
             cellView.bottomAnchor.constraint(equalTo: view.bottomAnchor,
                                              constant: -(ConstantsForConstraints.viewConst)),
-            cellView.heightAnchor.constraint(equalToConstant: 100),
+            cellView.heightAnchor.constraint(equalToConstant: ConstantsForConstraints.cellHeight),
             checkGoal.widthAnchor.constraint(equalToConstant: ConstantsForConstraints.checkConst),
             
             cellStack.topAnchor.constraint(equalTo: cellView.topAnchor),
             cellStack.leadingAnchor.constraint(equalTo: cellView.leadingAnchor,
-                                              constant: 10),
+                                               constant: ConstantsForConstraints.stackConst),
             cellStack.trailingAnchor.constraint(equalTo: cellView.trailingAnchor,
-                                               constant: -10),
+                                               constant: -ConstantsForConstraints.stackConst),
             cellStack.bottomAnchor.constraint(equalTo: cellView.bottomAnchor)
         ])
         
     }
-
-
 }
 
 struct ConstantsForConstraints {
     static let viewConst: CGFloat = 5
     static let checkConst: CGFloat = 40
+    static let cellHeight: CGFloat = 100
+    static let stackConst: CGFloat = 10
 }
 
 

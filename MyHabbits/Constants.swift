@@ -9,7 +9,12 @@ import Foundation
 import UIKit
 
 struct Constants {
-    static let cellIdentifier = "Cell"
+    static let mainViewCellIdentifier = "Cell"
+    static let nameCellIdentifier = "nameCell"
+    static let daysCellIdentifier = "daysCell"
+    static let notificationCellIdentifier = "notificationCell"
+    static let colorCellIdentifier = "colorCell"
+
     
     struct ImageLabels {
         static let calendarImage = UIImage(systemName: "calendar")

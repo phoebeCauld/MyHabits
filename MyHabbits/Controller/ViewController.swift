@@ -42,7 +42,8 @@ class ViewController: UIViewController {
     
     @objc
     private func addButtonPressed(){
-        let addVC = AddViewController()
+//        let addVC = AddViewController()
+        let addVC = AddHabitViewController()
         addVC.navigationItem.largeTitleDisplayMode = .never
         navigationController?.pushViewController(addVC, animated: true)
     }
@@ -57,7 +58,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.cellIdentifier, for: indexPath) as! HabbitsCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.mainViewCellIdentifier, for: indexPath) as! HabbitsCell
         let text = habbits[indexPath.row].title
         let color = habbits[indexPath.row].labelColor
         switch color {
@@ -78,4 +79,13 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return .delete
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        coreData.deleteItem(at: indexPath, habit: &habbits)
+        coreData.saveData()
+        tableView.reloadData()
+    }
 }
