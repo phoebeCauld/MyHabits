@@ -10,18 +10,16 @@ import UIKit
 class AddHabitViewController: UIViewController {
     private let addView = AddHabitView()
     private let coreData = ManageCoreData()
-    private var selectDay = SelectedDayLogic()
-    private var colorButtonLogic = SelectColorLogic()
+    private var selectLogic = SelectLogic()
     private var habits = [Habbit]()
-    var newName: String?
+    private var newName: String?
     private var daysToRemind = [DaysToRemind]()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(addView.tableView)
         setDelegates()
         configNavBar()
-        addTargetToButtons()
     }
     
     override func viewDidLayoutSubviews() {
@@ -38,32 +36,16 @@ class AddHabitViewController: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveButtonPressed))
     }
     
-    private func addTargetToButtons(){
-        let colorButtons = [addView.pinkButton, addView.greenButton,addView.orangeButton,addView.blueButton]
-        colorButtons.forEach({$0.addTarget(self, action: #selector(selectColorsPressed), for: .touchUpInside)})
-    }
+
 
     // MARK: -  Actions with buttons
 
         @objc func dayButtonPressed(_ sender: UIButton){
-            sender.isSelected = !sender.isSelected
-            let key = sender.tag
-            selectDay.selectDay(key: key)
-            if sender.isSelected{
-                sender.backgroundColor = .systemBlue
-                sender.setTitleColor(.white, for: .normal)
-            }   else {
-                sender.backgroundColor = .white
-                sender.setTitleColor(.systemBlue, for: .normal)
-            }
+            selectLogic.selectDay(sender)
         }
         
         @objc func selectColorsPressed(_ sender: UIButton){
-            colorButtonLogic.updateButtonStates([addView.pinkButton,
-                                                 addView.blueButton,
-                                                 addView.orangeButton,
-                                                 addView.greenButton], sender)
-            
+            selectLogic.updateButtonStates(self, sender)
         }
         
         @objc func saveButtonPressed(){
@@ -74,11 +56,11 @@ class AddHabitViewController: UIViewController {
             }
             
             let newHabit = Habbit(context: coreData.context)
-            let selectedColor = colorButtonLogic.selectedColor
+            let selectedColor = selectLogic.selectedColor
             newHabit.title = name
             newHabit.labelColor = selectedColor
             
-            let selectedDays = selectDay.arrayOfSelected()
+            let selectedDays = selectLogic.arrayOfSelected()
             for day in selectedDays {
                 let newDay = DaysToRemind(context: self.coreData.context)
                 newDay.days = Int16(day)
@@ -109,24 +91,36 @@ extension AddHabitViewController: UITableViewDelegate, UITableViewDataSource {
         switch indexPath.row {
         case 0: let cell = tableView.dequeueReusableCell(withIdentifier: Constants.nameCellIdentifier,
                                                          for: indexPath) as! NameTableViewCell
-            newName = cell.nameTextField.text
+            cell.nameTextField.delegate = self
+            cell.selectionStyle = .none
             return cell
         case 1: let cell = tableView.dequeueReusableCell(withIdentifier: Constants.daysCellIdentifier,
                                                          for: indexPath) as! DaysTableViewCell
+            cell.selectionStyle = .none
             return cell
         case 2: let cell = tableView.dequeueReusableCell(withIdentifier: Constants.notificationCellIdentifier,
                                                          for: indexPath) as! NotificationTableViewCell
+            cell.selectionStyle = .none
             return cell
         case 3: let cell = tableView.dequeueReusableCell(withIdentifier: Constants.colorCellIdentifier,
                                                          for: indexPath) as! ColorTableViewCell
+            cell.selectionStyle = .none
             return cell
         default: let cell = tableView.dequeueReusableCell(withIdentifier: Constants.notificationCellIdentifier,
                                                           for: indexPath) as! NotificationTableViewCell
+            cell.selectionStyle = .none
             return cell
         }
-        
     }
+}
 
-    
-    
+extension AddHabitViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.endEditing(true)
+    }
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField.hasText {
+        newName = textField.text
+        }
+    }
 }

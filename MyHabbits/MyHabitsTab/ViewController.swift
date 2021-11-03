@@ -42,9 +42,9 @@ class ViewController: UIViewController {
     
     @objc
     private func addButtonPressed(){
-//        let addVC = AddViewController()
         let addVC = AddHabitViewController()
         addVC.navigationItem.largeTitleDisplayMode = .never
+        addVC.title = "Add new habbit"
         navigationController?.pushViewController(addVC, animated: true)
     }
     
