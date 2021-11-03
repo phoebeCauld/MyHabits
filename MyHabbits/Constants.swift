@@ -14,7 +14,6 @@ struct Constants {
     static let daysCellIdentifier = "daysCell"
     static let notificationCellIdentifier = "notificationCell"
     static let colorCellIdentifier = "colorCell"
-
     
     struct ImageLabels {
         static let calendarImage = UIImage(systemName: "calendar")

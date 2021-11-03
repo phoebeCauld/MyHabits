@@ -18,7 +18,7 @@ class DaysButton: UIButton {
         dayButtons.clipsToBounds = true
         dayButtons.layer.borderWidth = 1
         dayButtons.translatesAutoresizingMaskIntoConstraints = false
-        dayButtons.addTarget(AddViewController(), action: #selector(AddViewController.dayButtonPressed), for: .touchUpInside)
+        dayButtons.addTarget(AddHabitViewController(), action: #selector(AddHabitViewController.dayButtonPressed), for: .touchUpInside)
         return dayButtons
     }
     

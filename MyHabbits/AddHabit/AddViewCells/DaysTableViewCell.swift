@@ -9,7 +9,9 @@ import UIKit
 
 class DaysTableViewCell: UITableViewCell {
     private let dayButton = DaysButton()
+    
     let chooseDayLabel = AddViewLabel(title: "Click on day to remind")
+    
     private let daysStack: UIStackView = {
         let daysStack = UIStackView()
         daysStack.axis = .horizontal

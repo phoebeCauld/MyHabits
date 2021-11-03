@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2D5F6BA6272D99D50039C465 /* ColorButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5F6BA5272D99D50039C465 /* ColorButton.swift */; };
-		2D5F6BA8272ECDAA0039C465 /* SelectColorLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5F6BA7272ECDAA0039C465 /* SelectColorLogic.swift */; };
+		2D5F6BA8272ECDAA0039C465 /* SelectModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5F6BA7272ECDAA0039C465 /* SelectModel.swift */; };
 		2D5F6BB0272F2AB90039C465 /* AddViewLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5F6BAF272F2AB90039C465 /* AddViewLabel.swift */; };
 		2D5F6BB3273066CC0039C465 /* NameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5F6BB2273066CC0039C465 /* NameTableViewCell.swift */; };
 		2D5F6BB5273069080039C465 /* AddHabitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5F6BB4273069080039C465 /* AddHabitViewController.swift */; };
@@ -30,16 +30,13 @@
 		2D70134B27213A0E00F78FA5 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D70134A27213A0E00F78FA5 /* CalendarViewController.swift */; };
 		2D70134D27213A6800F78FA5 /* ProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D70134C27213A6800F78FA5 /* ProgressViewController.swift */; };
 		2D70134F2721A8F300F78FA5 /* HabbitsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D70134E2721A8F300F78FA5 /* HabbitsCell.swift */; };
-		2D7013512721C7EA00F78FA5 /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7013502721C7EA00F78FA5 /* AddViewController.swift */; };
-		2D7013532721C7FE00F78FA5 /* AddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7013522721C7FE00F78FA5 /* AddView.swift */; };
 		2D70135627228C3900F78FA5 /* ManageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D70135527228C3900F78FA5 /* ManageData.swift */; };
 		2D70135827234ED200F78FA5 /* DaysButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D70135727234ED200F78FA5 /* DaysButton.swift */; };
-		2D70135B2724239900F78FA5 /* SelectedDayLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D70135A2724239900F78FA5 /* SelectedDayLogic.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		2D5F6BA5272D99D50039C465 /* ColorButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorButton.swift; sourceTree = "<group>"; };
-		2D5F6BA7272ECDAA0039C465 /* SelectColorLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectColorLogic.swift; sourceTree = "<group>"; };
+		2D5F6BA7272ECDAA0039C465 /* SelectModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectModel.swift; sourceTree = "<group>"; };
 		2D5F6BAF272F2AB90039C465 /* AddViewLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewLabel.swift; sourceTree = "<group>"; };
 		2D5F6BB2273066CC0039C465 /* NameTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameTableViewCell.swift; sourceTree = "<group>"; };
 		2D5F6BB4273069080039C465 /* AddHabitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddHabitViewController.swift; sourceTree = "<group>"; };
@@ -63,11 +60,8 @@
 		2D70134A27213A0E00F78FA5 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		2D70134C27213A6800F78FA5 /* ProgressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressViewController.swift; sourceTree = "<group>"; };
 		2D70134E2721A8F300F78FA5 /* HabbitsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabbitsCell.swift; sourceTree = "<group>"; };
-		2D7013502721C7EA00F78FA5 /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
-		2D7013522721C7FE00F78FA5 /* AddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddView.swift; sourceTree = "<group>"; };
 		2D70135527228C3900F78FA5 /* ManageData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageData.swift; sourceTree = "<group>"; };
 		2D70135727234ED200F78FA5 /* DaysButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaysButton.swift; sourceTree = "<group>"; };
-		2D70135A2724239900F78FA5 /* SelectedDayLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedDayLogic.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +87,51 @@
 			path = AddViewCells;
 			sourceTree = "<group>";
 		};
+		2D5F6BC227330CAC0039C465 /* AddHabit */ = {
+			isa = PBXGroup;
+			children = (
+				2D5F6BB4273069080039C465 /* AddHabitViewController.swift */,
+				2D5F6BBE273076250039C465 /* AddHabitView.swift */,
+				2D5F6BAF272F2AB90039C465 /* AddViewLabel.swift */,
+				2D5F6BA7272ECDAA0039C465 /* SelectModel.swift */,
+				2D5F6BB1273066A30039C465 /* AddViewCells */,
+				2D7013592723509400F78FA5 /* buttons */,
+			);
+			path = AddHabit;
+			sourceTree = "<group>";
+		};
+		2D5F6BC327330D6E0039C465 /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				2D70134627209AF500F78FA5 /* TabBarController.swift */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
+		2D5F6BC427330D7A0039C465 /* CalendarTab */ = {
+			isa = PBXGroup;
+			children = (
+				2D70134A27213A0E00F78FA5 /* CalendarViewController.swift */,
+			);
+			path = CalendarTab;
+			sourceTree = "<group>";
+		};
+		2D5F6BC527330D8B0039C465 /* ProgressTab */ = {
+			isa = PBXGroup;
+			children = (
+				2D70134C27213A6800F78FA5 /* ProgressViewController.swift */,
+			);
+			path = ProgressTab;
+			sourceTree = "<group>";
+		};
+		2D5F6BC6273316D00039C465 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2D7013422720998200F78FA5 /* ListView.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
 		2D70131F2720969400F78FA5 = {
 			isa = PBXGroup;
 			children = (
@@ -114,9 +153,12 @@
 			children = (
 				2D70132B2720969400F78FA5 /* AppDelegate.swift */,
 				2D70132D2720969400F78FA5 /* SceneDelegate.swift */,
+				2D7013452720999300F78FA5 /* MyHabitsTab */,
+				2D5F6BC227330CAC0039C465 /* AddHabit */,
+				2D5F6BC527330D8B0039C465 /* ProgressTab */,
+				2D5F6BC427330D7A0039C465 /* CalendarTab */,
+				2D5F6BC327330D6E0039C465 /* TabBar */,
 				2D70135427228C1200F78FA5 /* Model */,
-				2D7013452720999300F78FA5 /* Controller */,
-				2D7013442720998900F78FA5 /* View */,
 				2D7013312720969400F78FA5 /* Main.storyboard */,
 				2D70134827209C0B00F78FA5 /* Constants.swift */,
 				2D7013372720969600F78FA5 /* Assets.xcassets */,
@@ -126,31 +168,14 @@
 			path = MyHabbits;
 			sourceTree = "<group>";
 		};
-		2D7013442720998900F78FA5 /* View */ = {
+		2D7013452720999300F78FA5 /* MyHabitsTab */ = {
 			isa = PBXGroup;
 			children = (
-				2D7013422720998200F78FA5 /* ListView.swift */,
-				2D5F6BBE273076250039C465 /* AddHabitView.swift */,
-				2D5F6BAF272F2AB90039C465 /* AddViewLabel.swift */,
-				2D7013522721C7FE00F78FA5 /* AddView.swift */,
-				2D5F6BB1273066A30039C465 /* AddViewCells */,
-				2D70134E2721A8F300F78FA5 /* HabbitsCell.swift */,
-				2D7013592723509400F78FA5 /* buttons */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		2D7013452720999300F78FA5 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
+				2D5F6BC6273316D00039C465 /* View */,
 				2D70132F2720969400F78FA5 /* ViewController.swift */,
-				2D70134627209AF500F78FA5 /* TabBarController.swift */,
-				2D70134C27213A6800F78FA5 /* ProgressViewController.swift */,
-				2D70134A27213A0E00F78FA5 /* CalendarViewController.swift */,
-				2D7013502721C7EA00F78FA5 /* AddViewController.swift */,
-				2D5F6BB4273069080039C465 /* AddHabitViewController.swift */,
+				2D70134E2721A8F300F78FA5 /* HabbitsCell.swift */,
 			);
-			path = Controller;
+			path = MyHabitsTab;
 			sourceTree = "<group>";
 		};
 		2D70135427228C1200F78FA5 /* Model */ = {
@@ -166,9 +191,7 @@
 			isa = PBXGroup;
 			children = (
 				2D5F6BA5272D99D50039C465 /* ColorButton.swift */,
-				2D5F6BA7272ECDAA0039C465 /* SelectColorLogic.swift */,
 				2D70135727234ED200F78FA5 /* DaysButton.swift */,
-				2D70135A2724239900F78FA5 /* SelectedDayLogic.swift */,
 			);
 			path = buttons;
 			sourceTree = "<group>";
@@ -250,7 +273,6 @@
 				2D7013302720969400F78FA5 /* ViewController.swift in Sources */,
 				2D5F6BB727306C730039C465 /* DaysTableViewCell.swift in Sources */,
 				2D5F6BBD273074F10039C465 /* ColorTableViewCell.swift in Sources */,
-				2D7013512721C7EA00F78FA5 /* AddViewController.swift in Sources */,
 				2D5F6BB927306DC40039C465 /* CellStack.swift in Sources */,
 				2D70134B27213A0E00F78FA5 /* CalendarViewController.swift in Sources */,
 				2D7013362720969400F78FA5 /* MyHabbits.xcdatamodeld in Sources */,
@@ -259,10 +281,8 @@
 				2D70134927209C0B00F78FA5 /* Constants.swift in Sources */,
 				2D5F6BB0272F2AB90039C465 /* AddViewLabel.swift in Sources */,
 				2D70135627228C3900F78FA5 /* ManageData.swift in Sources */,
-				2D5F6BA8272ECDAA0039C465 /* SelectColorLogic.swift in Sources */,
-				2D7013532721C7FE00F78FA5 /* AddView.swift in Sources */,
+				2D5F6BA8272ECDAA0039C465 /* SelectModel.swift in Sources */,
 				2D5F6BBB273071020039C465 /* NotificationTableViewCell.swift in Sources */,
-				2D70135B2724239900F78FA5 /* SelectedDayLogic.swift in Sources */,
 				2D5F6BBF273076250039C465 /* AddHabitView.swift in Sources */,
 				2D5F6BB3273066CC0039C465 /* NameTableViewCell.swift in Sources */,
 				2D70134D27213A6800F78FA5 /* ProgressViewController.swift in Sources */,
