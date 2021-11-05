@@ -32,7 +32,7 @@ class TabBarController: UITabBarController {
     private func configurationTabBar(){
         tabBar.tintColor = Constants.Colors.defaultColor
         tabBar.unselectedItemTintColor = .lightGray
-        viewControllers = [setNavigationVC(rootViewController: listVC, title: "My Habbits", image: Constants.ImageLabels.listImage!),
+        viewControllers = [setNavigationVC(rootViewController: listVC, title: "My Habits", image: Constants.ImageLabels.listImage!),
                            setNavigationVC(rootViewController: calendarVC, title: "Calendar", image: Constants.ImageLabels.calendarImage!),
                            setNavigationVC(rootViewController: progressVC, title: "Progress", image: Constants.ImageLabels.progressImage!)]
     }

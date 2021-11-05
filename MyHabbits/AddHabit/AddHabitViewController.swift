@@ -12,8 +12,8 @@ class AddHabitViewController: UIViewController {
     private let coreData = ManageCoreData()
     private var selectLogic = SelectLogic()
     private var habits = [Habbit]()
-    private var newName: String?
     private var daysToRemind = [DaysToRemind]()
+    private var newName: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,8 +35,6 @@ class AddHabitViewController: UIViewController {
     private func configNavBar(){
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveButtonPressed))
     }
-    
-
 
     // MARK: -  Actions with buttons
 
@@ -77,7 +75,6 @@ class AddHabitViewController: UIViewController {
             alert.addAction(action)
             present(alert, animated: true, completion: nil)
         }
-
 }
 
 extension AddHabitViewController: UITableViewDelegate, UITableViewDataSource {
