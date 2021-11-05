@@ -34,7 +34,7 @@ class ViewController: UIViewController {
     }
     
     private func configNavBar(){
-        navigationItem.title = "My Habbits"
+        navigationItem.title = "My Habits"
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonPressed))
     }
@@ -44,7 +44,7 @@ class ViewController: UIViewController {
     private func addButtonPressed(){
         let addVC = AddHabitViewController()
         addVC.navigationItem.largeTitleDisplayMode = .never
-        addVC.title = "Add new habbit"
+        addVC.title = "Add new habit"
         navigationController?.pushViewController(addVC, animated: true)
     }
     
