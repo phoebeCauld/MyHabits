@@ -16,6 +16,7 @@ class AddViewLabel: UILabel {
     init(title: String){
         super.init(frame: .zero)
         text = title
+        numberOfLines = 0
         translatesAutoresizingMaskIntoConstraints = false
     }
     

@@ -8,6 +8,8 @@
 import UIKit
 
 class AddHabitViewController: UIViewController {
+    private let appDelegate = UIApplication.shared.delegate as? AppDelegate
+    
     private let addView = AddHabitView()
     private let coreData = ManageCoreData()
     private var selectLogic = SelectLogic()
@@ -60,6 +62,8 @@ class AddHabitViewController: UIViewController {
             
             let selectedDays = selectLogic.arrayOfSelected()
             for day in selectedDays {
+                let notificationDay = selectLogic.createDate(weekday: day, hour: 21, minute: 09, year: 2021)
+                appDelegate?.scheduleNotification(at: notificationDay, notificationType: name, identifier: name + "\(day)")
                 let newDay = DaysToRemind(context: self.coreData.context)
                 newDay.days = Int16(day)
                 newDay.parentHabit = newHabit
