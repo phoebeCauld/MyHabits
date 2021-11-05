@@ -17,6 +17,8 @@ class NotificationTableViewCell: UITableViewCell {
     
     let notificationPicker: UIDatePicker = {
        let picker = UIDatePicker()
+        picker.datePickerMode = .time
+        picker.timeZone = .current
         return picker
     }()
     
@@ -36,7 +38,7 @@ class NotificationTableViewCell: UITableViewCell {
         switchStack.alignment = .center
         switchStack.translatesAutoresizingMaskIntoConstraints = false
 
-        let cellStack = CellStack.addStack(with: [switchStack], view)
+        let cellStack = CellStack.addStack(with: [switchStack, notificationPicker], view)
         
         NSLayoutConstraint.activate([
             cellStack.topAnchor.constraint(equalTo: view.topAnchor,
