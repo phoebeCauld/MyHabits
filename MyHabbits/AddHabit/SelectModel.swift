@@ -12,6 +12,7 @@ struct SelectLogic {
     var selectedColor: String?
     
     var arrayOfSelectedButtons = [Int]()
+    var selectedTimeToRemind = Date()
     var dayDict = [1: false, 2: false, 3: false,4:false, 5:false, 6:false, 7:false]
     
     mutating func selectDay(_ sender: UIButton){

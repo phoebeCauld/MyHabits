@@ -60,7 +60,11 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Constants.mainViewCellIdentifier, for: indexPath) as! HabbitsCell
+        cell.selectionStyle = .none
+        
         let text = habbits[indexPath.row].title
+        cell.title.text = text
+        
         let color = habbits[indexPath.row].labelColor
         switch color {
         case "pink": cell.cellView.backgroundColor = Constants.Colors.pink
@@ -69,7 +73,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         case "green": cell.cellView.backgroundColor = Constants.Colors.green
         default: cell.cellView.backgroundColor = Constants.Colors.defaultColor
         }
-        cell.title.text = text
+        
         if let daysArray = habbits[indexPath.row].daysArray?.count  {
             cell.checkGoal.text = "0/\(daysArray)"
         }
