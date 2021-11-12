@@ -54,14 +54,14 @@ struct SelectLogic {
         selectedColor = color
     }
     
-    func createDate(weekday: Int, hour: Int, minute: Int, year: Int) -> Date{
-
-            var components = DateComponents()
-            components.hour = hour
-            components.minute = minute
-            components.weekday = weekday // sunday = 1 ... saturday = 7
-            components.year = year
-            components.timeZone = .current
+    func createDate(weekday: Int) -> Date{
+        let selectedDay = Calendar.current.dateComponents([.hour, .minute, .second, .year], from: selectedTimeToRemind)
+        var components = DateComponents()
+        components.hour = selectedDay.hour
+        components.minute = selectedDay.minute
+        components.weekday = weekday // sunday = 1 ... saturday = 7
+        components.year = selectedDay.year
+        components.timeZone = .current
 
         let calendar = Calendar(identifier: .gregorian)
         return calendar.date(from: components)!

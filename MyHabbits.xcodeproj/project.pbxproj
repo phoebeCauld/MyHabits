@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D59FB7F273AFB30007163CE /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D59FB7E273AFB30007163CE /* DetailViewController.swift */; };
+		2D59FB81273EE7ED007163CE /* NotificationsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D59FB80273EE7ED007163CE /* NotificationsManager.swift */; };
 		2D5F6BA6272D99D50039C465 /* ColorButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5F6BA5272D99D50039C465 /* ColorButton.swift */; };
 		2D5F6BA8272ECDAA0039C465 /* SelectModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5F6BA7272ECDAA0039C465 /* SelectModel.swift */; };
 		2D5F6BB0272F2AB90039C465 /* AddViewLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5F6BAF272F2AB90039C465 /* AddViewLabel.swift */; };
@@ -35,6 +37,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2D59FB7E273AFB30007163CE /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		2D59FB80273EE7ED007163CE /* NotificationsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsManager.swift; sourceTree = "<group>"; };
 		2D5F6BA5272D99D50039C465 /* ColorButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorButton.swift; sourceTree = "<group>"; };
 		2D5F6BA7272ECDAA0039C465 /* SelectModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectModel.swift; sourceTree = "<group>"; };
 		2D5F6BAF272F2AB90039C465 /* AddViewLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewLabel.swift; sourceTree = "<group>"; };
@@ -153,6 +157,7 @@
 			children = (
 				2D70132B2720969400F78FA5 /* AppDelegate.swift */,
 				2D70132D2720969400F78FA5 /* SceneDelegate.swift */,
+				2D59FB80273EE7ED007163CE /* NotificationsManager.swift */,
 				2D7013452720999300F78FA5 /* MyHabitsTab */,
 				2D5F6BC227330CAC0039C465 /* AddHabit */,
 				2D5F6BC527330D8B0039C465 /* ProgressTab */,
@@ -174,6 +179,7 @@
 				2D5F6BC6273316D00039C465 /* View */,
 				2D70132F2720969400F78FA5 /* ViewController.swift */,
 				2D70134E2721A8F300F78FA5 /* HabbitsCell.swift */,
+				2D59FB7E273AFB30007163CE /* DetailViewController.swift */,
 			);
 			path = MyHabitsTab;
 			sourceTree = "<group>";
@@ -267,8 +273,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2D59FB81273EE7ED007163CE /* NotificationsManager.swift in Sources */,
 				2D7013432720998200F78FA5 /* ListView.swift in Sources */,
 				2D70134F2721A8F300F78FA5 /* HabbitsCell.swift in Sources */,
+				2D59FB7F273AFB30007163CE /* DetailViewController.swift in Sources */,
 				2D70135827234ED200F78FA5 /* DaysButton.swift in Sources */,
 				2D7013302720969400F78FA5 /* ViewController.swift in Sources */,
 				2D5F6BB727306C730039C465 /* DaysTableViewCell.swift in Sources */,

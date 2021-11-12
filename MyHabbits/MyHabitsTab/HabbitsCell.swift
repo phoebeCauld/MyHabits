@@ -8,6 +8,8 @@
 import UIKit
 
 class HabbitsCell: UITableViewCell {
+    var done: Bool = false
+    
      let cellView: UIView = {
         let view = UIView()
         view.layer.cornerRadius = 15
@@ -23,12 +25,13 @@ class HabbitsCell: UITableViewCell {
         return label
     }()
     
-     let checkGoal: UILabel = {
-        let label = UILabel()
-        label.font = .systemFont(ofSize: 20, weight: .semibold)
-        label.numberOfLines = 0
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
+     let checkGoal: UIButton = {
+         let button = UIButton()
+         button.tintColor = .black
+         button.addTarget(self, action: #selector(checkButtonTaped), for: .touchUpInside)
+         button.setBackgroundImage(Constants.ImageLabels.checkImage!, for: .normal)
+         button.translatesAutoresizingMaskIntoConstraints = false
+        return button
     }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -49,6 +52,7 @@ class HabbitsCell: UITableViewCell {
     private func setConstraints(_ view: UIView){
         let cellStack = UIStackView(arrangedSubviews: [title,checkGoal])
         cellStack.axis = .horizontal
+        cellStack.alignment = .center
         cellStack.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(cellStack)
         
@@ -62,6 +66,7 @@ class HabbitsCell: UITableViewCell {
             cellView.bottomAnchor.constraint(equalTo: view.bottomAnchor,
                                              constant: -(ConstantsForConstraints.viewConst)),
             cellView.heightAnchor.constraint(equalToConstant: ConstantsForConstraints.cellHeight),
+            checkGoal.heightAnchor.constraint(equalToConstant: ConstantsForConstraints.checkConst),
             checkGoal.widthAnchor.constraint(equalToConstant: ConstantsForConstraints.checkConst),
             
             cellStack.topAnchor.constraint(equalTo: cellView.topAnchor),
@@ -71,8 +76,19 @@ class HabbitsCell: UITableViewCell {
                                                constant: -ConstantsForConstraints.stackConst),
             cellStack.bottomAnchor.constraint(equalTo: cellView.bottomAnchor)
         ])
-        
     }
+    
+    @objc
+    func checkButtonTaped(_ sender: UIButton){
+        if !done {
+            done = true
+            sender.setBackgroundImage(Constants.ImageLabels.checkDoneImage, for: .normal)
+        } else {
+            done = false
+            sender.setBackgroundImage(Constants.ImageLabels.checkImage, for: .normal)
+        }
+    }
+    
 }
 
 struct ConstantsForConstraints {
