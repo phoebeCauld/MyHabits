@@ -8,12 +8,13 @@
 import UIKit
 
 class AddHabitViewController: UIViewController {
-    private let appDelegate = UIApplication.shared.delegate as? AppDelegate
+    
+    private let notifications = NotificationsManager()
     
     private let addView = AddHabitView()
     private let coreData = ManageCoreData()
     private var selectLogic = SelectLogic()
-    private var habits = [Habbit]()
+    private var habits = [Habit]()
     private var daysToRemind = [DaysToRemind]()
     private var newName: String?
     
@@ -51,20 +52,22 @@ class AddHabitViewController: UIViewController {
     }
     
     @objc func saveButtonPressed(){
+        notifications.listScheduledNotifications()
         guard let name = newName
         else {
             return enterTextAlert()
         }
         
-        let newHabit = Habbit(context: coreData.context)
+        let newHabit = Habit(context: coreData.context)
         let selectedColor = selectLogic.selectedColor
         newHabit.title = name
+        newHabit.identifier = UUID()
         newHabit.labelColor = selectedColor
-        newHabit.timeToRemind = selectLogic.selectedTimeToRemind
         let selectedDays = selectLogic.arrayOfSelected()
         for day in selectedDays {
-            //                let notificationDay = selectLogic.createDate(weekday: day, hour: 21, minute: 09, year: 2021)
-            //                appDelegate?.scheduleNotification(at: notificationDay, notificationType: name, identifier: name + "\(day)")
+            let notificationDay = selectLogic.createDate(weekday: day)
+            newHabit.timeToRemind = notificationDay
+            notifications.scheduleNotification(for: newHabit)
             let newDay = DaysToRemind(context: self.coreData.context)
             newDay.days = Int16(day)
             newDay.parentHabit = newHabit

@@ -12,8 +12,9 @@ import CoreData
 class ViewController: UIViewController {
     
     private let listView = ListView()
-    private var habbits = [Habbit]()
+    private var habbits = [Habit]()
     private let coreData = ManageCoreData()
+    private var done: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,6 +49,7 @@ class ViewController: UIViewController {
         addVC.title = "Add new habit"
         navigationController?.pushViewController(addVC, animated: true)
     }
+   
     
 }
 
@@ -74,14 +76,11 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         default: cell.cellView.backgroundColor = Constants.Colors.defaultColor
         }
         
-        if let daysArray = habbits[indexPath.row].daysArray?.count  {
-            cell.checkGoal.text = "0/\(daysArray)"
-        }
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
+        
     }
     
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {

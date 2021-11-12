@@ -11,7 +11,7 @@ import UIKit
 
 class ManageCoreData{
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    let fetchRequest: NSFetchRequest<Habbit> = Habbit.fetchRequest()
+    let fetchRequest: NSFetchRequest<Habit> = Habit.fetchRequest()
 
     func saveData(){
         do {
@@ -21,7 +21,7 @@ class ManageCoreData{
         }
     }
     
-    func loadData(usersHabbits: inout [Habbit]){
+    func loadData(usersHabbits: inout [Habit]){
         do {
             usersHabbits = try context.fetch(fetchRequest)
         } catch let error as NSError {
@@ -29,7 +29,7 @@ class ManageCoreData{
         }
     }
     
-    func deleteItem(at indexPath: IndexPath, habit: inout [Habbit]){
+    func deleteItem(at indexPath: IndexPath, habit: inout [Habit]){
         context.delete(habit[indexPath.row])
         habit.remove(at: indexPath.row)
     }

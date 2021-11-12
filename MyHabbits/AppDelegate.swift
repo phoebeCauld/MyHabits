@@ -12,48 +12,16 @@ import CoreData
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    let notificationsCenter = UNUserNotificationCenter.current()
+    let notifications = NotificationsManager()
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        requestAutorization()
-        notificationsCenter.delegate = self
+//        notifications.requestAuthorization()
+        notifications.notificationsCenter.delegate = notifications
         return true
     }
     
     func applicationDidBecomeActive(_ application: UIApplication) {
         
-    }
-    
-    func requestAutorization(){
-        notificationsCenter.requestAuthorization(options: [.alert,.badge,.sound]) { granted, error in
-            print("Permision \(granted)")
-//            guard granted else { return }
-//            self.getNotificationSettings()
-        }
-    }
-//
-//    func getNotificationSettings(){
-//        notificationsCenter.getNotificationSettings { settings in
-//            print("settings:\(settings)")
-//        }
-//    }
-    
-    func scheduleNotification(at day: Date, notificationType: String, identifier: String){
-        let content = UNMutableNotificationContent()
-        content.title = notificationType
-        content.body = "Don't forget to " + notificationType
-        content.sound = .default
-        
-        let trigerWeekly = Calendar.current.dateComponents([.weekday, .hour, .minute, .second], from: day)
-        let trigger = UNCalendarNotificationTrigger(dateMatching: trigerWeekly, repeats: false)
-        let request = UNNotificationRequest(identifier: identifier,
-                                            content: content,
-                                            trigger: trigger)
-        notificationsCenter.removeAllPendingNotificationRequests()
-        notificationsCenter.add(request) { error in
-            if let error = error {
-                print("notification request failed with\(error.localizedDescription)")
-            }
-        }
     }
 
     // MARK: UISceneSession Lifecycle
@@ -100,15 +68,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
-extension AppDelegate: UNUserNotificationCenterDelegate{
-    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        completionHandler([.banner, .sound])
-    }
-    
-    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-        if response.notification.request.identifier == "local notification" {
-            print("now you can do smthng with it")
-        }
-        completionHandler()
-    }
-}
+
