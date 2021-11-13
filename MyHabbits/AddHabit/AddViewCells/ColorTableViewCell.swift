@@ -9,10 +9,10 @@ import UIKit
 
 class ColorTableViewCell: UITableViewCell {
 //    private let colorButtons = ColorButtons()
-    
+
     let pinkButton = ColorButton(color: Constants.Colors.pink,colorName: "pink", tag: 11)
-    
-    
+
+
     let blueButton = ColorButton(color: Constants.Colors.blue, colorName: "blue", tag: 12)
     
     

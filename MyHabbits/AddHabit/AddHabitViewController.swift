@@ -9,21 +9,18 @@ import UIKit
 
 class AddHabitViewController: UIViewController {
     
-    private let notifications = NotificationsManager()
-    
+    var habit: Habit?
     private let addView = AddHabitView()
-    private let coreData = ManageCoreData()
     private var selectLogic = SelectLogic()
-    private var habits = [Habit]()
-    private var daysToRemind = [DaysToRemind]()
     private var newName: String?
+    private var isReminding: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(addView.tableView)
         setDelegates()
         configNavBar()
-        
+        setView()
         self.hideKeyboardWhenTappedAround()
     }
     
@@ -38,7 +35,13 @@ class AddHabitViewController: UIViewController {
     }
     
     private func configNavBar(){
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveButtonPressed))
+        var buttonName = ""
+        if let _ = habit {
+            buttonName = "Update"
+        } else {
+            buttonName = "Save"
+        }
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: buttonName, style: .done, target: self, action: #selector(saveButtonPressed))
     }
     
     // MARK: -  Actions with buttons
@@ -52,28 +55,17 @@ class AddHabitViewController: UIViewController {
     }
     
     @objc func saveButtonPressed(){
-        notifications.listScheduledNotifications()
         guard let name = newName
         else {
             return enterTextAlert()
         }
-        
-        let newHabit = Habit(context: coreData.context)
-        let selectedColor = selectLogic.selectedColor
-        newHabit.title = name
-        newHabit.identifier = UUID()
-        newHabit.labelColor = selectedColor
-        let selectedDays = selectLogic.arrayOfSelected()
-        for day in selectedDays {
-            let notificationDay = selectLogic.createDate(weekday: day)
-            newHabit.timeToRemind = notificationDay
-            notifications.scheduleNotification(for: newHabit)
-            let newDay = DaysToRemind(context: self.coreData.context)
-            newDay.days = Int16(day)
-            newDay.parentHabit = newHabit
-            daysToRemind.append(newDay)
+        if let habit = habit {
+            selectLogic.updateHabit(habit: habit, name: name, isReminding: isReminding)
+            ManageCoreData.shared.saveData()
+        } else {
+            selectLogic.addHabit(with: name, isRemindning: isReminding)
+            ManageCoreData.shared.saveData()
         }
-        coreData.saveData()
         navigationController?.popViewController(animated: true)
     }
 
@@ -82,6 +74,17 @@ class AddHabitViewController: UIViewController {
     }
     
     @objc func setOnSwitch(_ mySwitch: UISwitch){
+        
+        // создать файл обновления
+        
+        if let habit = habit {
+            selectLogic.updateRemindSwitch(for: habit, isReminding: mySwitch.isOn)
+        }
+        if mySwitch.isOn {
+            isReminding = true
+        } else {
+            isReminding = false
+        }
         addView.tableView.reloadData()
     }
     
@@ -91,6 +94,14 @@ class AddHabitViewController: UIViewController {
         alert.addAction(action)
         present(alert, animated: true, completion: nil)
     }
+    func setView(){
+        if let habit = habit {
+            title = "Update: \(habit.title ?? "")"
+        } else {
+            title = "Add new habit"
+        }
+    }
+    
 }
 
 extension AddHabitViewController: UITableViewDelegate, UITableViewDataSource {
@@ -104,22 +115,38 @@ extension AddHabitViewController: UITableViewDelegate, UITableViewDataSource {
         switch indexPath.row {
         case 0: let cell = tableView.dequeueReusableCell(withIdentifier: Constants.nameCellIdentifier,
                                                          for: indexPath) as! NameTableViewCell
+            if let habit = habit {
+                cell.nameTextField.text = habit.title ?? ""
+            }
             cell.nameTextField.delegate = self
             cell.selectionStyle = .none
             return cell
         case 1: let cell = tableView.dequeueReusableCell(withIdentifier: Constants.daysCellIdentifier,
                                                          for: indexPath) as! DaysTableViewCell
+            
             cell.selectionStyle = .none
             return cell
         case 2: let cell = tableView.dequeueReusableCell(withIdentifier: Constants.notificationCellIdentifier,
                                                          for: indexPath) as! NotificationTableViewCell
             cell.selectionStyle = .none
+            if let habit = habit {
+                cell.addNotificationSwitch.isOn = habit.isRemindning
+                cell.notificationPicker.isHidden = !habit.isRemindning
+                cell.setTimePicker(cell.notificationPicker.isHidden)
+                    if let time = habit.timeToRemind {
+                        cell.notificationPicker.date = time
+                    }
+            }
             cell.notificationPicker.addTarget(self, action: #selector(setTimeToRemind), for: .valueChanged)
             cell.addNotificationSwitch.addTarget(self, action: #selector(setOnSwitch), for: .valueChanged)
+          
             return cell
         case 3: let cell = tableView.dequeueReusableCell(withIdentifier: Constants.colorCellIdentifier,
                                                          for: indexPath) as! ColorTableViewCell
             cell.selectionStyle = .none
+            if let habit = habit {
+                
+            }
             return cell
         default: let cell = tableView.dequeueReusableCell(withIdentifier: Constants.notificationCellIdentifier,
                                                           for: indexPath) as! NotificationTableViewCell

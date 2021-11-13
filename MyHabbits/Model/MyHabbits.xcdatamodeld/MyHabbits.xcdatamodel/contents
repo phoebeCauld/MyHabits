@@ -6,7 +6,7 @@
     </entity>
     <entity name="Habit" representedClassName=".Habit" syncable="YES" codeGenerationType="class">
         <attribute name="identifier" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
-        <attribute name="isReminding" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="isRemindning" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="labelColor" optional="YES" attributeType="String"/>
         <attribute name="timeToRemind" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="title" attributeType="String"/>
