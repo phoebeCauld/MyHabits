@@ -11,7 +11,7 @@ class DaysTableViewCell: UITableViewCell {
     private let dayButton = DaysButton()
     
     let chooseDayLabel = AddViewLabel(title: "I want do this every")
-    
+
     private let daysStack: UIStackView = {
         let daysStack = UIStackView()
         daysStack.axis = .horizontal

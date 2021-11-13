@@ -8,7 +8,7 @@
 import UIKit
 
 class NotificationTableViewCell: UITableViewCell {
-    private var isPickerHiden: Bool = true
+    var isPickerHiden: Bool = true
     private let addNotification = AddViewLabel(title: "Send me notification to remind")
     
     let addNotificationSwitch: UISwitch = {
@@ -72,7 +72,8 @@ class NotificationTableViewCell: UITableViewCell {
         ] + withoutPickerConstraints)
     }
     
-    private func setTimePicker(_ isHidden:Bool){
+     func setTimePicker(_ isHidden:Bool){
+
         if !isHidden, notificationPicker.superview != nil {
             withoutPickerConstraints.forEach{$0.isActive = false}
             withPickerConstraints.forEach{$0.isActive = true}
@@ -84,9 +85,9 @@ class NotificationTableViewCell: UITableViewCell {
             withPickerConstraints.forEach{$0.isActive = true}
         }
         if isHidden, notificationPicker.superview != nil {
+            notificationPicker.removeFromSuperview()
             withoutPickerConstraints.forEach{$0.isActive = true}
             withPickerConstraints.forEach{$0.isActive = false}
-            notificationPicker.removeFromSuperview()
         }
     }
     
@@ -98,7 +99,6 @@ class NotificationTableViewCell: UITableViewCell {
         } else {
             isPickerHiden = true
             notificationPicker.isHidden = true
-
             setTimePicker(isPickerHiden)
         }
     }

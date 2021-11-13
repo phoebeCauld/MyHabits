@@ -10,6 +10,8 @@ import CoreData
 import UIKit
 
 class ManageCoreData{
+    static let shared = ManageCoreData()
+    
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     let fetchRequest: NSFetchRequest<Habit> = Habit.fetchRequest()
 

@@ -9,10 +9,13 @@ import UIKit
 
 struct SelectLogic {
     
+    private var habits = [Habit]()
+    private var daysToRemind = [DaysToRemind]()
+    private let notifications = NotificationsManager()
     var selectedColor: String?
-    
     var arrayOfSelectedButtons = [Int]()
-    var selectedTimeToRemind = Date()
+    var selectedTimeToRemind: Date?
+    
     var dayDict = [1: false, 2: false, 3: false,4:false, 5:false, 6:false, 7:false]
     
     mutating func selectDay(_ sender: UIButton){
@@ -27,6 +30,10 @@ struct SelectLogic {
             sender.backgroundColor = .white
             sender.setTitleColor(.systemBlue, for: .normal)
         }
+    }
+    
+    func oldDaySelection(days: [Int]){
+        
     }
     
     mutating func arrayOfSelected() -> [Int] {
@@ -54,17 +61,59 @@ struct SelectLogic {
         selectedColor = color
     }
     
-    func createDate(weekday: Int) -> Date{
-        let selectedDay = Calendar.current.dateComponents([.hour, .minute, .second, .year], from: selectedTimeToRemind)
+    func createDate(weekday: Int) -> Date?{
+        guard let selectDate = selectedTimeToRemind else { return nil }
+        let date = Calendar.current.dateComponents([.hour, .minute, .second, .year], from: selectDate)
         var components = DateComponents()
-        components.hour = selectedDay.hour
-        components.minute = selectedDay.minute
+        components.hour = date.hour
+        components.minute = date.minute
         components.weekday = weekday // sunday = 1 ... saturday = 7
-        components.year = selectedDay.year
+        components.year = date.year
         components.timeZone = .current
 
         let calendar = Calendar(identifier: .gregorian)
         return calendar.date(from: components)!
         }
     
+    mutating func addHabit(with name: String, isRemindning: Bool){
+        let newHabit = Habit(context: ManageCoreData.shared.context)
+        newHabit.title = name
+        newHabit.identifier = UUID()
+        newHabit.isRemindning = isRemindning
+        newHabit.labelColor = selectedColor
+        let selectedDays = arrayOfSelected()
+        for day in selectedDays {
+            let notificationDay = createDate(weekday: day)
+            newHabit.timeToRemind = notificationDay
+            notifications.scheduleNotification(for: newHabit)
+            let newDay = DaysToRemind(context: ManageCoreData.shared.context)
+            newDay.days = Int16(day)
+            newDay.parentHabit = newHabit
+            daysToRemind.append(newDay)
+        }
+    }
+    
+    func updateHabit(habit: Habit, name: String, isReminding: Bool){
+        habit.title = name
+        habit.labelColor = selectedColor
+        let oldStatus = habit.isRemindning
+        habit.isRemindning = isReminding
+        if !oldStatus && isReminding {
+            notifications.deleteNotificiation(with: habit.identifier?.uuidString ?? "")
+        }
+    }
+    
+    func updateRemindSwitch(for habit: Habit, isReminding: Bool){
+        let oldStatus = habit.isRemindning
+        habit.isRemindning = isReminding
+//        ManageCoreData.shared.saveData()
+//        if !oldStatus && isReminding {
+//            notifications.deleteNotificiation(with: habit.identifier?.uuidString ?? "")
+//        }
+    }
+    
+    func oldSelectedDays(habit: Habit){
+        
+    }
 }
+
