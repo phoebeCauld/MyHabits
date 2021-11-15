@@ -125,6 +125,16 @@ extension AddHabitViewController: UITableViewDelegate, UITableViewDataSource {
                                                          for: indexPath) as! DaysTableViewCell
             
             cell.selectionStyle = .none
+            if let habit = habit {
+                if let daysArray = habit.daysArray?.allObjects{
+                    for button in daysArray {
+                        let i = button as! Int16
+                        print(i)
+//                        cell.arrayOfButtons[i-1].backgroundColor = .systemBlue
+//                        cell.arrayOfButtons[i-1].setTitleColor(.white, for: .normal)
+                    }
+                }
+            }
             return cell
         case 2: let cell = tableView.dequeueReusableCell(withIdentifier: Constants.notificationCellIdentifier,
                                                          for: indexPath) as! NotificationTableViewCell
@@ -145,7 +155,13 @@ extension AddHabitViewController: UITableViewDelegate, UITableViewDataSource {
                                                          for: indexPath) as! ColorTableViewCell
             cell.selectionStyle = .none
             if let habit = habit {
-                
+                let colorArray = [cell.pinkButton,cell.blueButton,cell.greenButton,cell.orangeButton]
+                for button in colorArray {
+                    if button.accessibilityIdentifier == habit.labelColor {
+                        button.layer.borderWidth = 1.5
+                        button.isSelected = true
+                    }
+                }
             }
             return cell
         default: let cell = tableView.dequeueReusableCell(withIdentifier: Constants.notificationCellIdentifier,
