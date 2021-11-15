@@ -9,7 +9,7 @@ import UIKit
 
 class DaysTableViewCell: UITableViewCell {
     private let dayButton = DaysButton()
-    
+    var arrayOfButtons: [UIButton] = []
     let chooseDayLabel = AddViewLabel(title: "I want do this every")
 
     private let daysStack: UIStackView = {
@@ -31,7 +31,7 @@ class DaysTableViewCell: UITableViewCell {
     }
     
     private func setConstraints(_ view: UIView){
-        let arrayOfButtons = dayButton.createButtons()
+        arrayOfButtons = dayButton.createButtons()
         for button in arrayOfButtons {
             daysStack.addArrangedSubview(button)
         }
