@@ -74,17 +74,16 @@ class AddHabitViewController: UIViewController {
     }
     
     @objc func setOnSwitch(_ mySwitch: UISwitch){
-        
-        // создать файл обновления
-        
-        if let habit = habit {
-            selectLogic.updateRemindSwitch(for: habit, isReminding: mySwitch.isOn)
-        }
         if mySwitch.isOn {
             isReminding = true
         } else {
             isReminding = false
         }
+        
+        if let habit = habit {
+            selectLogic.updateRemindSwitch(for: habit, isReminding: isReminding)
+        }
+
         addView.tableView.reloadData()
     }
     
@@ -116,6 +115,7 @@ extension AddHabitViewController: UITableViewDelegate, UITableViewDataSource {
         case 0: let cell = tableView.dequeueReusableCell(withIdentifier: Constants.nameCellIdentifier,
                                                          for: indexPath) as! NameTableViewCell
             if let habit = habit {
+                newName = habit.title ?? ""
                 cell.nameTextField.text = habit.title ?? ""
             }
             cell.nameTextField.delegate = self
@@ -126,22 +126,19 @@ extension AddHabitViewController: UITableViewDelegate, UITableViewDataSource {
             
             cell.selectionStyle = .none
             if let habit = habit {
-                if let daysArray = habit.daysArray?.allObjects{
-                    for button in daysArray {
-                        let i = button as! Int16
-                        print(i)
-//                        cell.arrayOfButtons[i-1].backgroundColor = .systemBlue
-//                        cell.arrayOfButtons[i-1].setTitleColor(.white, for: .normal)
+                let selectedDaysArray = selectLogic.oldDaysArray(habit: habit)
+                    for button in selectedDaysArray {
+                        selectLogic.selectOldDays(button, cell.arrayOfButtons[button-1])
                     }
                 }
-            }
             return cell
         case 2: let cell = tableView.dequeueReusableCell(withIdentifier: Constants.notificationCellIdentifier,
                                                          for: indexPath) as! NotificationTableViewCell
             cell.selectionStyle = .none
             if let habit = habit {
-                cell.addNotificationSwitch.isOn = habit.isRemindning
-                cell.notificationPicker.isHidden = !habit.isRemindning
+                isReminding = habit.isRemindning
+                cell.addNotificationSwitch.isOn = isReminding
+                cell.notificationPicker.isHidden = !isReminding
                 cell.setTimePicker(cell.notificationPicker.isHidden)
                     if let time = habit.timeToRemind {
                         cell.notificationPicker.date = time
@@ -155,6 +152,7 @@ extension AddHabitViewController: UITableViewDelegate, UITableViewDataSource {
                                                          for: indexPath) as! ColorTableViewCell
             cell.selectionStyle = .none
             if let habit = habit {
+                selectLogic.selectedColor = habit.labelColor
                 let colorArray = [cell.pinkButton,cell.blueButton,cell.greenButton,cell.orangeButton]
                 for button in colorArray {
                     if button.accessibilityIdentifier == habit.labelColor {

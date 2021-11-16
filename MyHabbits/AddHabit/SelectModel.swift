@@ -13,10 +13,10 @@ struct SelectLogic {
     private var daysToRemind = [DaysToRemind]()
     private let notifications = NotificationsManager()
     var selectedColor: String?
-    var arrayOfSelectedButtons = [Int]()
+    private var arrayOfSelectedButtons = [Int]()
     var selectedTimeToRemind: Date?
     
-    var dayDict = [1: false, 2: false, 3: false,4:false, 5:false, 6:false, 7:false]
+    private var dayDict = [1:false, 2:false, 3:false, 4:false, 5:false, 6:false, 7:false]
     
     mutating func selectDay(_ sender: UIButton){
         sender.isSelected = !sender.isSelected
@@ -26,14 +26,10 @@ struct SelectLogic {
         if sender.isSelected{
             sender.backgroundColor = .systemBlue
             sender.setTitleColor(.white, for: .normal)
-        }   else {
+        } else {
             sender.backgroundColor = .white
             sender.setTitleColor(.systemBlue, for: .normal)
         }
-    }
-    
-    func oldDaySelection(days: [Int]){
-        
     }
     
     mutating func arrayOfSelected() -> [Int] {
@@ -47,14 +43,14 @@ struct SelectLogic {
     
     mutating func updateButtonStates(_ self: UIViewController, _ sender: UIButton) {
         let allButtonTags = [11,12,13,14]
-            let currentButtonTag = sender.tag
-
-            allButtonTags.filter { $0 != currentButtonTag }.forEach { tag in
-                if let button = self.view.viewWithTag(tag) as? UIButton {
-                    button.layer.borderWidth = 0
-                    button.isSelected = false
-                }
+        let currentButtonTag = sender.tag
+        
+        allButtonTags.filter { $0 != currentButtonTag }.forEach { tag in
+            if let button = self.view.viewWithTag(tag) as? UIButton {
+                button.layer.borderWidth = 0
+                button.isSelected = false
             }
+        }
         sender.layer.borderWidth = 1.5
         sender.isSelected = true
         guard let color = sender.accessibilityIdentifier else { return }
@@ -70,10 +66,10 @@ struct SelectLogic {
         components.weekday = weekday // sunday = 1 ... saturday = 7
         components.year = date.year
         components.timeZone = .current
-
+        
         let calendar = Calendar(identifier: .gregorian)
         return calendar.date(from: components)!
-        }
+    }
     
     mutating func addHabit(with name: String, isRemindning: Bool){
         let newHabit = Habit(context: ManageCoreData.shared.context)
@@ -93,27 +89,52 @@ struct SelectLogic {
         }
     }
     
-    func updateHabit(habit: Habit, name: String, isReminding: Bool){
+    mutating func updateHabit(habit: Habit, name: String, isReminding: Bool){
         habit.title = name
         habit.labelColor = selectedColor
+
         let oldStatus = habit.isRemindning
         habit.isRemindning = isReminding
-        if !oldStatus && isReminding {
+        if oldStatus && !isReminding {
             notifications.deleteNotificiation(with: habit.identifier?.uuidString ?? "")
+        }
+        
+        let oldDays = oldDaysArray(habit: habit)
+        let selectedDays = arrayOfSelected()
+        if oldDays != selectedDays {
+            habit.daysArray = []
+            for day in selectedDays {
+                let oldTime = habit.timeToRemind
+                let notificationDay = createDate(weekday: day)
+                if oldTime != notificationDay && isReminding {
+                    notifications.deleteNotificiation(with: habit.identifier?.uuidString ?? "")
+                    habit.timeToRemind = notificationDay
+                    notifications.scheduleNotification(for: habit)
+                }
+                let newDay = DaysToRemind(context: ManageCoreData.shared.context)
+                newDay.days = Int16(day)
+                newDay.parentHabit = habit
+                daysToRemind.append(newDay)
+            }
         }
     }
     
     func updateRemindSwitch(for habit: Habit, isReminding: Bool){
-        let oldStatus = habit.isRemindning
         habit.isRemindning = isReminding
-//        ManageCoreData.shared.saveData()
-//        if !oldStatus && isReminding {
-//            notifications.deleteNotificiation(with: habit.identifier?.uuidString ?? "")
-//        }
     }
     
-    func oldSelectedDays(habit: Habit){
-        
+    func oldDaysArray(habit: Habit) -> [Int]{
+        if let daysArray = habit.daysArray?.value(forKey: "days"){
+            let selectedDaysArray = daysArray as! Set<Int>
+            return Array(selectedDaysArray)
+        }
+        return []
+    }
+    
+    mutating func selectOldDays(_ key:Int, _ button:UIButton){
+        dayDict[key] = true
+        button.isSelected = true
+        button.backgroundColor = .systemBlue
+        button.setTitleColor(.white, for: .normal)
     }
 }
-
