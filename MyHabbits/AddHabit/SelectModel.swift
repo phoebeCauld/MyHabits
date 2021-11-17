@@ -9,12 +9,11 @@ import UIKit
 
 struct SelectLogic {
     
-    private var habits = [Habit]()
-    private var daysToRemind = [DaysToRemind]()
     private let notifications = NotificationsManager()
     var selectedColor: String?
     private var arrayOfSelectedButtons = [Int]()
     var selectedTimeToRemind: Date?
+    var oldReminder: Bool = false
     
     private var dayDict = [1:false, 2:false, 3:false, 4:false, 5:false, 6:false, 7:false]
     
@@ -85,7 +84,6 @@ struct SelectLogic {
             let newDay = DaysToRemind(context: ManageCoreData.shared.context)
             newDay.days = Int16(day)
             newDay.parentHabit = newHabit
-            daysToRemind.append(newDay)
         }
     }
     
@@ -93,9 +91,8 @@ struct SelectLogic {
         habit.title = name
         habit.labelColor = selectedColor
 
-        let oldStatus = habit.isRemindning
         habit.isRemindning = isReminding
-        if oldStatus && !isReminding {
+        if oldReminder && !isReminding {
             notifications.deleteNotificiation(with: habit.identifier?.uuidString ?? "")
         }
         
@@ -114,12 +111,12 @@ struct SelectLogic {
                 let newDay = DaysToRemind(context: ManageCoreData.shared.context)
                 newDay.days = Int16(day)
                 newDay.parentHabit = habit
-                daysToRemind.append(newDay)
             }
         }
     }
     
-    func updateRemindSwitch(for habit: Habit, isReminding: Bool){
+    mutating func updateRemindSwitch(for habit: Habit, isReminding: Bool){
+        oldReminder = habit.isRemindning
         habit.isRemindning = isReminding
     }
     
