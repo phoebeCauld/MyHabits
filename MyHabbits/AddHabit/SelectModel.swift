@@ -40,7 +40,7 @@ struct SelectLogic {
         return arrayOfSelectedButtons.sorted()
     }
     
-    mutating func updateButtonStates(_ self: UIViewController, _ sender: UIButton) {
+    mutating func selectColorButton(_ self: UIViewController, _ sender: UIButton) {
         let allButtonTags = [11,12,13,14]
         let currentButtonTag = sender.tag
         
@@ -83,6 +83,7 @@ struct SelectLogic {
             notifications.scheduleNotification(for: newHabit)
             let newDay = DaysToRemind(context: ManageCoreData.shared.context)
             newDay.days = Int16(day)
+            newDay.done = false
             newDay.parentHabit = newHabit
         }
     }
@@ -110,6 +111,7 @@ struct SelectLogic {
                 }
                 let newDay = DaysToRemind(context: ManageCoreData.shared.context)
                 newDay.days = Int16(day)
+                newDay.done = false
                 newDay.parentHabit = habit
             }
         }

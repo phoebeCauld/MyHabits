@@ -13,7 +13,6 @@ class ViewController: UIViewController {
     
     private let listView = ListView()
     private var habbits = [Habit]()
-    private let coreData = ManageCoreData()
     private var done: Bool = false
     
     override func viewDidLoad() {
@@ -21,12 +20,15 @@ class ViewController: UIViewController {
         listView.setupView(view)
         setDelegates()
         configNavBar()
-        coreData.loadData(usersHabbits: &habbits)
+//        ManageCoreData.shared.loadData(usersHabbits: &habbits)
+        ManageCoreData.shared.loadHabits(habit: &habbits)
         listView.tableView.reloadData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        coreData.loadData(usersHabbits: &habbits)
+//        ManageCoreData.shared.loadData(usersHabbits: &habbits)
+        ManageCoreData.shared.loadHabits(habit: &habbits)
+
         listView.tableView.reloadData()
     }
     
@@ -90,8 +92,9 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        coreData.deleteItem(at: indexPath, habit: &habbits)
-        coreData.saveData()
+        NotificationsManager.shared.deleteNotificiation(with: habbits[indexPath.row].identifier?.uuidString ?? "")
+        ManageCoreData.shared.deleteItem(at: indexPath, habit: &habbits)
+        ManageCoreData.shared.saveData()
         tableView.reloadData()
     }
 }

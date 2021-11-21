@@ -45,7 +45,6 @@ class NotificationTableViewCell: UITableViewCell {
         switchStack.alignment = .center
         switchStack.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(switchStack)
-        
         withPickerConstraints = [
             notificationPicker.topAnchor.constraint(equalTo: switchStack.bottomAnchor,
                                                    constant: 10),
@@ -72,12 +71,13 @@ class NotificationTableViewCell: UITableViewCell {
     }
     
      func setTimePicker(_ isHidden:Bool){
-        
+         
         if !isHidden, notificationPicker.superview == nil {
             contentView.addSubview(notificationPicker)
             withoutPickerConstraints.forEach{$0.isActive = false}
             withPickerConstraints.forEach{$0.isActive = true}
         }
+
         if isHidden, notificationPicker.superview != nil {
             notificationPicker.removeFromSuperview()
             withoutPickerConstraints.forEach{$0.isActive = true}

@@ -9,7 +9,7 @@ import UIKit
 import UserNotifications
 
 class NotificationsManager: NSObject, UNUserNotificationCenterDelegate {
-    
+    static let shared = NotificationsManager()
     let notificationsCenter = UNUserNotificationCenter.current()
     
     var notifications = [Notification]()
