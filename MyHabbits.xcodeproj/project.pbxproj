@@ -34,6 +34,7 @@
 		2D70134F2721A8F300F78FA5 /* HabbitsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D70134E2721A8F300F78FA5 /* HabbitsCell.swift */; };
 		2D70135627228C3900F78FA5 /* ManageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D70135527228C3900F78FA5 /* ManageData.swift */; };
 		2D70135827234ED200F78FA5 /* DaysButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D70135727234ED200F78FA5 /* DaysButton.swift */; };
+		2D895DD4274ABCB5003A944D /* testView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D895DD3274ABCB5003A944D /* testView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +67,7 @@
 		2D70134E2721A8F300F78FA5 /* HabbitsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabbitsCell.swift; sourceTree = "<group>"; };
 		2D70135527228C3900F78FA5 /* ManageData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageData.swift; sourceTree = "<group>"; };
 		2D70135727234ED200F78FA5 /* DaysButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaysButton.swift; sourceTree = "<group>"; };
+		2D895DD3274ABCB5003A944D /* testView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +118,7 @@
 			isa = PBXGroup;
 			children = (
 				2D70134A27213A0E00F78FA5 /* CalendarViewController.swift */,
+				2D895DD3274ABCB5003A944D /* testView.swift */,
 			);
 			path = CalendarTab;
 			sourceTree = "<group>";
@@ -274,6 +277,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2D59FB81273EE7ED007163CE /* NotificationsManager.swift in Sources */,
+				2D895DD4274ABCB5003A944D /* testView.swift in Sources */,
 				2D7013432720998200F78FA5 /* ListView.swift in Sources */,
 				2D70134F2721A8F300F78FA5 /* HabbitsCell.swift in Sources */,
 				2D59FB7F273AFB30007163CE /* DetailViewController.swift in Sources */,

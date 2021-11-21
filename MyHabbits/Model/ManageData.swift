@@ -23,7 +23,33 @@ class ManageCoreData{
         }
     }
     
+    func getDayOfWeek() -> Int {
+        let today = Date()
+        let myCalendar = Calendar(identifier: .gregorian)
+        
+        let weekDay = myCalendar.component(.weekday, from: today)
+        if weekDay == 1 {
+            return 7
+        } else {
+            return weekDay - 1
+        }
+    }
+    
+    func loadHabits(habit: inout [Habit]){
+        let weekDay = getDayOfWeek()
+        print(weekDay)
+        let datePredicate = NSPredicate(format: "%@ IN daysArray.days", weekDay as NSNumber)
+        fetchRequest.predicate = datePredicate
+        
+        do {
+            habit = try context.fetch(fetchRequest)
+        } catch {
+            print("Failed with loading data \(error.localizedDescription)")
+        }
+    }
+    
     func loadData(usersHabbits: inout [Habit]){
+        fetchRequest.predicate = nil
         do {
             usersHabbits = try context.fetch(fetchRequest)
         } catch let error as NSError {
@@ -37,3 +63,4 @@ class ManageCoreData{
     }
     
 }
+

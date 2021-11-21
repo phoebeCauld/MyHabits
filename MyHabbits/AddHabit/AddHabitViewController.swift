@@ -51,7 +51,7 @@ class AddHabitViewController: UIViewController {
     }
     
     @objc func selectColorsPressed(_ sender: UIButton){
-        selectLogic.updateButtonStates(self, sender)
+        selectLogic.selectColorButton(self, sender)
     }
     
     @objc func saveButtonPressed(){
@@ -74,23 +74,23 @@ class AddHabitViewController: UIViewController {
     }
     
     @objc func setOnSwitch(_ mySwitch: UISwitch){
+        switch mySwitch.isOn {
+        case true:  isReminding = true
+        case false:  isReminding = false
+        }
+        addView.tableView.reloadData()
         guard let habit = habit else { return }
-        if mySwitch.isOn {
-            isReminding = true
-        } else {
-            isReminding = false
-        }        
         selectLogic.updateRemindSwitch(for: habit, isReminding: isReminding)
         addView.tableView.reloadData()
     }
     
-    func enterTextAlert(){
+    private func enterTextAlert(){
         let alert = UIAlertController(title: "Empty name!", message: "Please, enter the name of your new habit", preferredStyle: .alert)
         let action = UIAlertAction(title: "Close", style: .default, handler: nil)
         alert.addAction(action)
         present(alert, animated: true, completion: nil)
     }
-    func setView(){
+    private func setView(){
         if let habit = habit {
             title = "Update: \(habit.title ?? "")"
         } else {
@@ -107,7 +107,6 @@ extension AddHabitViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         switch indexPath.row {
         case 0: let cell = tableView.dequeueReusableCell(withIdentifier: Constants.nameCellIdentifier,
                                                          for: indexPath) as! NameTableViewCell

@@ -2,6 +2,7 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19206" systemVersion="20E232" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="DaysToRemind" representedClassName=".DaysToRemind" syncable="YES" codeGenerationType="class">
         <attribute name="days" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="done" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <relationship name="parentHabit" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Habit" inverseName="daysArray" inverseEntity="Habit"/>
     </entity>
     <entity name="Habit" representedClassName=".Habit" syncable="YES" codeGenerationType="class">
@@ -13,7 +14,7 @@
         <relationship name="daysArray" toMany="YES" deletionRule="Nullify" destinationEntity="DaysToRemind" inverseName="parentHabit" inverseEntity="DaysToRemind"/>
     </entity>
     <elements>
-        <element name="DaysToRemind" positionX="-54" positionY="9" width="128" height="73"/>
+        <element name="DaysToRemind" positionX="-54" positionY="9" width="128" height="74"/>
         <element name="Habit" positionX="-320.796875" positionY="-0.3125" width="128" height="119"/>
     </elements>
 </model>
