@@ -8,27 +8,34 @@
 import UIKit
 import CoreData
 
+struct HabitsSection {
+    var title: String
+    var habits: [Habit]
+    var isOpened: Bool
+}
 
 class ViewController: UIViewController {
     
     private let listView = ListView()
-    private var habbits = [Habit]()
+    private var habbits = [HabitsSection]()
     private var done: Bool = false
+    private let habitModel = HabitViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         listView.setupView(view)
         setDelegates()
         configNavBar()
-//        ManageCoreData.shared.loadData(usersHabbits: &habbits)
-        ManageCoreData.shared.loadHabits(habit: &habbits)
+        habbits = [HabitsSection(title: "Your tasks for today", habits: [Habit](), isOpened: true),
+        HabitsSection(title: "All of your habits", habits: [Habit](), isOpened: false)]
+        ManageCoreData.shared.loadHabits(habit: &habbits[0].habits)
+        ManageCoreData.shared.loadData(usersHabbits: &habbits[1].habits)
         listView.tableView.reloadData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-//        ManageCoreData.shared.loadData(usersHabbits: &habbits)
-        ManageCoreData.shared.loadHabits(habit: &habbits)
-
+        ManageCoreData.shared.loadHabits(habit: &habbits[0].habits)
+        ManageCoreData.shared.loadData(usersHabbits: &habbits[1].habits)
         listView.tableView.reloadData()
     }
     
@@ -59,42 +66,70 @@ class ViewController: UIViewController {
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        switch section {
+        case 0: return habbits[section].habits.count + 1
+        case 1: if habbits[section].isOpened {
+            return habbits[section].habits.count + 1
+        }
+            return 1
+        default : return 1
+        }
+    }
+    
+     func numberOfSections(in tableView: UITableView) -> Int {
         return habbits.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if indexPath.row == 0 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: Constants.sectoinsCellIdentifier, for: indexPath) as! SectionCell
+            cell.selectionStyle = .none
+            
+            let text = habbits[indexPath.section].title
+            cell.sectionLabel.text = text
+            if indexPath.section == 0 {
+                cell.openImage.isHidden = true
+            }
+            switch habbits[indexPath.section].isOpened {
+            case true: cell.openImage.image = Constants.ImageLabels.closeImage
+            case false: cell.openImage.image = Constants.ImageLabels.openImage
+            }
+            
+            return cell
+        }
         let cell = tableView.dequeueReusableCell(withIdentifier: Constants.mainViewCellIdentifier, for: indexPath) as! HabbitsCell
         cell.selectionStyle = .none
         
-        let text = habbits[indexPath.row].title
+        let text = habbits[indexPath.section].habits[indexPath.row-1].title
         cell.title.text = text
         
-        let color = habbits[indexPath.row].labelColor
-        switch color {
-        case "pink": cell.cellView.backgroundColor = Constants.Colors.pink
-        case "blue": cell.cellView.backgroundColor = Constants.Colors.blue
-        case "orange": cell.cellView.backgroundColor = Constants.Colors.orange
-        case "green": cell.cellView.backgroundColor = Constants.Colors.green
-        default: cell.cellView.backgroundColor = Constants.Colors.defaultColor
-        }
+        let color = habbits[indexPath.section].habits[indexPath.row-1].labelColor
+        habitModel.currentColorForHabit(with: color ?? "", for: cell.cellView)
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let detailVC = AddHabitViewController()
-        detailVC.habit = habbits[indexPath.row]
-        navigationController?.pushViewController(detailVC, animated: true)
+        if indexPath.row == 0 {
+            habbits[indexPath.section].isOpened = !habbits[indexPath.section].isOpened
+            tableView.reloadSections([indexPath.section], with: .automatic)
+        } else {
+            let detailVC = AddHabitViewController()
+            detailVC.habit = habbits[indexPath.section].habits[indexPath.row-1]
+            navigationController?.pushViewController(detailVC, animated: true)
+        }
+
+
     }
     
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         return .delete
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        NotificationsManager.shared.deleteNotificiation(with: habbits[indexPath.row].identifier?.uuidString ?? "")
-        ManageCoreData.shared.deleteItem(at: indexPath, habit: &habbits)
-        ManageCoreData.shared.saveData()
-        tableView.reloadData()
-    }
+//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+//        NotificationsManager.shared.deleteNotificiation(with: habbits[indexPath.section].habits[indexPath.row-1].identifier?.uuidString ?? "")
+//        ManageCoreData.shared.deleteItemInTwoDemensions(at: indexPath, habit: &habbits)
+//        ManageCoreData.shared.saveData()
+//        tableView.reloadData()
+//    }
 }
