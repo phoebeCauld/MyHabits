@@ -12,6 +12,7 @@ class ListView: UIView {
     let tableView: UITableView = {
         let tableView = UITableView()
         tableView.register(HabbitsCell.self, forCellReuseIdentifier: Constants.mainViewCellIdentifier)
+        tableView.register(SectionCell.self, forCellReuseIdentifier: Constants.sectoinsCellIdentifier)
         tableView.separatorStyle = .none
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView

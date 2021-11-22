@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2D59FB7F273AFB30007163CE /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D59FB7E273AFB30007163CE /* DetailViewController.swift */; };
 		2D59FB81273EE7ED007163CE /* NotificationsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D59FB80273EE7ED007163CE /* NotificationsManager.swift */; };
 		2D5F6BA6272D99D50039C465 /* ColorButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5F6BA5272D99D50039C465 /* ColorButton.swift */; };
 		2D5F6BA8272ECDAA0039C465 /* SelectModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5F6BA7272ECDAA0039C465 /* SelectModel.swift */; };
@@ -35,10 +34,11 @@
 		2D70135627228C3900F78FA5 /* ManageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D70135527228C3900F78FA5 /* ManageData.swift */; };
 		2D70135827234ED200F78FA5 /* DaysButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D70135727234ED200F78FA5 /* DaysButton.swift */; };
 		2D895DD4274ABCB5003A944D /* testView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D895DD3274ABCB5003A944D /* testView.swift */; };
+		2DE99D3C274BFFE600802FCE /* HabitViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE99D3B274BFFE600802FCE /* HabitViewModel.swift */; };
+		2DE99D3E274C23CC00802FCE /* SectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE99D3D274C23CC00802FCE /* SectionCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2D59FB7E273AFB30007163CE /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		2D59FB80273EE7ED007163CE /* NotificationsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsManager.swift; sourceTree = "<group>"; };
 		2D5F6BA5272D99D50039C465 /* ColorButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorButton.swift; sourceTree = "<group>"; };
 		2D5F6BA7272ECDAA0039C465 /* SelectModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectModel.swift; sourceTree = "<group>"; };
@@ -68,6 +68,8 @@
 		2D70135527228C3900F78FA5 /* ManageData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageData.swift; sourceTree = "<group>"; };
 		2D70135727234ED200F78FA5 /* DaysButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaysButton.swift; sourceTree = "<group>"; };
 		2D895DD3274ABCB5003A944D /* testView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testView.swift; sourceTree = "<group>"; };
+		2DE99D3B274BFFE600802FCE /* HabitViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitViewModel.swift; sourceTree = "<group>"; };
+		2DE99D3D274C23CC00802FCE /* SectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,8 +183,9 @@
 			children = (
 				2D5F6BC6273316D00039C465 /* View */,
 				2D70132F2720969400F78FA5 /* ViewController.swift */,
+				2DE99D3B274BFFE600802FCE /* HabitViewModel.swift */,
 				2D70134E2721A8F300F78FA5 /* HabbitsCell.swift */,
-				2D59FB7E273AFB30007163CE /* DetailViewController.swift */,
+				2DE99D3D274C23CC00802FCE /* SectionCell.swift */,
 			);
 			path = MyHabitsTab;
 			sourceTree = "<group>";
@@ -280,7 +283,6 @@
 				2D895DD4274ABCB5003A944D /* testView.swift in Sources */,
 				2D7013432720998200F78FA5 /* ListView.swift in Sources */,
 				2D70134F2721A8F300F78FA5 /* HabbitsCell.swift in Sources */,
-				2D59FB7F273AFB30007163CE /* DetailViewController.swift in Sources */,
 				2D70135827234ED200F78FA5 /* DaysButton.swift in Sources */,
 				2D7013302720969400F78FA5 /* ViewController.swift in Sources */,
 				2D5F6BB727306C730039C465 /* DaysTableViewCell.swift in Sources */,
@@ -294,6 +296,7 @@
 				2D5F6BB0272F2AB90039C465 /* AddViewLabel.swift in Sources */,
 				2D70135627228C3900F78FA5 /* ManageData.swift in Sources */,
 				2D5F6BA8272ECDAA0039C465 /* SelectModel.swift in Sources */,
+				2DE99D3E274C23CC00802FCE /* SectionCell.swift in Sources */,
 				2D5F6BBB273071020039C465 /* NotificationTableViewCell.swift in Sources */,
 				2D5F6BBF273076250039C465 /* AddHabitView.swift in Sources */,
 				2D5F6BB3273066CC0039C465 /* NameTableViewCell.swift in Sources */,
@@ -301,6 +304,7 @@
 				2D70132C2720969400F78FA5 /* AppDelegate.swift in Sources */,
 				2D5F6BA6272D99D50039C465 /* ColorButton.swift in Sources */,
 				2D70132E2720969400F78FA5 /* SceneDelegate.swift in Sources */,
+				2DE99D3C274BFFE600802FCE /* HabitViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,6 +10,7 @@ import UIKit
 
 struct Constants {
     static let mainViewCellIdentifier = "Cell"
+    static let sectoinsCellIdentifier = "sectoinCell"
     static let nameCellIdentifier = "nameCell"
     static let daysCellIdentifier = "daysCell"
     static let notificationCellIdentifier = "notificationCell"
@@ -19,6 +20,8 @@ struct Constants {
         static let calendarImage = UIImage(systemName: "calendar")
         static let listImage = UIImage(systemName: "list.bullet")
         static let progressImage = UIImage(systemName: "chart.line.uptrend.xyaxis")
+        static let openImage = UIImage(systemName: "chevron.down")
+        static let closeImage = UIImage(systemName: "chevron.up")
         static let checkImage = UIImage(systemName: "checkmark.circle")
         static let checkDoneImage = UIImage(systemName: "checkmark.circle.fill")
     }
