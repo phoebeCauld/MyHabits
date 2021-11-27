@@ -10,18 +10,25 @@ import UserNotifications
 
 class NotificationsManager: NSObject, UNUserNotificationCenterDelegate {
     static let shared = NotificationsManager()
+    var isNewDay: Bool = false
     let notificationsCenter = UNUserNotificationCenter.current()
-    
     var notifications = [Notification]()
     
     
     // проверка на наличие всех уведомлений
     func listScheduledNotifications() {
-        UNUserNotificationCenter.current().getPendingNotificationRequests { notifications in
-            for notification in notifications {
-                print(notification)
+        UNUserNotificationCenter.current().getPendingNotificationRequests(completionHandler: {requests -> () in
+            print("\(requests.count) requests -------")
+            for request in requests{
+                print(request.identifier)
             }
-        }
+        })
+        UNUserNotificationCenter.current().getDeliveredNotifications(completionHandler: {deliveredNotifications -> () in
+                    print("\(deliveredNotifications.count) Delivered notifications-------")
+                    for notification in deliveredNotifications{
+                        print(notification.request.identifier)
+                    }
+                })
     }
     
     func schedule() {
@@ -50,13 +57,15 @@ class NotificationsManager: NSObject, UNUserNotificationCenterDelegate {
     }
 
     
-    func scheduleNotification(for habit: Habit){
+    func scheduleNotification(for habit: Habit, day: Int, dayId: String){
         guard let identifier = habit.identifier, let title = habit.title, let timeToRemind = habit.timeToRemind else { return }
-        let dateTime = Calendar.current.dateComponents([.weekday, .hour, .minute, .second], from: timeToRemind)
-        
-        notifications.append(Notification(identifier: identifier.uuidString,
+        var dateTime = Calendar.current.dateComponents([.weekday, .hour, .minute, .second], from: timeToRemind)
+        dateTime.weekday = day
+        let id = identifier.uuidString + dayId
+        notifications.append(Notification(identifier: id,
                                           title: title,
                                           dayToRemind: dateTime))
+        print(notifications)
         schedule()
         
     }
@@ -69,16 +78,18 @@ class NotificationsManager: NSObject, UNUserNotificationCenterDelegate {
             content.sound = .default
             
         //если тест
-            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+//            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
             
         // если не тест
-        //let trigger = UNCalendarNotificationTrigger(dateMatching: notification.datetime, repeats: true)
-        //request = UNNotificationRequest(identifier: notification.id, content: content, trigger: trigger)
+        let trigger = UNCalendarNotificationTrigger(dateMatching: notification.dayToRemind, repeats: false)
             
-            let request = UNNotificationRequest(identifier: notification.identifier,
+        let request = UNNotificationRequest(identifier: notification.identifier,
                                                 content: content,
                                                 trigger: trigger)
+            // удалить после тестов!!!!!
+            
 //            notificationsCenter.removeAllPendingNotificationRequests()
+            
             notificationsCenter.add(request) { error in
                 if let error = error {
                     print("notification request failed with\(error.localizedDescription)")
@@ -87,9 +98,11 @@ class NotificationsManager: NSObject, UNUserNotificationCenterDelegate {
         }
     }
     
-    func deleteNotificiation(with id: String) {
-        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [id])
-        UNUserNotificationCenter.current().removeDeliveredNotifications(withIdentifiers: [id])
+    func deleteNotificiation(with id: String, daysIds: [String]) {
+        for dayId in daysIds {
+            UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [id + dayId])
+            UNUserNotificationCenter.current().removeDeliveredNotifications(withIdentifiers: [id + dayId])
+        }
     }
     
     

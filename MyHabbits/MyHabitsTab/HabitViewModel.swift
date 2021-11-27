@@ -9,19 +9,39 @@ import Foundation
 import UIKit
 
 struct HabitViewModel{
+
+    var done: Bool = false
+    var currentDay = Date()
+    var oldDate: Date?
     
-    func currentColorForHabit(with currentColor: String, for background: UIView){
+    
+    func currentColorForHabit(with currentColor: String) -> UIColor{
         switch currentColor {
-        case "pink": background.backgroundColor = Constants.Colors.pink
-        case "blue": background.backgroundColor = Constants.Colors.blue
-        case "orange": background.backgroundColor = Constants.Colors.orange
-        case "green": background.backgroundColor = Constants.Colors.green
-        default: background.backgroundColor = Constants.Colors.defaultColor
+        case "pink": return Constants.Colors.pink
+        case "blue": return Constants.Colors.blue
+        case "orange": return Constants.Colors.orange
+        case "green": return Constants.Colors.green
+        default: return Constants.Colors.defaultColor
         }
     }
     
-    func deleteHabit(){
-        
+    func doneState(is done: Bool, cell: HabbitsCell){
+        print("the habit is \(done)")
+        if done{
+            cell.cellView.backgroundColor = .lightGray
+            cell.title.textColor = .lightText
+        } else {
+            cell.title.textColor = .black
+        }
+    }
+    
+    func currentdayCheck(for habits: [Habit], isNewDay:Bool){
+        switch isNewDay {
+        case true : for habit in habits {
+            habit.isDone = false
+        }
+        case false : print("false")
+        }
     }
 }
 

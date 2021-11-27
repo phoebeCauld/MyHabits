@@ -11,11 +11,45 @@ import CoreData
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    
+    static let shared = AppDelegate()
     let notifications = NotificationsManager()
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-//        notifications.requestAuthorization()
+        
+        if UserDefaults.standard.bool(forKey: "didLaunchBefore") == false{
+            //only runs the first time your app is launched
+            UserDefaults.standard.set(true, forKey: "didLaunchBefore")
+            //sets the initial value for tomorrow
+            let now = Calendar.current.dateComponents(in: .current, from: Date())
+            UserDefaults.standard.setValue(now.day, forKey: "today")
+            let tomorrow = DateComponents(year: now.year, month: now.month, day: now.day! + 1, hour: 0, minute: 0, second: 0)
+            
+            UserDefaults.standard.set(tomorrow.day, forKey: "tomorrow")
+        }
+        let now = Calendar.current.dateComponents(in: .current, from: Date())
+        UserDefaults.standard.setValue(now.day, forKey: "today")
+        if UserDefaults.standard.object(forKey: "tomorrow") != nil{//makes sure tomorrow is not nil
+            // check if today and tommorow is one day, which mean that the nex day came
+            if UserDefaults.standard.object(forKey: "today") as! Int >= UserDefaults.standard.object(forKey: "tomorrow") as! Int {
+                // set new value for days
+                let now = Calendar.current.dateComponents(in: .current, from: Date())
+                UserDefaults.standard.setValue(now.day, forKey: "today")
+                let tomorrow = DateComponents(year: now.year, month: now.month, day: now.day! + 1, hour: 0, minute: 0, second: 0)
+                UserDefaults.standard.set(tomorrow.day, forKey: "tomorrow")
+                NotificationsManager.shared.isNewDay = true
+                print(UserDefaults.standard.object(forKey: "today") ?? 0)
+                print(UserDefaults.standard.object(forKey: "tomorrow") ?? 0)
+
+                
+            } else {
+                NotificationsManager.shared.isNewDay = false
+                print(NotificationsManager.shared.isNewDay, "the status of day")
+                print(UserDefaults.standard.object(forKey: "today") ?? 0)
+                print(UserDefaults.standard.object(forKey: "tomorrow") ?? 0)
+            }
+        }
+        
         notifications.notificationsCenter.delegate = notifications
         return true
     }
