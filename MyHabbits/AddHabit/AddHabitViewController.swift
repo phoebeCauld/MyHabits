@@ -70,6 +70,9 @@ class AddHabitViewController: UIViewController {
     }
     
     @objc func setTimeToRemind(_ timePicker: UIDatePicker){
+        if habit != nil {
+            selectLogic.selectedTimeToRemind = timePicker.date
+        }
         selectLogic.selectedTimeToRemind = timePicker.date
     }
     

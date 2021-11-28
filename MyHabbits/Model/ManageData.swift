@@ -34,11 +34,23 @@ class ManageCoreData{
         }
     }
     
-    func loadHabits(habit: inout [Habit]){
+    func loadTodayHabits(habit: inout [Habit]){
         let weekDay = getDayOfWeek()
-        print(weekDay)
+        let sort = NSSortDescriptor(key: "isDone", ascending: true)
         let datePredicate = NSPredicate(format: "%@ IN daysArray.days", weekDay as NSNumber)
-        fetchRequest.predicate = datePredicate        
+        fetchRequest.predicate = datePredicate
+        fetchRequest.sortDescriptors = [sort]
+        do {
+            habit = try context.fetch(fetchRequest)
+        } catch {
+            print("Failed with loading data \(error.localizedDescription)")
+        }
+    }
+    
+    func loadOtherHabits(habit: inout [Habit]){
+        let weekDay = getDayOfWeek()
+        let datePredicate = NSPredicate(format: "!%@ IN daysArray.days", weekDay as NSNumber)
+        fetchRequest.predicate = datePredicate
         do {
             habit = try context.fetch(fetchRequest)
         } catch {
@@ -61,18 +73,8 @@ class ManageCoreData{
     }
     
     func deleteItemInTwoDemensions(at indexPath: IndexPath, habit: inout [HabitsSection]){
-        var index = 0
-        switch indexPath.section {
-        case 0: index = 1
-        default: index = 0
-        }
-        for i in 0...habit[index].habits.count-1 {
-            if habit[index].habits[i] == habit[indexPath.section].habits[indexPath.row-1] {
                 context.delete(habit[indexPath.section].habits[indexPath.row-1])
                 habit[indexPath.section].habits.remove(at: indexPath.row-1)
-                habit[index].habits.remove(at: i)
-            }
-        }
     }
 }
 

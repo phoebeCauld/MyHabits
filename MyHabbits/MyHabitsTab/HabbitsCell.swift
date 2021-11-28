@@ -79,7 +79,7 @@ class HabbitsCell: UITableViewCell {
     }
     
     @objc
-    func checkButtonTaped(_ sender: UIButton){
+    func checkButtonTaped(_ sender: UIButton, habit: Habit){
         if !done {
             done = true
             sender.setBackgroundImage(Constants.ImageLabels.checkDoneImage, for: .normal)

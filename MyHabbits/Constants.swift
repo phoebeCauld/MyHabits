@@ -24,6 +24,9 @@ struct Constants {
         static let closeImage = UIImage(systemName: "chevron.up")
         static let checkImage = UIImage(systemName: "checkmark.circle")
         static let checkDoneImage = UIImage(systemName: "checkmark.circle.fill")
+        static let trashImage = UIImage(systemName: "trash")
+        static let doneImage = UIImage(systemName: "checkmark")
+        static let editImage = UIImage(systemName: "pencil")
     }
     
     struct Colors {
