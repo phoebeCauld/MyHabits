@@ -31,7 +31,9 @@ class TabBarController: UITabBarController {
     
     @objc private func addPressed(){
         let addVC = AddHabitViewController()
-        self.present(setNavigationVC(rootViewController: addVC, title: "", image: .add), animated: true)
+        let navController = UINavigationController(rootViewController: addVC)
+        navController.modalPresentationStyle = .fullScreen
+        self.present(navController, animated: true, completion: nil)
     }
     
     private func setNavigationVC(rootViewController: UIViewController, title: String, image: UIImage) -> UIViewController {
@@ -46,8 +48,10 @@ class TabBarController: UITabBarController {
     private func configurationTabBar(){
         tabBar.tintColor = Constants.Colors.defaultColor
         tabBar.unselectedItemTintColor = .lightGray
-        viewControllers = [setNavigationVC(rootViewController: ViewController(), title: LocalizedString.todayHabits, image: Constants.ImageLabels.listImage!),
-                           setNavigationVC(rootViewController: AllHabitsViewController(), title: LocalizedString.allHabits, image: Constants.ImageLabels.calendarImage!)]
+        viewControllers = [
+            setNavigationVC(rootViewController: AllHabitsViewController(), title: LocalizedString.allHabits, image: Constants.ImageLabels.listImage!),
+            setNavigationVC(rootViewController: ViewController(), title: LocalizedString.todayHabits, image: Constants.ImageLabels.calendarImage!)
+                           ]
         middleButton.frame = CGRect(x: (view.frame.width/2)-25, y: -20, width: 60, height: 60)
         tabBar.addSubview(middleButton)
     }

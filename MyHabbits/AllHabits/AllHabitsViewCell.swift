@@ -23,10 +23,26 @@ class AllHabitsViewCell: UICollectionViewCell {
         return name
     }()
     
+    let calendarImage: UIImageView = {
+        let iv = UIImageView()
+        iv.image = UIImage(systemName: "calendar")
+        iv.tintColor = .black
+        iv.isHidden = true
+        return iv
+    }()
+    
+    
     let timeLabel: UILabel = {
         let name = UILabel()
         name.text = ""
         return name
+    }()
+    let clockImage: UIImageView = {
+        let iv = UIImageView()
+        iv.image = UIImage(systemName: "clock")
+        iv.tintColor = .black
+        iv.isHidden = true
+        return iv
     }()
      
     override init(frame: CGRect) {
@@ -36,7 +52,11 @@ class AllHabitsViewCell: UICollectionViewCell {
     }
     
     func setConstraints(){
-        let stack = CellStack.addStack(with: [habitName,timeLabel,daysLabel], contentView)
+        let timeStack = UIStackView(arrangedSubviews: [clockImage,timeLabel])
+        timeStack.spacing = 8
+        let daysStack = UIStackView(arrangedSubviews: [calendarImage,daysLabel])
+        daysStack.spacing = 8
+        let stack = CellStack.addStack(with: [habitName,timeStack,daysStack], contentView)
         
         NSLayoutConstraint.activate([
             stack.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),

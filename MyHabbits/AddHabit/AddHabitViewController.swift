@@ -14,7 +14,7 @@ class AddHabitViewController: UIViewController {
     private var selectLogic = SelectLogic()
     private var newName: String?
     private var isReminding: Bool = false
-    
+    var isAppear = false
     override func viewDidLoad() {
         super.viewDidLoad()
         addView.setupView(view)
@@ -24,6 +24,14 @@ class AddHabitViewController: UIViewController {
         setView()
         self.hideKeyboardWhenTappedAround()
     }
+//    override func viewWillAppear(_ animated: Bool) {
+//        isAppear = true
+//        print("appear")
+//
+//    }
+//    override func viewWillDisappear(_ animated: Bool) {
+//        isAppear = false
+//    }
     
     private func setDelegates(){
         addView.tableView.delegate = self

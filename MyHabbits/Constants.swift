@@ -50,6 +50,7 @@ struct LocalizedString {
     static let emptyNameDescription = NSLocalizedString("Please, enter the name of your new habit", comment: "")
     static let todayHabits = NSLocalizedString("Today Habits", comment: "")
     static let allHabits = NSLocalizedString("All Habits", comment: "")
+    static let everyDay = NSLocalizedString("Every day", comment: "")
 
     static let mon = NSLocalizedString("Mon", comment: "")
     static let tue = NSLocalizedString("Tue", comment: "")
