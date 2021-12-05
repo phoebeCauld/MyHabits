@@ -1,0 +1,26 @@
+/* 
+  Localizable.strings
+  MyHabbits
+
+  Created by F1xTeoNtTsS on 05.12.2021.
+  
+*/
+
+"Close" = "Закрыть";
+"I want to start:" = "Я хочу начать:";
+"I want do this every:" = "Я хочу заниматься этим каждый:";
+"Send me notification to remind" = "Присылать напоминания";
+"Select label color:" = "Выберете цвет:";
+"Empty name!" = "Отсутствует имя!";
+"Please, enter the name of your new habit" = "Пожалуйста, введите имя для вашей новой привычки";
+"Update " = "Редактировать ";
+"Add new habit" = "Новая привычка";
+"Today Habits" = "Сегодня";
+"All Habits" = "Мои привычки";
+"Mon" = "Пн";
+"Tue" = "Вт";
+"Wed" = "Ср";
+"Thu" = "Чт";
+"Fri" = "Пт";
+"Sat" = "Сб";
+"Sun" = "Вс";

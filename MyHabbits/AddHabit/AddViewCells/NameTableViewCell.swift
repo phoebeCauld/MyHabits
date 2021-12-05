@@ -9,7 +9,7 @@ import UIKit
 
 class NameTableViewCell: UITableViewCell {
 
-    private let nameLabel = AddViewLabel(title: "I want to start:")
+    private let nameLabel = AddViewLabel(title: LocalizedString.nameLabel)
     
      let nameTextField: UITextField = {
         let tf = UITextField()

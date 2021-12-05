@@ -17,16 +17,12 @@ class AddHabitViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.addSubview(addView.tableView)
+        addView.setupView(view)
+        view.backgroundColor = .white
         setDelegates()
         configNavBar()
         setView()
         self.hideKeyboardWhenTappedAround()
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        addView.tableView.frame = view.bounds
     }
     
     private func setDelegates(){
@@ -35,16 +31,18 @@ class AddHabitViewController: UIViewController {
     }
     
     private func configNavBar(){
-        var buttonName = ""
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(canselButtonPressed))
         if let _ = habit {
-            buttonName = "Update"
+            navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveButtonPressed))
         } else {
-            buttonName = "Save"
+            navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(saveButtonPressed))
         }
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: buttonName, style: .done, target: self, action: #selector(saveButtonPressed))
+       
     }
     
     // MARK: -  Actions with buttons
+    
+
     
     @objc func dayButtonPressed(_ sender: UIButton){
         selectLogic.selectDay(sender)
@@ -62,11 +60,21 @@ class AddHabitViewController: UIViewController {
         if let habit = habit {
             selectLogic.updateHabit(habit: habit, name: name, isReminding: isReminding)
             ManageCoreData.shared.saveData()
+            navigationController?.popViewController(animated: true)
         } else {
             selectLogic.addHabit(with: name, isRemindning: isReminding)
             ManageCoreData.shared.saveData()
+            navigationController?.dismiss(animated: true, completion: nil)
         }
-        navigationController?.popViewController(animated: true)
+
+    }
+    
+    @objc func canselButtonPressed(){
+        if let _ = habit {
+            navigationController?.popViewController(animated: true)
+        } else {
+            navigationController?.dismiss(animated: true, completion: nil)
+        }
     }
     
     @objc func setTimeToRemind(_ timePicker: UIDatePicker){
@@ -88,16 +96,18 @@ class AddHabitViewController: UIViewController {
     }
     
     private func enterTextAlert(){
-        let alert = UIAlertController(title: "Empty name!", message: "Please, enter the name of your new habit", preferredStyle: .alert)
-        let action = UIAlertAction(title: "Close", style: .default, handler: nil)
+        let alert = UIAlertController(title: LocalizedString.emptyNameLabel, message: LocalizedString.emptyNameDescription, preferredStyle: .alert)
+        let action = UIAlertAction(title: LocalizedString.canselButton, style: .default, handler: nil)
         alert.addAction(action)
         present(alert, animated: true, completion: nil)
     }
+    
     private func setView(){
+        navigationItem.largeTitleDisplayMode = .never
         if let habit = habit {
-            title = "Update: \(habit.title ?? "")"
+            title = LocalizedString.updateTitle + (habit.title ?? "")
         } else {
-            title = "Add new habit"
+            title = LocalizedString.addTitle
         }
     }
     

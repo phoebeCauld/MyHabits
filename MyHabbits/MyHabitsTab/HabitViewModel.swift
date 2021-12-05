@@ -26,10 +26,9 @@ struct HabitViewModel{
     }
     
     func doneState(is done: Bool, cell: HabbitsCell){
-        print("the habit is \(done)")
         if done{
-            cell.cellView.backgroundColor = .lightGray
-            cell.title.textColor = .lightText
+            cell.cellView.backgroundColor = UIColor(white: 0.86, alpha: 1)
+            cell.title.textColor = .lightGray
         } else {
             cell.title.textColor = .black
         }

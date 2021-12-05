@@ -10,7 +10,7 @@ import UIKit
 class DaysTableViewCell: UITableViewCell {
     private let dayButton = DaysButton()
     var arrayOfButtons: [UIButton] = []
-    let chooseDayLabel = AddViewLabel(title: "I want do this every")
+    let chooseDayLabel = AddViewLabel(title: LocalizedString.daysLabel)
 
     private let daysStack: UIStackView = {
         let daysStack = UIStackView()

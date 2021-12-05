@@ -25,14 +25,6 @@ class HabbitsCell: UITableViewCell {
         return label
     }()
     
-     let checkGoal: UIButton = {
-         let button = UIButton()
-         button.tintColor = .black
-         button.addTarget(self, action: #selector(checkButtonTaped), for: .touchUpInside)
-         button.setBackgroundImage(Constants.ImageLabels.checkImage!, for: .normal)
-         button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -50,7 +42,7 @@ class HabbitsCell: UITableViewCell {
     }
     
     private func setConstraints(_ view: UIView){
-        let cellStack = UIStackView(arrangedSubviews: [title,checkGoal])
+        let cellStack = UIStackView(arrangedSubviews: [title])
         cellStack.axis = .horizontal
         cellStack.alignment = .center
         cellStack.translatesAutoresizingMaskIntoConstraints = false
@@ -66,8 +58,6 @@ class HabbitsCell: UITableViewCell {
             cellView.bottomAnchor.constraint(equalTo: view.bottomAnchor,
                                              constant: -(ConstantsForConstraints.viewConst)),
             cellView.heightAnchor.constraint(equalToConstant: ConstantsForConstraints.cellHeight),
-            checkGoal.heightAnchor.constraint(equalToConstant: ConstantsForConstraints.checkConst),
-            checkGoal.widthAnchor.constraint(equalToConstant: ConstantsForConstraints.checkConst),
             
             cellStack.topAnchor.constraint(equalTo: cellView.topAnchor),
             cellStack.leadingAnchor.constraint(equalTo: cellView.leadingAnchor,
@@ -77,23 +67,10 @@ class HabbitsCell: UITableViewCell {
             cellStack.bottomAnchor.constraint(equalTo: cellView.bottomAnchor)
         ])
     }
-    
-    @objc
-    func checkButtonTaped(_ sender: UIButton, habit: Habit){
-        if !done {
-            done = true
-            sender.setBackgroundImage(Constants.ImageLabels.checkDoneImage, for: .normal)
-        } else {
-            done = false
-            sender.setBackgroundImage(Constants.ImageLabels.checkImage, for: .normal)
-        }
-    }
-    
 }
 
 struct ConstantsForConstraints {
     static let viewConst: CGFloat = 5
-    static let checkConst: CGFloat = 40
     static let cellHeight: CGFloat = 100
     static let stackConst: CGFloat = 10
 }

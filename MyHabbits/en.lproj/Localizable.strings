@@ -1,0 +1,26 @@
+/* 
+  Localizable.strings
+  MyHabbits
+
+  Created by F1xTeoNtTsS on 05.12.2021.
+  
+*/
+
+"Close" = "Close";
+"I want to start:" = "I want to start:";
+"I want do this every:" = "I want do this every:";
+"Send me notification to remind" = "Send me notification to remind";
+"Select label color:" = "Select label color:";
+"Empty name!" = "Empty name!";
+"Please, enter the name of your new habit" = "Please, enter the name of your new habit";
+"Update " = "Update ";
+"Add new habit" = "Add new habit";
+"Today Habits" = "Today Habits";
+"All Habits" = "All Habits";
+"Mon" = "Mon";
+"Tue" = "Tue";
+"Wed" = "Wed";
+"Thu" = "Thu";
+"Fri" = "Fri";
+"Sat" = "Sat";
+"Sun" = "Sun";
