@@ -10,10 +10,10 @@ import CoreData
 
 class ViewController: UIViewController {
     
-    private let listView = ListView()
+    let listView = ListView()
     private var done: Bool = false
     private let habitModel = HabitViewModel()
-    private var habits = [Habit]()
+    var habits = [Habit]()
     
     override func viewDidLoad() {
         super.viewDidLoad()

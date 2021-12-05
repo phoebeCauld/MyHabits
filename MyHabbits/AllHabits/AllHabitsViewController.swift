@@ -30,6 +30,26 @@ class AllHabitsViewController: UICollectionViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
     }
     
+//    private func setupLongGestureRecognizerOnCollection() {
+//        let longPressedGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(gestureRecognizer:)))
+//        longPressedGesture.minimumPressDuration = 0.5
+//        longPressedGesture.delegate = self
+//        longPressedGesture.delaysTouchesBegan = true
+//        collectionView?.addGestureRecognizer(longPressedGesture)
+//    }
+//
+//    @objc func handleLongPress(gestureRecognizer: UILongPressGestureRecognizer) {
+//        if (gestureRecognizer.state != .began) {
+//            return
+//        }
+//
+//        let p = gestureRecognizer.location(in: collectionView)
+//
+//        if let indexPath = collectionView?.indexPathForItem(at: p) {
+//            print("Long press at item: \(indexPath.row)")
+//        }
+//    }
+    
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return habits.count
     }
@@ -39,14 +59,52 @@ class AllHabitsViewController: UICollectionViewController {
         let habit = habits[indexPath.item]
         cell.backgroundColor = habitModel.currentColorForHabit(with: habit.labelColor ?? "")
         cell.habitName.text = habit.title
-        if let time = habit.timeToRemind{
+        if let time = habit.timeToRemind {
             let dateformat = DateFormatter()
             dateformat.dateFormat = "HH:mm"
-            cell.timeLabel.text = "Will remind at \(dateformat.string(from: time))"
+            cell.timeLabel.text = dateformat.string(from: time)
+            cell.clockImage.isHidden = false
+        } else {
+            cell.timeLabel.text = ""
+            cell.clockImage.isHidden = true
+        }
+        
+        if let daysArray = habit.daysArray?.value(forKey: "days") as? Set<Int>{
+            let days = Array(daysArray).sorted()
+            var daysString = ""
+            if days.count == 7 {
+                daysString = LocalizedString.everyDay
+            } else if days.isEmpty {
+                daysString = ""
+                cell.calendarImage.isHidden = true
+            }else  {
+                for day in days {
+                    switch day {
+                    case 1: daysString.append(LocalizedString.mon + ",")
+                    case 2: daysString.append(LocalizedString.tue + ",")
+                    case 3: daysString.append(LocalizedString.wed + ",")
+                    case 4: daysString.append(LocalizedString.thu + ",")
+                    case 5: daysString.append(LocalizedString.fri + ",")
+                    case 6: daysString.append(LocalizedString.sat + ",")
+                    case 7: daysString.append(LocalizedString.sun + ",")
+                    default: daysString.append(" ")
+                    }
+                }
+                daysString.removeLast()
+                cell.calendarImage.isHidden = false
+            }
+            cell.daysLabel.text = daysString
         }
         return cell
     }
 
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let addVC = AddHabitViewController()
+        let currentHabit = habits[indexPath.item]
+        addVC.habit = currentHabit
+        navigationController?.pushViewController(addVC, animated: true)
+    }
+    
     init(){
         super.init(collectionViewLayout: UICollectionViewFlowLayout())
     }
@@ -63,3 +121,4 @@ extension AllHabitsViewController: UICollectionViewDelegateFlowLayout {
     }
     
 }
+
