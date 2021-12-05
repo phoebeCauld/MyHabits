@@ -9,7 +9,7 @@ import UIKit
 
 class NotificationTableViewCell: UITableViewCell {
     var isPickerHiden: Bool = true
-    private let addNotification = AddViewLabel(title: "Send me notification to remind")
+    private let addNotification = AddViewLabel(title: LocalizedString.notificationLabel)
     
     let addNotificationSwitch: UISwitch = {
        let notificationSwitch = UISwitch()

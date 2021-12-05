@@ -24,7 +24,9 @@ class DaysButton: UIButton {
     
     func createButtons() -> [UIButton] {
         var arrayOfButtons = [UIButton]()
-        let daysNames = ["Mon","Tue", "Wed","Thu", "Fri", "Sat", "Sun"]
+        let daysNames = [
+            LocalizedString.mon,LocalizedString.tue,LocalizedString.wed,LocalizedString.thu, LocalizedString.fri, LocalizedString.sat,LocalizedString.sun
+        ]
         for days in 0...daysNames.count-1 {
             let button = configButton(title: daysNames[days], tag: days)
             arrayOfButtons.append(button)

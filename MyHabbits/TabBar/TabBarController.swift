@@ -8,16 +8,30 @@
 import UIKit
 
 class TabBarController: UITabBarController {
-    private let listVC = ViewController()
-    private let calendarVC = CalendarViewController()
-    private let progressVC = ProgressViewController()
     
+    private let middleButton: UIButton = {
+        let button = UIButton()
+        button.setBackgroundImage(UIImage(systemName: "plus.circle.fill"), for: .normal)
+        button.tintColor = .lightGray
+        button.layer.shadowColor = UIColor.black.cgColor
+        button.layer.cornerRadius = 30
+        button.layer.shadowOpacity = 0.2
+        button.layer.shadowOffset = CGSize(width: 2, height: 2)
+        button.addTarget(self, action: #selector(addPressed), for: .touchUpInside)
+        UIView().layoutIfNeeded()
+        return button
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configurationTabBar()
         self.delegate = self
         
+    }
+    
+    @objc private func addPressed(){
+        let addVC = AddHabitViewController()
+        self.present(setNavigationVC(rootViewController: addVC, title: "", image: .add), animated: true)
     }
     
     private func setNavigationVC(rootViewController: UIViewController, title: String, image: UIImage) -> UIViewController {
@@ -32,9 +46,10 @@ class TabBarController: UITabBarController {
     private func configurationTabBar(){
         tabBar.tintColor = Constants.Colors.defaultColor
         tabBar.unselectedItemTintColor = .lightGray
-        viewControllers = [setNavigationVC(rootViewController: listVC, title: "My Habits", image: Constants.ImageLabels.listImage!),
-                           setNavigationVC(rootViewController: calendarVC, title: "Calendar", image: Constants.ImageLabels.calendarImage!),
-                           setNavigationVC(rootViewController: progressVC, title: "Progress", image: Constants.ImageLabels.progressImage!)]
+        viewControllers = [setNavigationVC(rootViewController: ViewController(), title: LocalizedString.todayHabits, image: Constants.ImageLabels.listImage!),
+                           setNavigationVC(rootViewController: AllHabitsViewController(), title: LocalizedString.allHabits, image: Constants.ImageLabels.calendarImage!)]
+        middleButton.frame = CGRect(x: (view.frame.width/2)-25, y: -20, width: 60, height: 60)
+        tabBar.addSubview(middleButton)
     }
 
 }

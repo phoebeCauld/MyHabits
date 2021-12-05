@@ -8,7 +8,6 @@
 import UIKit
 
 class ColorTableViewCell: UITableViewCell {
-//    private let colorButtons = ColorButtons()
 
     let pinkButton = ColorButton(color: Constants.Colors.pink,colorName: "pink", tag: 11)
 
@@ -22,7 +21,7 @@ class ColorTableViewCell: UITableViewCell {
     let greenButton = ColorButton(color: Constants.Colors.green, colorName: "green", tag: 14)
     
     
-    private let selectColorLabel = AddViewLabel(title: "Select label color:")
+    private let selectColorLabel = AddViewLabel(title: LocalizedString.colorLabel)
     
     private let colorStack: UIStackView = {
         let colorsStack = UIStackView()
@@ -31,6 +30,7 @@ class ColorTableViewCell: UITableViewCell {
         colorsStack.distribution = .fillEqually
         return colorsStack
     }()
+    
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)

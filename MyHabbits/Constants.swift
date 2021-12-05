@@ -37,3 +37,30 @@ struct Constants {
         static let green: UIColor = UIColor(red: 0.39, green: 0.80, blue: 0.85, alpha: 1.00)
     }
 }
+
+struct LocalizedString {
+    static let addTitle = NSLocalizedString("Add new habit", comment: "")
+    static let updateTitle = NSLocalizedString("Update ", comment: "")
+    static let canselButton = NSLocalizedString("Close", comment: "")
+    static let nameLabel = NSLocalizedString("I want to start:", comment: "")
+    static let daysLabel = NSLocalizedString("I want do this every:", comment: "")
+    static let notificationLabel = NSLocalizedString("Send me notification to remind", comment: "")
+    static let colorLabel = NSLocalizedString("Select label color:", comment: "")
+    static let emptyNameLabel = NSLocalizedString("Empty name!", comment: "")
+    static let emptyNameDescription = NSLocalizedString("Please, enter the name of your new habit", comment: "")
+    static let todayHabits = NSLocalizedString("Today Habits", comment: "")
+    static let allHabits = NSLocalizedString("All Habits", comment: "")
+
+    static let mon = NSLocalizedString("Mon", comment: "")
+    static let tue = NSLocalizedString("Tue", comment: "")
+    static let wed = NSLocalizedString("Wed", comment: "")
+    static let thu = NSLocalizedString("Thu", comment: "")
+    static let fri = NSLocalizedString("Fri", comment: "")
+    static let sat = NSLocalizedString("Sat", comment: "")
+    static let sun = NSLocalizedString("Sun", comment: "")
+
+    
+    
+}
+
+

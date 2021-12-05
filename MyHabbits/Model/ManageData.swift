@@ -47,7 +47,7 @@ class ManageCoreData{
         }
     }
     
-    func loadOtherHabits(habit: inout [Habit]){
+    func loadNotTodayHabits(habit: inout [Habit]){
         let weekDay = getDayOfWeek()
         let datePredicate = NSPredicate(format: "!%@ IN daysArray.days", weekDay as NSNumber)
         fetchRequest.predicate = datePredicate
@@ -71,10 +71,6 @@ class ManageCoreData{
         context.delete(habit[indexPath.row])
         habit.remove(at: indexPath.row)
     }
-    
-    func deleteItemInTwoDemensions(at indexPath: IndexPath, habit: inout [HabitsSection]){
-                context.delete(habit[indexPath.section].habits[indexPath.row-1])
-                habit[indexPath.section].habits.remove(at: indexPath.row-1)
-    }
+
 }
 

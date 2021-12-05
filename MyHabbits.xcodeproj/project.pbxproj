@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D11A09F275BD1CD00D80ED8 /* AllHabitsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D11A09E275BD1CD00D80ED8 /* AllHabitsViewCell.swift */; };
+		2D11A0A7275CE8FD00D80ED8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2D11A0A9275CE8FD00D80ED8 /* Localizable.strings */; };
 		2D59FB81273EE7ED007163CE /* NotificationsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D59FB80273EE7ED007163CE /* NotificationsManager.swift */; };
 		2D5F6BA6272D99D50039C465 /* ColorButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5F6BA5272D99D50039C465 /* ColorButton.swift */; };
 		2D5F6BA8272ECDAA0039C465 /* SelectModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5F6BA7272ECDAA0039C465 /* SelectModel.swift */; };
@@ -28,18 +30,21 @@
 		2D7013432720998200F78FA5 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7013422720998200F78FA5 /* ListView.swift */; };
 		2D70134727209AF500F78FA5 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D70134627209AF500F78FA5 /* TabBarController.swift */; };
 		2D70134927209C0B00F78FA5 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D70134827209C0B00F78FA5 /* Constants.swift */; };
-		2D70134B27213A0E00F78FA5 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D70134A27213A0E00F78FA5 /* CalendarViewController.swift */; };
-		2D70134D27213A6800F78FA5 /* ProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D70134C27213A6800F78FA5 /* ProgressViewController.swift */; };
+		2D70134B27213A0E00F78FA5 /* AllHabitsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D70134A27213A0E00F78FA5 /* AllHabitsViewController.swift */; };
 		2D70134F2721A8F300F78FA5 /* HabbitsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D70134E2721A8F300F78FA5 /* HabbitsCell.swift */; };
 		2D70135627228C3900F78FA5 /* ManageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D70135527228C3900F78FA5 /* ManageData.swift */; };
 		2D70135827234ED200F78FA5 /* DaysButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D70135727234ED200F78FA5 /* DaysButton.swift */; };
-		2D895DD4274ABCB5003A944D /* testView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D895DD3274ABCB5003A944D /* testView.swift */; };
 		2DDE19C6274D77BF006B4949 /* DateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDE19C5274D77BF006B4949 /* DateModel.swift */; };
 		2DE99D3C274BFFE600802FCE /* HabitViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE99D3B274BFFE600802FCE /* HabitViewModel.swift */; };
 		2DE99D3E274C23CC00802FCE /* SectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE99D3D274C23CC00802FCE /* SectionCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2D11A09E275BD1CD00D80ED8 /* AllHabitsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllHabitsViewCell.swift; sourceTree = "<group>"; };
+		2D11A0A0275CE75600D80ED8 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
+		2D11A0A1275CE75600D80ED8 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		2D11A0A8275CE8FD00D80ED8 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		2D11A0AA275CE90300D80ED8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2D59FB80273EE7ED007163CE /* NotificationsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsManager.swift; sourceTree = "<group>"; };
 		2D5F6BA5272D99D50039C465 /* ColorButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorButton.swift; sourceTree = "<group>"; };
 		2D5F6BA7272ECDAA0039C465 /* SelectModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectModel.swift; sourceTree = "<group>"; };
@@ -63,12 +68,10 @@
 		2D7013422720998200F78FA5 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
 		2D70134627209AF500F78FA5 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		2D70134827209C0B00F78FA5 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		2D70134A27213A0E00F78FA5 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
-		2D70134C27213A6800F78FA5 /* ProgressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressViewController.swift; sourceTree = "<group>"; };
+		2D70134A27213A0E00F78FA5 /* AllHabitsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllHabitsViewController.swift; sourceTree = "<group>"; };
 		2D70134E2721A8F300F78FA5 /* HabbitsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabbitsCell.swift; sourceTree = "<group>"; };
 		2D70135527228C3900F78FA5 /* ManageData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageData.swift; sourceTree = "<group>"; };
 		2D70135727234ED200F78FA5 /* DaysButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaysButton.swift; sourceTree = "<group>"; };
-		2D895DD3274ABCB5003A944D /* testView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testView.swift; sourceTree = "<group>"; };
 		2DDE19C5274D77BF006B4949 /* DateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateModel.swift; sourceTree = "<group>"; };
 		2DE99D3B274BFFE600802FCE /* HabitViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitViewModel.swift; sourceTree = "<group>"; };
 		2DE99D3D274C23CC00802FCE /* SectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionCell.swift; sourceTree = "<group>"; };
@@ -92,7 +95,6 @@
 				2D5F6BB627306C730039C465 /* DaysTableViewCell.swift */,
 				2D5F6BBA273071020039C465 /* NotificationTableViewCell.swift */,
 				2D5F6BBC273074F10039C465 /* ColorTableViewCell.swift */,
-				2D5F6BB827306DC40039C465 /* CellStack.swift */,
 			);
 			path = AddViewCells;
 			sourceTree = "<group>";
@@ -102,7 +104,6 @@
 			children = (
 				2D5F6BB4273069080039C465 /* AddHabitViewController.swift */,
 				2D5F6BBE273076250039C465 /* AddHabitView.swift */,
-				2D5F6BAF272F2AB90039C465 /* AddViewLabel.swift */,
 				2D5F6BA7272ECDAA0039C465 /* SelectModel.swift */,
 				2D5F6BB1273066A30039C465 /* AddViewCells */,
 				2D7013592723509400F78FA5 /* buttons */,
@@ -118,21 +119,22 @@
 			path = TabBar;
 			sourceTree = "<group>";
 		};
-		2D5F6BC427330D7A0039C465 /* CalendarTab */ = {
+		2D5F6BC427330D7A0039C465 /* AllHabits */ = {
 			isa = PBXGroup;
 			children = (
-				2D70134A27213A0E00F78FA5 /* CalendarViewController.swift */,
-				2D895DD3274ABCB5003A944D /* testView.swift */,
+				2D70134A27213A0E00F78FA5 /* AllHabitsViewController.swift */,
+				2D11A09E275BD1CD00D80ED8 /* AllHabitsViewCell.swift */,
 			);
-			path = CalendarTab;
+			path = AllHabits;
 			sourceTree = "<group>";
 		};
-		2D5F6BC527330D8B0039C465 /* ProgressTab */ = {
+		2D5F6BC527330D8B0039C465 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				2D70134C27213A6800F78FA5 /* ProgressViewController.swift */,
+				2D5F6BB827306DC40039C465 /* CellStack.swift */,
+				2D5F6BAF272F2AB90039C465 /* AddViewLabel.swift */,
 			);
-			path = ProgressTab;
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		2D5F6BC6273316D00039C465 /* View */ = {
@@ -167,14 +169,15 @@
 				2D59FB80273EE7ED007163CE /* NotificationsManager.swift */,
 				2D7013452720999300F78FA5 /* MyHabitsTab */,
 				2D5F6BC227330CAC0039C465 /* AddHabit */,
-				2D5F6BC527330D8B0039C465 /* ProgressTab */,
-				2D5F6BC427330D7A0039C465 /* CalendarTab */,
+				2D5F6BC527330D8B0039C465 /* Helpers */,
+				2D5F6BC427330D7A0039C465 /* AllHabits */,
 				2D5F6BC327330D6E0039C465 /* TabBar */,
 				2D70135427228C1200F78FA5 /* Model */,
 				2D7013312720969400F78FA5 /* Main.storyboard */,
 				2D70134827209C0B00F78FA5 /* Constants.swift */,
 				2D7013372720969600F78FA5 /* Assets.xcassets */,
 				2D7013392720969600F78FA5 /* LaunchScreen.storyboard */,
+				2D11A0A9275CE8FD00D80ED8 /* Localizable.strings */,
 				2D70133C2720969600F78FA5 /* Info.plist */,
 			);
 			path = MyHabbits;
@@ -253,6 +256,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ru,
 			);
 			mainGroup = 2D70131F2720969400F78FA5;
 			productRefGroup = 2D7013292720969400F78FA5 /* Products */;
@@ -270,6 +274,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2D70133B2720969600F78FA5 /* LaunchScreen.storyboard in Resources */,
+				2D11A0A7275CE8FD00D80ED8 /* Localizable.strings in Resources */,
 				2D7013382720969600F78FA5 /* Assets.xcassets in Resources */,
 				2D7013332720969400F78FA5 /* Main.storyboard in Resources */,
 			);
@@ -283,7 +288,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2D59FB81273EE7ED007163CE /* NotificationsManager.swift in Sources */,
-				2D895DD4274ABCB5003A944D /* testView.swift in Sources */,
 				2D7013432720998200F78FA5 /* ListView.swift in Sources */,
 				2D70134F2721A8F300F78FA5 /* HabbitsCell.swift in Sources */,
 				2D70135827234ED200F78FA5 /* DaysButton.swift in Sources */,
@@ -291,7 +295,7 @@
 				2D5F6BB727306C730039C465 /* DaysTableViewCell.swift in Sources */,
 				2D5F6BBD273074F10039C465 /* ColorTableViewCell.swift in Sources */,
 				2D5F6BB927306DC40039C465 /* CellStack.swift in Sources */,
-				2D70134B27213A0E00F78FA5 /* CalendarViewController.swift in Sources */,
+				2D70134B27213A0E00F78FA5 /* AllHabitsViewController.swift in Sources */,
 				2D7013362720969400F78FA5 /* MyHabbits.xcdatamodeld in Sources */,
 				2D5F6BB5273069080039C465 /* AddHabitViewController.swift in Sources */,
 				2D70134727209AF500F78FA5 /* TabBarController.swift in Sources */,
@@ -304,9 +308,9 @@
 				2D5F6BBB273071020039C465 /* NotificationTableViewCell.swift in Sources */,
 				2D5F6BBF273076250039C465 /* AddHabitView.swift in Sources */,
 				2D5F6BB3273066CC0039C465 /* NameTableViewCell.swift in Sources */,
-				2D70134D27213A6800F78FA5 /* ProgressViewController.swift in Sources */,
 				2D70132C2720969400F78FA5 /* AppDelegate.swift in Sources */,
 				2D5F6BA6272D99D50039C465 /* ColorButton.swift in Sources */,
+				2D11A09F275BD1CD00D80ED8 /* AllHabitsViewCell.swift in Sources */,
 				2D70132E2720969400F78FA5 /* SceneDelegate.swift in Sources */,
 				2DE99D3C274BFFE600802FCE /* HabitViewModel.swift in Sources */,
 			);
@@ -315,10 +319,20 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		2D11A0A9275CE8FD00D80ED8 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2D11A0A8275CE8FD00D80ED8 /* ru */,
+				2D11A0AA275CE90300D80ED8 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		2D7013312720969400F78FA5 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				2D7013322720969400F78FA5 /* Base */,
+				2D11A0A0275CE75600D80ED8 /* ru */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -327,6 +341,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				2D70133A2720969600F78FA5 /* Base */,
+				2D11A0A1275CE75600D80ED8 /* ru */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -338,6 +353,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -399,6 +415,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
