@@ -51,6 +51,7 @@ struct LocalizedString {
     static let todayHabits = NSLocalizedString("Today Habits", comment: "")
     static let allHabits = NSLocalizedString("All Habits", comment: "")
     static let everyDay = NSLocalizedString("Every day", comment: "")
+    static let notificationBody = NSLocalizedString("Don't forget to ", comment: "")
 
     static let mon = NSLocalizedString("Mon", comment: "")
     static let tue = NSLocalizedString("Tue", comment: "")

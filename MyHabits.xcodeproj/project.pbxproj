@@ -55,7 +55,7 @@
 		2D5F6BBA273071020039C465 /* NotificationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTableViewCell.swift; sourceTree = "<group>"; };
 		2D5F6BBC273074F10039C465 /* ColorTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorTableViewCell.swift; sourceTree = "<group>"; };
 		2D5F6BBE273076250039C465 /* AddHabitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddHabitView.swift; sourceTree = "<group>"; };
-		2D7013282720969400F78FA5 /* MyHabbits.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyHabbits.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2D7013282720969400F78FA5 /* MyHabits.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyHabits.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D70132B2720969400F78FA5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2D70132D2720969400F78FA5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		2D70132F2720969400F78FA5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -117,13 +117,13 @@
 			path = TabBar;
 			sourceTree = "<group>";
 		};
-		2D5F6BC427330D7A0039C465 /* AllHabits */ = {
+		2D5F6BC427330D7A0039C465 /* AllHabitsTab */ = {
 			isa = PBXGroup;
 			children = (
 				2D70134A27213A0E00F78FA5 /* AllHabitsViewController.swift */,
 				2D11A09E275BD1CD00D80ED8 /* AllHabitsViewCell.swift */,
 			);
-			path = AllHabits;
+			path = AllHabitsTab;
 			sourceTree = "<group>";
 		};
 		2D5F6BC527330D8B0039C465 /* Helpers */ = {
@@ -154,7 +154,7 @@
 		2D7013292720969400F78FA5 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				2D7013282720969400F78FA5 /* MyHabbits.app */,
+				2D7013282720969400F78FA5 /* MyHabits.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -165,12 +165,12 @@
 				2D70132B2720969400F78FA5 /* AppDelegate.swift */,
 				2D70132D2720969400F78FA5 /* SceneDelegate.swift */,
 				2D59FB80273EE7ED007163CE /* NotificationsManager.swift */,
-				2D7013452720999300F78FA5 /* MyHabitsTab */,
-				2D5F6BC227330CAC0039C465 /* AddHabit */,
-				2D5F6BC527330D8B0039C465 /* Helpers */,
-				2D5F6BC427330D7A0039C465 /* AllHabits */,
-				2D5F6BC327330D6E0039C465 /* TabBar */,
 				2D70135427228C1200F78FA5 /* Model */,
+				2D7013452720999300F78FA5 /* TodayHabitsTab */,
+				2D5F6BC427330D7A0039C465 /* AllHabitsTab */,
+				2D5F6BC227330CAC0039C465 /* AddHabit */,
+				2D5F6BC327330D6E0039C465 /* TabBar */,
+				2D5F6BC527330D8B0039C465 /* Helpers */,
 				2D7013312720969400F78FA5 /* Main.storyboard */,
 				2D70134827209C0B00F78FA5 /* Constants.swift */,
 				2D7013372720969600F78FA5 /* Assets.xcassets */,
@@ -181,7 +181,7 @@
 			path = MyHabbits;
 			sourceTree = "<group>";
 		};
-		2D7013452720999300F78FA5 /* MyHabitsTab */ = {
+		2D7013452720999300F78FA5 /* TodayHabitsTab */ = {
 			isa = PBXGroup;
 			children = (
 				2D5F6BC6273316D00039C465 /* View */,
@@ -190,7 +190,7 @@
 				2D70134E2721A8F300F78FA5 /* HabbitsCell.swift */,
 				2DE99D3D274C23CC00802FCE /* SectionCell.swift */,
 			);
-			path = MyHabitsTab;
+			path = TodayHabitsTab;
 			sourceTree = "<group>";
 		};
 		2D70135427228C1200F78FA5 /* Model */ = {
@@ -214,9 +214,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		2D7013272720969400F78FA5 /* MyHabbits */ = {
+		2D7013272720969400F78FA5 /* MyHabits */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2D70133F2720969600F78FA5 /* Build configuration list for PBXNativeTarget "MyHabbits" */;
+			buildConfigurationList = 2D70133F2720969600F78FA5 /* Build configuration list for PBXNativeTarget "MyHabits" */;
 			buildPhases = (
 				2D7013242720969400F78FA5 /* Sources */,
 				2D7013252720969400F78FA5 /* Frameworks */,
@@ -226,9 +226,9 @@
 			);
 			dependencies = (
 			);
-			name = MyHabbits;
+			name = MyHabits;
 			productName = MyHabbits;
-			productReference = 2D7013282720969400F78FA5 /* MyHabbits.app */;
+			productReference = 2D7013282720969400F78FA5 /* MyHabits.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -246,7 +246,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 2D7013232720969400F78FA5 /* Build configuration list for PBXProject "MyHabbits" */;
+			buildConfigurationList = 2D7013232720969400F78FA5 /* Build configuration list for PBXProject "MyHabits" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -260,7 +260,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				2D7013272720969400F78FA5 /* MyHabbits */,
+				2D7013272720969400F78FA5 /* MyHabits */,
 			);
 		};
 /* End PBXProject section */
@@ -476,8 +476,9 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -504,8 +505,9 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -522,7 +524,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		2D7013232720969400F78FA5 /* Build configuration list for PBXProject "MyHabbits" */ = {
+		2D7013232720969400F78FA5 /* Build configuration list for PBXProject "MyHabits" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2D70133D2720969600F78FA5 /* Debug */,
@@ -531,7 +533,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2D70133F2720969600F78FA5 /* Build configuration list for PBXNativeTarget "MyHabbits" */ = {
+		2D70133F2720969600F78FA5 /* Build configuration list for PBXNativeTarget "MyHabits" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2D7013402720969600F78FA5 /* Debug */,

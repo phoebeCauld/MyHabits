@@ -76,11 +76,17 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             ManageCoreData.shared.saveData()
             tableView.reloadData()
             }
-
-        done.backgroundColor = .systemGreen
-        done.image = Constants.ImageLabels.doneImage
-        let config = UISwipeActionsConfiguration(actions: [done])
         
+        switch self.habits[indexPath.row].isDone{
+        case true: done.backgroundColor = .systemYellow
+            done.title = "Undode"
+            done.image = UIImage(systemName: "arrow.uturn.backward")
+        case false: done.backgroundColor = .systemGreen
+            done.title = "Done"
+            done.image = Constants.ImageLabels.doneImage
+        }
+        
+        let config = UISwipeActionsConfiguration(actions: [done])
         return config
     }
     
