@@ -58,7 +58,8 @@ class NotificationsManager: NSObject, UNUserNotificationCenterDelegate {
 
     
     func scheduleNotification(for habit: Habit, day: Int, dayId: String){
-        guard let identifier = habit.identifier, let title = habit.title, let timeToRemind = habit.timeToRemind else { return }
+        guard let identifier = habit.identifier, let timeToRemind = habit.timeToRemind else { return }
+        let title = "MyHabits"
         var dateTime = Calendar.current.dateComponents([.weekday, .hour, .minute, .second], from: timeToRemind)
         dateTime.weekday = day
         let id = identifier.uuidString + dayId
@@ -74,7 +75,7 @@ class NotificationsManager: NSObject, UNUserNotificationCenterDelegate {
         for notification in notifications {
             let content = UNMutableNotificationContent()
             content.title = notification.title
-            content.body = "Don't forget to " + notification.title
+            content.body = LocalizedString.notificationBody + notification.title
             content.sound = .default
             
         //если тест
