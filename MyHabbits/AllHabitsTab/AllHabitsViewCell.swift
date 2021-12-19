@@ -12,7 +12,7 @@ class AllHabitsViewCell: UICollectionViewCell {
     let habitName: UILabel = {
         let name = UILabel()
         name.font = .boldSystemFont(ofSize: 20)
-        name.numberOfLines = 0
+        name.numberOfLines = 3
         name.text = "Name of HAbit"
         return name
     }()
@@ -30,8 +30,7 @@ class AllHabitsViewCell: UICollectionViewCell {
         iv.isHidden = true
         return iv
     }()
-    
-    
+
     let timeLabel: UILabel = {
         let name = UILabel()
         name.text = ""
@@ -44,6 +43,32 @@ class AllHabitsViewCell: UICollectionViewCell {
         iv.isHidden = true
         return iv
     }()
+    
+    let settingsButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("...", for: .normal)
+        button.titleLabel?.font = .boldSystemFont(ofSize: 25)
+        button.tintColor = .black
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.widthAnchor.constraint(equalToConstant: 40).isActive = true
+        button.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        button.addTarget(self, action: #selector(settingsButtonTapped), for: .touchUpInside)
+        return button
+    }()
+    
+    @objc private func settingsButtonTapped(_ sender: UIButton){
+        let settingsView = SettingsView()
+        settingsView.layer.cornerRadius = 10
+        settingsView.clipsToBounds = true
+        contentView.addSubview(settingsView)
+        settingsView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            settingsView.topAnchor.constraint(equalTo: settingsButton.bottomAnchor, constant: 3),
+            settingsView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
+            settingsView.widthAnchor.constraint(equalToConstant: 150),
+            settingsView.heightAnchor.constraint(equalToConstant: 75)
+        ])
+    }
      
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -57,12 +82,15 @@ class AllHabitsViewCell: UICollectionViewCell {
         let daysStack = UIStackView(arrangedSubviews: [calendarImage,daysLabel])
         daysStack.spacing = 8
         let stack = CellStack.addStack(with: [habitName,timeStack,daysStack], contentView)
-        
+        contentView.addSubview(settingsButton)
         NSLayoutConstraint.activate([
             stack.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
             stack.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
             stack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15),
-            stack.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -15)
+            stack.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -15),
+            
+            settingsButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: -5),
+            settingsButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -5)
         ])
     }
     

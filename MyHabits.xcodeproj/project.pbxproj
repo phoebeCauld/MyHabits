@@ -34,6 +34,8 @@
 		2D70134F2721A8F300F78FA5 /* HabbitsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D70134E2721A8F300F78FA5 /* HabbitsCell.swift */; };
 		2D70135627228C3900F78FA5 /* ManageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D70135527228C3900F78FA5 /* ManageData.swift */; };
 		2D70135827234ED200F78FA5 /* DaysButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D70135727234ED200F78FA5 /* DaysButton.swift */; };
+		2DC39124276F9DCF00D70551 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC39123276F9DCF00D70551 /* SettingsView.swift */; };
+		2DC39126276F9F9E00D70551 /* SettingsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC39125276F9F9E00D70551 /* SettingsViewCell.swift */; };
 		2DE99D3C274BFFE600802FCE /* HabitViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE99D3B274BFFE600802FCE /* HabitViewModel.swift */; };
 		2DE99D3E274C23CC00802FCE /* SectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE99D3D274C23CC00802FCE /* SectionCell.swift */; };
 /* End PBXBuildFile section */
@@ -71,6 +73,8 @@
 		2D70134E2721A8F300F78FA5 /* HabbitsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabbitsCell.swift; sourceTree = "<group>"; };
 		2D70135527228C3900F78FA5 /* ManageData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageData.swift; sourceTree = "<group>"; };
 		2D70135727234ED200F78FA5 /* DaysButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaysButton.swift; sourceTree = "<group>"; };
+		2DC39123276F9DCF00D70551 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		2DC39125276F9F9E00D70551 /* SettingsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewCell.swift; sourceTree = "<group>"; };
 		2DE99D3B274BFFE600802FCE /* HabitViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitViewModel.swift; sourceTree = "<group>"; };
 		2DE99D3D274C23CC00802FCE /* SectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -122,6 +126,8 @@
 			children = (
 				2D70134A27213A0E00F78FA5 /* AllHabitsViewController.swift */,
 				2D11A09E275BD1CD00D80ED8 /* AllHabitsViewCell.swift */,
+				2DC39123276F9DCF00D70551 /* SettingsView.swift */,
+				2DC39125276F9F9E00D70551 /* SettingsViewCell.swift */,
 			);
 			path = AllHabitsTab;
 			sourceTree = "<group>";
@@ -303,12 +309,14 @@
 				2DE99D3E274C23CC00802FCE /* SectionCell.swift in Sources */,
 				2D5F6BBB273071020039C465 /* NotificationTableViewCell.swift in Sources */,
 				2D5F6BBF273076250039C465 /* AddHabitView.swift in Sources */,
+				2DC39126276F9F9E00D70551 /* SettingsViewCell.swift in Sources */,
 				2D5F6BB3273066CC0039C465 /* NameTableViewCell.swift in Sources */,
 				2D70132C2720969400F78FA5 /* AppDelegate.swift in Sources */,
 				2D5F6BA6272D99D50039C465 /* ColorButton.swift in Sources */,
 				2D11A09F275BD1CD00D80ED8 /* AllHabitsViewCell.swift in Sources */,
 				2D70132E2720969400F78FA5 /* SceneDelegate.swift in Sources */,
 				2DE99D3C274BFFE600802FCE /* HabitViewModel.swift in Sources */,
+				2DC39124276F9DCF00D70551 /* SettingsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

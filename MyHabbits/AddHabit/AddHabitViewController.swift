@@ -14,7 +14,7 @@ class AddHabitViewController: UIViewController {
     private var selectLogic = SelectLogic()
     private var newName: String?
     private var isReminding: Bool = false
-    var isAppear = false
+    var dismissCompletion: (() -> Void)?
     override func viewDidLoad() {
         super.viewDidLoad()
         addView.setupView(view)
@@ -24,14 +24,6 @@ class AddHabitViewController: UIViewController {
         setView()
         self.hideKeyboardWhenTappedAround()
     }
-//    override func viewWillAppear(_ animated: Bool) {
-//        isAppear = true
-//        print("appear")
-//
-//    }
-//    override func viewWillDisappear(_ animated: Bool) {
-//        isAppear = false
-//    }
     
     private func setDelegates(){
         addView.tableView.delegate = self
@@ -45,12 +37,9 @@ class AddHabitViewController: UIViewController {
         } else {
             navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(saveButtonPressed))
         }
-       
     }
     
     // MARK: -  Actions with buttons
-    
-
     
     @objc func dayButtonPressed(_ sender: UIButton){
         selectLogic.selectDay(sender)
@@ -68,13 +57,13 @@ class AddHabitViewController: UIViewController {
         if let habit = habit {
             selectLogic.updateHabit(habit: habit, name: name, isReminding: isReminding)
             ManageCoreData.shared.saveData()
+//            dismissCompletion?()
             navigationController?.popViewController(animated: true)
         } else {
             selectLogic.addHabit(with: name, isRemindning: isReminding)
             ManageCoreData.shared.saveData()
             navigationController?.dismiss(animated: true, completion: nil)
         }
-
     }
     
     @objc func canselButtonPressed(){
@@ -119,6 +108,12 @@ class AddHabitViewController: UIViewController {
         }
     }
     
+    @objc func textFieldDidChangeText(_ textField: UITextField){
+        if textField.hasText {
+            guard let text = textField.text else { return }
+            newName = text
+        }
+    }
 }
 
 extension AddHabitViewController: UITableViewDelegate, UITableViewDataSource {
@@ -135,6 +130,7 @@ extension AddHabitViewController: UITableViewDelegate, UITableViewDataSource {
                 newName = habit.title ?? ""
                 cell.nameTextField.text = habit.title ?? ""
             }
+            cell.nameTextField.addTarget(self, action: #selector(textFieldDidChangeText), for: .allEditingEvents)
             cell.nameTextField.delegate = self
             cell.selectionStyle = .none
             return cell
@@ -188,12 +184,6 @@ extension AddHabitViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
-    }
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        if textField.hasText {
-            newName = textField.text
-        }
     }
 }
 
