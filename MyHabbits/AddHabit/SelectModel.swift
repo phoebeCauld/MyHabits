@@ -84,8 +84,6 @@ struct SelectLogic {
         }
     }
     
-    
-    
     mutating func updateHabit(habit: Habit, name: String, isReminding: Bool){
         habit.title = name
         habit.labelColor = selectedColor

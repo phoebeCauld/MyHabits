@@ -20,35 +20,11 @@ class AllHabitsViewController: UICollectionViewController {
         configNavBar()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        ManageCoreData.shared.loadData(usersHabbits: &habits)
-        collectionView.reloadData()
-    }
-    
+
     private func configNavBar(){
         navigationItem.title = LocalizedString.allHabits
         navigationController?.navigationBar.prefersLargeTitles = true
     }
-    
-//    private func setupLongGestureRecognizerOnCollection() {
-//        let longPressedGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(gestureRecognizer:)))
-//        longPressedGesture.minimumPressDuration = 0.5
-//        longPressedGesture.delegate = self
-//        longPressedGesture.delaysTouchesBegan = true
-//        collectionView?.addGestureRecognizer(longPressedGesture)
-//    }
-//
-//    @objc func handleLongPress(gestureRecognizer: UILongPressGestureRecognizer) {
-//        if (gestureRecognizer.state != .began) {
-//            return
-//        }
-//
-//        let p = gestureRecognizer.location(in: collectionView)
-//
-//        if let indexPath = collectionView?.indexPathForItem(at: p) {
-//            print("Long press at item: \(indexPath.row)")
-//        }
-//    }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return habits.count
@@ -119,6 +95,9 @@ extension AllHabitsViewController: UICollectionViewDelegateFlowLayout {
         let width = (view.frame.width/2)-20
         return CGSize(width: width, height: width)
     }
+}
+
+extension AllHabitsViewController: UIGestureRecognizerDelegate {
     
 }
 

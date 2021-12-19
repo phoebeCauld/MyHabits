@@ -8,7 +8,7 @@
 import UIKit
 
 class TabBarController: UITabBarController {
-    
+    private let allHabbitsVC = AllHabitsViewController()
     private let middleButton: UIButton = {
         let button = UIButton()
         button.setBackgroundImage(UIImage(systemName: "plus.circle.fill"), for: .normal)
@@ -31,8 +31,12 @@ class TabBarController: UITabBarController {
     
     @objc private func addPressed(){
         let addVC = AddHabitViewController()
+//        addVC.dismissCompletion = {
+//            ManageCoreData.shared.loadData(usersHabbits: &self.allHabbitsVC.habits)
+//            self.allHabbitsVC.collectionView.reloadData()
+//        }
         let navController = UINavigationController(rootViewController: addVC)
-        navController.modalPresentationStyle = .fullScreen
+//        navController.modalPresentationStyle = .fullScreen
         self.present(navController, animated: true, completion: nil)
     }
     
