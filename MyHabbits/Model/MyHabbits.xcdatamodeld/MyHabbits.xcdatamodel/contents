@@ -9,6 +9,7 @@
         <attribute name="identifier" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="isDone" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="isRemindning" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="isSelected" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="labelColor" optional="YES" attributeType="String"/>
         <attribute name="timeToRemind" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="title" attributeType="String"/>
@@ -16,6 +17,6 @@
     </entity>
     <elements>
         <element name="DaysToRemind" positionX="-54" positionY="9" width="128" height="74"/>
-        <element name="Habit" positionX="-320.796875" positionY="-0.3125" width="128" height="134"/>
+        <element name="Habit" positionX="-320.796875" positionY="-0.3125" width="128" height="149"/>
     </elements>
 </model>

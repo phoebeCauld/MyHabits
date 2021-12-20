@@ -10,8 +10,9 @@ import UIKit
 class AllHabitsViewController: UICollectionViewController {
     private let habitModel = HabitViewModel()
     private let habitCellId = "habitCellId"
+    private var isEditingMode: Bool = false
     var habits = [Habit]()
-    
+    var selectedItems = [IndexPath]()
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.register(AllHabitsViewCell.self, forCellWithReuseIdentifier: habitCellId)
@@ -19,11 +20,65 @@ class AllHabitsViewController: UICollectionViewController {
         ManageCoreData.shared.loadData(usersHabbits: &habits)
         configNavBar()
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        isEditingMode = false
+        configNavBar()
+        ManageCoreData.shared.loadData(usersHabbits: &habits)
+        collectionView.reloadData()
+    }
     
-
     private func configNavBar(){
         navigationItem.title = LocalizedString.allHabits
         navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(startEditing))
+    }
+
+    @objc fileprivate func startEditing() {
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(stopEditing))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(deleteItems))
+        isEditingMode = true
+    }
+    
+    @objc fileprivate func stopEditing() {
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(startEditing))
+        navigationItem.leftBarButtonItem = nil
+        isEditingMode = false
+        if !selectedItems.isEmpty{
+            for indexPath in selectedItems {
+                habits[indexPath.item].isSelected = false
+            }
+            collectionView.reloadData()
+        }
+    }
+    @objc fileprivate func deleteItems(){
+        showDeleteAlert()
+    }
+    
+    private func showDeleteAlert(){
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let action = UIAlertAction(title: LocalizedString.deleteLabel, style: .destructive) { _ in
+            self.deleteHabit()
+        }
+        let cancelAction = UIAlertAction(title: LocalizedString.cancelLabel, style: .cancel, handler: nil)
+        alert.addAction(action)
+        alert.addAction(cancelAction)
+        present(alert, animated: true, completion: nil)
+    }
+    
+    fileprivate func deleteHabit(){
+        for indexPath in selectedItems.sorted(by: { $0.item > $1.item}){
+            if habits[indexPath.item].isSelected {
+                if let daysId = self.habits[indexPath.row].daysArray?.value(forKey: "id") as? Set<String> {
+                    NotificationsManager.shared.deleteNotificiation(with: self.habits[indexPath.row].identifier?.uuidString ?? "", daysIds: Array(daysId))
+                }
+                ManageCoreData.shared.deleteItem(at: indexPath, habit: &self.habits)
+                ManageCoreData.shared.saveData()
+            }
+        }
+        selectedItems = []
+        collectionView.reloadData()
+        stopEditing()
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -33,52 +88,22 @@ class AllHabitsViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: habitCellId, for: indexPath) as! AllHabitsViewCell
         let habit = habits[indexPath.item]
-        cell.backgroundColor = habitModel.currentColorForHabit(with: habit.labelColor ?? "")
-        cell.habitName.text = habit.title
-        if let time = habit.timeToRemind {
-            let dateformat = DateFormatter()
-            dateformat.dateFormat = "HH:mm"
-            cell.timeLabel.text = dateformat.string(from: time)
-            cell.clockImage.isHidden = false
-        } else {
-            cell.timeLabel.text = ""
-            cell.clockImage.isHidden = true
-        }
-        
-        if let daysArray = habit.daysArray?.value(forKey: "days") as? Set<Int>{
-            let days = Array(daysArray).sorted()
-            var daysString = ""
-            if days.count == 7 {
-                daysString = LocalizedString.everyDay
-            } else if days.isEmpty {
-                daysString = ""
-                cell.calendarImage.isHidden = true
-            }else  {
-                for day in days {
-                    switch day {
-                    case 1: daysString.append(LocalizedString.mon + ",")
-                    case 2: daysString.append(LocalizedString.tue + ",")
-                    case 3: daysString.append(LocalizedString.wed + ",")
-                    case 4: daysString.append(LocalizedString.thu + ",")
-                    case 5: daysString.append(LocalizedString.fri + ",")
-                    case 6: daysString.append(LocalizedString.sat + ",")
-                    case 7: daysString.append(LocalizedString.sun + ",")
-                    default: daysString.append(" ")
-                    }
-                }
-                daysString.removeLast()
-                cell.calendarImage.isHidden = false
-            }
-            cell.daysLabel.text = daysString
-        }
+        cell.currentHabit = habit
+        cell.backgroundColor = habitModel.currentColorForHabit(with: habit.labelColor ?? "")    
         return cell
     }
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let addVC = AddHabitViewController()
-        let currentHabit = habits[indexPath.item]
-        addVC.habit = currentHabit
-        navigationController?.pushViewController(addVC, animated: true)
+        if !isEditingMode {
+            let addVC = AddHabitViewController()
+            let currentHabit = habits[indexPath.item]
+            addVC.habit = currentHabit
+            navigationController?.pushViewController(addVC, animated: true)
+        } else {
+            habits[indexPath.item].isSelected = true
+            selectedItems.append(indexPath)
+            collectionView.reloadData()
+        }
     }
     
     init(){

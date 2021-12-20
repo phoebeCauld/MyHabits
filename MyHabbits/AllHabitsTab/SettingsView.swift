@@ -14,11 +14,13 @@ struct SettingsOptions {
 
 fileprivate let cellID = "settingsCell"
 
-class SettingsView: UITableView {
+class SettingsView: UITableView, UITableViewDelegate, UITableViewDataSource {
     
     override init(frame: CGRect, style: UITableView.Style) {
         super.init(frame: frame, style: style)
         register(SettingsViewCell.self, forCellReuseIdentifier: cellID)
+        self.delegate = self
+        self.dataSource = self
     }
 
     required init?(coder: NSCoder) {
