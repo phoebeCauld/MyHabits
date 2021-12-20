@@ -8,6 +8,32 @@
 import UIKit
 
 class AllHabitsViewCell: UICollectionViewCell {
+
+    var currentHabit: Habit! {
+        didSet {
+            habitName.text = currentHabit.title
+            if let time = currentHabit.timeToRemind {
+                let dateformat = DateFormatter()
+                dateformat.dateFormat = "HH:mm"
+                timeLabel.text = dateformat.string(from: time)
+                clockImage.isHidden = false
+            } else {
+                timeLabel.text = ""
+                clockImage.isHidden = true
+            }
+            
+            if let daysArray = currentHabit.daysArray?.value(forKey: "days") as? Set<Int>{
+                let days = Array(daysArray).sorted()
+                setDaysToCalendarImage(days: days)
+            }
+            if currentHabit.isSelected {
+                checkMark.isHidden = false
+                checkMark.image = UIImage(systemName: "checkmark.circle")
+            } else {
+                checkMark.isHidden = true
+            }
+        }
+    }
     
     let habitName: UILabel = {
         let name = UILabel()
@@ -44,32 +70,16 @@ class AllHabitsViewCell: UICollectionViewCell {
         return iv
     }()
     
-    let settingsButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("...", for: .normal)
-        button.titleLabel?.font = .boldSystemFont(ofSize: 25)
-        button.tintColor = .black
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.widthAnchor.constraint(equalToConstant: 40).isActive = true
-        button.heightAnchor.constraint(equalToConstant: 40).isActive = true
-        button.addTarget(self, action: #selector(settingsButtonTapped), for: .touchUpInside)
-        return button
+    let checkMark: UIImageView = {
+        let checkMark = UIImageView()
+        checkMark.image = UIImage(systemName: "circle")
+        checkMark.tintColor = .black
+        checkMark.translatesAutoresizingMaskIntoConstraints = false
+        checkMark.widthAnchor.constraint(equalToConstant: 30).isActive = true
+        checkMark.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        return checkMark
     }()
-    
-    @objc private func settingsButtonTapped(_ sender: UIButton){
-        let settingsView = SettingsView()
-        settingsView.layer.cornerRadius = 10
-        settingsView.clipsToBounds = true
-        contentView.addSubview(settingsView)
-        settingsView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            settingsView.topAnchor.constraint(equalTo: settingsButton.bottomAnchor, constant: 3),
-            settingsView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
-            settingsView.widthAnchor.constraint(equalToConstant: 150),
-            settingsView.heightAnchor.constraint(equalToConstant: 75)
-        ])
-    }
-     
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         layer.cornerRadius = 20
@@ -82,16 +92,42 @@ class AllHabitsViewCell: UICollectionViewCell {
         let daysStack = UIStackView(arrangedSubviews: [calendarImage,daysLabel])
         daysStack.spacing = 8
         let stack = CellStack.addStack(with: [habitName,timeStack,daysStack], contentView)
-        contentView.addSubview(settingsButton)
+        contentView.addSubview(checkMark)
         NSLayoutConstraint.activate([
             stack.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
             stack.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
             stack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15),
             stack.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -15),
             
-            settingsButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: -5),
-            settingsButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -5)
+            checkMark.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
+            checkMark.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -5)
         ])
+    }
+    
+    fileprivate func setDaysToCalendarImage(days: [Int]){
+        var daysString = ""
+        if days.count == 7 {
+            daysString = LocalizedString.everyDay
+        } else if days.isEmpty {
+            daysString = ""
+            calendarImage.isHidden = true
+        }else  {
+            for day in days {
+                switch day {
+                case 1: daysString.append(LocalizedString.mon + ",")
+                case 2: daysString.append(LocalizedString.tue + ",")
+                case 3: daysString.append(LocalizedString.wed + ",")
+                case 4: daysString.append(LocalizedString.thu + ",")
+                case 5: daysString.append(LocalizedString.fri + ",")
+                case 6: daysString.append(LocalizedString.sat + ",")
+                case 7: daysString.append(LocalizedString.sun + ",")
+                default: daysString.append(" ")
+                }
+            }
+            daysString.removeLast()
+            calendarImage.isHidden = false
+        }
+        daysLabel.text = daysString
     }
     
     required init?(coder: NSCoder) {
