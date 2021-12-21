@@ -12,7 +12,8 @@ class AllHabitsViewController: UICollectionViewController {
     private let habitCellId = "habitCellId"
     private var isEditingMode: Bool = false
     var habits = [Habit]()
-    var selectedItems = [IndexPath]()
+    private var selectedItems = [IndexPath]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.register(AllHabitsViewCell.self, forCellWithReuseIdentifier: habitCellId)
@@ -100,6 +101,7 @@ class AllHabitsViewController: UICollectionViewController {
             addVC.habit = currentHabit
             navigationController?.pushViewController(addVC, animated: true)
         } else {
+//FIXME: сделать отмену выбора
             habits[indexPath.item].isSelected = true
             selectedItems.append(indexPath)
             collectionView.reloadData()
@@ -117,7 +119,7 @@ class AllHabitsViewController: UICollectionViewController {
 extension AllHabitsViewController: UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = (view.frame.width/2)-20
+        let width = (view.frame.width/2)-15
         return CGSize(width: width, height: width)
     }
 }
