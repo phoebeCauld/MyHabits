@@ -57,7 +57,6 @@ class AddHabitViewController: UIViewController {
         if let habit = habit {
             selectLogic.updateHabit(habit: habit, name: name, isReminding: isReminding)
             ManageCoreData.shared.saveData()
-//            dismissCompletion?()
             navigationController?.popViewController(animated: true)
         } else {
             selectLogic.addHabit(with: name, isRemindning: isReminding)
@@ -132,6 +131,7 @@ extension AddHabitViewController: UITableViewDelegate, UITableViewDataSource {
             }
             cell.nameTextField.addTarget(self, action: #selector(textFieldDidChangeText), for: .allEditingEvents)
             cell.nameTextField.delegate = self
+            cell.nameTextField.becomeFirstResponder()
             cell.selectionStyle = .none
             return cell
         case 1: let cell = tableView.dequeueReusableCell(withIdentifier: Constants.daysCellIdentifier,
