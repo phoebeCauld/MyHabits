@@ -61,6 +61,7 @@ class AddHabitViewController: UIViewController {
         } else {
             selectLogic.addHabit(with: name, isRemindning: isReminding)
             ManageCoreData.shared.saveData()
+            dismissCompletion?()
             navigationController?.dismiss(animated: true, completion: nil)
         }
     }
@@ -176,7 +177,6 @@ extension AddHabitViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
         }
     }
-    
 }
 
 extension AddHabitViewController: UITextFieldDelegate {

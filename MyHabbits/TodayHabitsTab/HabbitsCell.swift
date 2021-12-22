@@ -8,7 +8,7 @@
 import UIKit
 
 class HabbitsCell: UITableViewCell {
-    var done: Bool = false
+    
     
      let cellView: UIView = {
         let view = UIView()

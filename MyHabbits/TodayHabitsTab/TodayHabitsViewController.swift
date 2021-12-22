@@ -8,7 +8,7 @@
 import UIKit
 import CoreData
 
-class ViewController: UIViewController {
+class TodayHabitsViewController: UIViewController {
     
     let listView = ListView()
     private var done: Bool = false
@@ -44,7 +44,7 @@ class ViewController: UIViewController {
 
 // MARK: - TableView methods
 
-extension ViewController: UITableViewDelegate, UITableViewDataSource {
+extension TodayHabitsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return habits.count
     }
@@ -53,12 +53,12 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Constants.mainViewCellIdentifier, for: indexPath) as! HabbitsCell
         cell.selectionStyle = .none
-        let text = habits[indexPath.row].title
-        cell.title.text = text
+        let habit = habits[indexPath.row]
+        cell.title.text = habit.title
 
-        let color = habits[indexPath.row].labelColor
+        let color = habit.labelColor
         cell.cellView.backgroundColor = habitModel.currentColorForHabit(with: color ?? "")
-        habitModel.doneState(is: habits[indexPath.row].isDone, cell: cell)
+        habitModel.doneState(is: habit.isDone, cell: cell)
         return cell
     }
     
@@ -71,7 +71,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let done = UIContextualAction(style: .normal, title: "Done") { (action, view, nil) in
+        let done = UIContextualAction(style: .normal, title: "") { (action, view, nil) in
             self.habits[indexPath.row].isDone = !self.habits[indexPath.row].isDone
             ManageCoreData.shared.saveData()
             tableView.reloadData()
@@ -79,10 +79,10 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         
         switch self.habits[indexPath.row].isDone{
         case true: done.backgroundColor = .systemYellow
-            done.title = "Undode"
+//            done.title = LocalizedString.undoneLabel
             done.image = UIImage(systemName: "arrow.uturn.backward")
         case false: done.backgroundColor = .systemGreen
-            done.title = "Done"
+//            done.title = LocalizedString.doneLabel
             done.image = Constants.ImageLabels.doneImage
         }
         
@@ -91,7 +91,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let delete = UIContextualAction(style: .destructive, title: "Delete") { (action, view, nil) in
+        let delete = UIContextualAction(style: .destructive, title: LocalizedString.deleteLabel) { (action, view, nil) in
             if let daysId = self.habits[indexPath.row].daysArray?.value(forKey: "id") as? Set<String> {
                 NotificationsManager.shared.deleteNotificiation(with: self.habits[indexPath.row].identifier?.uuidString ?? "", daysIds: Array(daysId))
             }
@@ -101,7 +101,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             tableView.reloadData()
         }
         delete.image = Constants.ImageLabels.trashImage
-        let update = UIContextualAction(style: .normal, title: "Edit") { (action, view, nil) in
+        let update = UIContextualAction(style: .normal, title: LocalizedString.editLabel) { (action, view, nil) in
             let detailVC = AddHabitViewController()
             detailVC.habit = self.habits[indexPath.row]
             self.navigationController?.pushViewController(detailVC, animated: true)
