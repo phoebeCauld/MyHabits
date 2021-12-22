@@ -71,6 +71,5 @@ class ManageCoreData{
         context.delete(habit[indexPath.row])
         habit.remove(at: indexPath.row)
     }
-
 }
 

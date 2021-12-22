@@ -18,7 +18,7 @@ class NameTableViewCell: UITableViewCell {
         tf.leftView = spacerView
         tf.layer.cornerRadius = 10
         tf.layer.borderWidth = 0.5
-        let habbits = ["Drink water", "Workout", "Eat vegetables", "Go for a walk"]
+         let habbits = [LocalizedString.placeholder1, LocalizedString.placeholder2, LocalizedString.placeholder3, LocalizedString.placeholder4]
         tf.placeholder = habbits.randomElement()
         return tf
     }()
@@ -35,7 +35,6 @@ class NameTableViewCell: UITableViewCell {
     
     private func setConstraints(_ view: UIView){
         let cellStack = CellStack.addStack(with: [nameLabel, nameTextField], view)
-        
         NSLayoutConstraint.activate([
             cellStack.topAnchor.constraint(equalTo: view.topAnchor,
                                           constant: 20),

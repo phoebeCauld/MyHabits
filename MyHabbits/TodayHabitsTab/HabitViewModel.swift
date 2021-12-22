@@ -34,13 +34,18 @@ struct HabitViewModel{
         }
     }
     
-    func currentdayCheck(for habits: [Habit], isNewDay:Bool){
-        switch isNewDay {
-        case true : for habit in habits {
-            habit.isDone = false
+    func currentdayCheck(for habits: [Habit], isNewDay:Bool) {
+        if isNewDay {
+            for habit in habits {
+                habit.isDone = false
+            }
         }
-        case false : print("false")
-        }
+//        switch isNewDay {
+//        case true: for habit in habits {
+//            habit.isDone = false
+//        }
+//        case false : print("false")
+//        }
     }
 }
 

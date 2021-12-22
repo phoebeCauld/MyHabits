@@ -54,7 +54,13 @@ struct LocalizedString {
     static let notificationBody = NSLocalizedString("Don't forget to ", comment: "")
     static let deleteLabel = NSLocalizedString("Delete", comment: "")
     static let cancelLabel = NSLocalizedString("Cancel", comment: "")
-
+    static let editLabel = NSLocalizedString("Edit", comment: "")
+    static let doneLabel = NSLocalizedString("Done", comment: "")
+    static let undoneLabel = NSLocalizedString("Undone", comment: "")
+    static let placeholder1 = NSLocalizedString("Drink water", comment: "")
+    static let placeholder2 = NSLocalizedString("Workout", comment: "")
+    static let placeholder3 = NSLocalizedString("Eat vegetables", comment: "")
+    static let placeholder4 = NSLocalizedString("Go for a walk", comment: "")
 
     static let mon = NSLocalizedString("Mon", comment: "")
     static let tue = NSLocalizedString("Tue", comment: "")
