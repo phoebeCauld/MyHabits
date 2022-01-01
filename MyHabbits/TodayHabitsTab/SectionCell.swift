@@ -23,17 +23,17 @@ class SectionCell: UITableViewCell {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
-    
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setConstraints(contentView)
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    private func setConstraints(_ view: UIView){
+
+    private func setConstraints(_ view: UIView) {
         let cellStack = UIStackView(arrangedSubviews: [sectionLabel, openImage])
         cellStack.alignment = .center
         cellStack.axis = .horizontal
@@ -45,10 +45,9 @@ class SectionCell: UITableViewCell {
             cellStack.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -10),
             cellStack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
             cellStack.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
-            
+
             openImage.heightAnchor.constraint(equalToConstant: 25),
             openImage.widthAnchor.constraint(equalTo: openImage.heightAnchor)
-            
         ])
     }
 }

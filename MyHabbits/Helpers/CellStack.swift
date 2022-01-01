@@ -19,4 +19,3 @@ struct CellStack {
         return cellStack
     }
 }
-

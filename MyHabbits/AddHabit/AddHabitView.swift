@@ -8,7 +8,7 @@
 import UIKit
 
 class AddHabitView: UIView {
-    
+
     let tableView: UITableView = {
        let tableView = UITableView()
         tableView.separatorStyle = .none
@@ -19,14 +19,13 @@ class AddHabitView: UIView {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
-    
-    
+
     func setupView(_ view: UIView) {
         view.addSubview(tableView)
         setConstraints(view)
     }
-    
-    private func setConstraints(_ view: UIView){
+
+    private func setConstraints(_ view: UIView) {
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 30),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),

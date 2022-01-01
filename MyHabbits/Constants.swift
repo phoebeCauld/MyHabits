@@ -15,7 +15,7 @@ struct Constants {
     static let daysCellIdentifier = "daysCell"
     static let notificationCellIdentifier = "notificationCell"
     static let colorCellIdentifier = "colorCell"
-    
+
     struct ImageLabels {
         static let calendarImage = UIImage(systemName: "calendar")
         static let listImage = UIImage(systemName: "list.bullet")
@@ -28,7 +28,7 @@ struct Constants {
         static let doneImage = UIImage(systemName: "checkmark")
         static let editImage = UIImage(systemName: "pencil")
     }
-    
+
     struct Colors {
         static let defaultColor: UIColor = .systemBlue
         static let pink: UIColor = UIColor(red: 0.97, green: 0.65, blue: 0.76, alpha: 1.00)
@@ -69,9 +69,4 @@ struct LocalizedString {
     static let fri = NSLocalizedString("Fri", comment: "")
     static let sat = NSLocalizedString("Sat", comment: "")
     static let sun = NSLocalizedString("Sun", comment: "")
-
-    
-    
 }
-
-

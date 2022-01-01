@@ -10,30 +10,32 @@ import UIKit
 class NameTableViewCell: UITableViewCell {
 
     private let nameLabel = AddViewLabel(title: LocalizedString.nameLabel)
-    
+
      let nameTextField: UITextField = {
-        let tf = UITextField()
-        let spacerView = UIView(frame:CGRect(x:0, y:0, width:10, height:10))
-        tf.leftViewMode = UITextField.ViewMode.always
-        tf.leftView = spacerView
-        tf.layer.cornerRadius = 10
-        tf.layer.borderWidth = 0.5
-         let habbits = [LocalizedString.placeholder1, LocalizedString.placeholder2, LocalizedString.placeholder3, LocalizedString.placeholder4]
-        tf.placeholder = habbits.randomElement()
-        return tf
+        let textField = UITextField()
+        let spacerView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 10))
+        textField.leftViewMode = UITextField.ViewMode.always
+        textField.leftView = spacerView
+        textField.layer.cornerRadius = 10
+        textField.layer.borderWidth = 0.5
+        let habbits = [LocalizedString.placeholder1,
+                        LocalizedString.placeholder2,
+                        LocalizedString.placeholder3,
+                        LocalizedString.placeholder4]
+        textField.placeholder = habbits.randomElement()
+        return textField
     }()
-    
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setConstraints(contentView)
     }
-    
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    private func setConstraints(_ view: UIView){
+
+    private func setConstraints(_ view: UIView) {
         let cellStack = CellStack.addStack(with: [nameLabel, nameTextField], view)
         NSLayoutConstraint.activate([
             cellStack.topAnchor.constraint(equalTo: view.topAnchor,

@@ -20,23 +20,23 @@ class DaysTableViewCell: UITableViewCell {
         daysStack.translatesAutoresizingMaskIntoConstraints = false
         return daysStack
     }()
-    
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setConstraints(contentView)
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    private func setConstraints(_ view: UIView){
+
+    private func setConstraints(_ view: UIView) {
         arrayOfButtons = dayButton.createButtons()
         for button in arrayOfButtons {
             daysStack.addArrangedSubview(button)
         }
-        let cellStack = CellStack.addStack(with: [chooseDayLabel,daysStack], view)
-        
+        let cellStack = CellStack.addStack(with: [chooseDayLabel, daysStack], view)
+
         NSLayoutConstraint.activate([
             cellStack.topAnchor.constraint(equalTo: view.topAnchor,
                                           constant: 20),

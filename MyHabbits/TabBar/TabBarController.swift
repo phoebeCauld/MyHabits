@@ -8,10 +8,10 @@
 import UIKit
 
 class TabBarController: UITabBarController {
-    
+
     let todayHabbits = TodayHabitsViewController()
     private let allHabbitsVC = AllHabitsViewController()
-    private let middleButton: UIButton = {
+    private lazy var middleButton: UIButton = {
         let button = UIButton()
         button.setBackgroundImage(UIImage(systemName: "plus.circle.fill"), for: .normal)
         button.tintColor = .lightGray
@@ -23,15 +23,14 @@ class TabBarController: UITabBarController {
         UIView().layoutIfNeeded()
         return button
     }()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         configurationTabBar()
         self.delegate = self
-        
     }
-    
-    @objc private func addPressed(){
+
+    @objc private func addPressed() {
         let addVC = AddHabitViewController()
         let navController = UINavigationController(rootViewController: addVC)
         addVC.dismissCompletion = {
@@ -41,8 +40,10 @@ class TabBarController: UITabBarController {
 //        navController.modalPresentationStyle = .fullScreen
         self.present(navController, animated: true, completion: nil)
     }
-    
-    private func setNavigationVC(rootViewController: UIViewController, title: String, image: UIImage) -> UIViewController {
+
+    private func setNavigationVC(rootViewController: UIViewController,
+                                 title: String,
+                                 image: UIImage) -> UIViewController {
         let navigationVC = UINavigationController(rootViewController: rootViewController)
         let tabBaritem = UITabBarItem()
         navigationVC.tabBarItem = tabBaritem
@@ -51,12 +52,16 @@ class TabBarController: UITabBarController {
         return navigationVC
     }
 
-    private func configurationTabBar(){
+    private func configurationTabBar() {
         tabBar.tintColor = Constants.Colors.defaultColor
         tabBar.unselectedItemTintColor = .lightGray
         viewControllers = [
-            setNavigationVC(rootViewController: allHabbitsVC, title: LocalizedString.allHabits, image: Constants.ImageLabels.listImage!),
-            setNavigationVC(rootViewController: todayHabbits, title: LocalizedString.todayHabits, image: Constants.ImageLabels.calendarImage!)
+            setNavigationVC(rootViewController: allHabbitsVC,
+                            title: LocalizedString.allHabits,
+                            image: Constants.ImageLabels.listImage!),
+            setNavigationVC(rootViewController: todayHabbits,
+                            title: LocalizedString.todayHabits,
+                            image: Constants.ImageLabels.calendarImage!)
                            ]
         middleButton.frame = CGRect(x: (view.frame.width/2)-25, y: -20, width: 60, height: 60)
         tabBar.addSubview(middleButton)
@@ -66,6 +71,6 @@ class TabBarController: UITabBarController {
 
 extension TabBarController: UITabBarControllerDelegate {
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
-        
+
     }
 }
