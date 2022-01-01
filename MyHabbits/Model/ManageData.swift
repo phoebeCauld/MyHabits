@@ -9,20 +9,20 @@ import Foundation
 import CoreData
 import UIKit
 
-class ManageCoreData{
+class ManageCoreData {
     static let shared = ManageCoreData()
-    
+
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     let fetchRequest: NSFetchRequest<Habit> = Habit.fetchRequest()
 
-    func saveData(){
+    func saveData() {
         do {
             try context.save()
         } catch let error as NSError {
             print("Failed with saving data: \(error.localizedDescription)")
         }
     }
-    
+
     func getDayOfWeek() -> Int {
         let today = Date()
         let myCalendar = Calendar(identifier: .gregorian)
@@ -33,8 +33,8 @@ class ManageCoreData{
             return weekDay - 1
         }
     }
-    
-    func loadTodayHabits(habit: inout [Habit]){
+
+    func loadTodayHabits(habit: inout [Habit]) {
         let weekDay = getDayOfWeek()
         let sort = NSSortDescriptor(key: "isDone", ascending: true)
         let datePredicate = NSPredicate(format: "%@ IN daysArray.days", weekDay as NSNumber)
@@ -46,8 +46,8 @@ class ManageCoreData{
             print("Failed with loading data \(error.localizedDescription)")
         }
     }
-    
-    func loadNotTodayHabits(habit: inout [Habit]){
+
+    func loadNotTodayHabits(habit: inout [Habit]) {
         let weekDay = getDayOfWeek()
         let datePredicate = NSPredicate(format: "!%@ IN daysArray.days", weekDay as NSNumber)
         fetchRequest.predicate = datePredicate
@@ -57,8 +57,8 @@ class ManageCoreData{
             print("Failed with loading data \(error.localizedDescription)")
         }
     }
-    
-    func loadData(usersHabbits: inout [Habit]){
+
+    func loadData(usersHabbits: inout [Habit]) {
         fetchRequest.predicate = nil
         do {
             usersHabbits = try context.fetch(fetchRequest)
@@ -66,10 +66,9 @@ class ManageCoreData{
             print("Failed with fetching: \(error.localizedDescription)")
         }
     }
-    
-    func deleteItem(at indexPath: IndexPath, habit: inout [Habit]){
+
+    func deleteItem(at indexPath: IndexPath, habit: inout [Habit]) {
         context.delete(habit[indexPath.row])
         habit.remove(at: indexPath.row)
     }
 }
-

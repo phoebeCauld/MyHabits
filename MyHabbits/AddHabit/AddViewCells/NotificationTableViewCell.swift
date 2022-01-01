@@ -10,13 +10,13 @@ import UIKit
 class NotificationTableViewCell: UITableViewCell {
     var isPickerHiden: Bool = true
     private let addNotification = AddViewLabel(title: LocalizedString.notificationLabel)
-    
-    let addNotificationSwitch: UISwitch = {
+
+    lazy var addNotificationSwitch: UISwitch = {
        let notificationSwitch = UISwitch()
         notificationSwitch.addTarget(self, action: #selector(changedSwitch), for: .valueChanged)
         return notificationSwitch
     }()
-    
+
     let notificationPicker: UIDatePicker = {
        let picker = UIDatePicker()
         picker.datePickerMode = .time
@@ -25,20 +25,20 @@ class NotificationTableViewCell: UITableViewCell {
         picker.translatesAutoresizingMaskIntoConstraints = false
         return picker
     }()
-    
+
     var withPickerConstraints = [NSLayoutConstraint]()
     var withoutPickerConstraints = [NSLayoutConstraint]()
-    
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setConstraints(contentView)
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    private func setConstraints(_ view: UIView){
+
+    private func setConstraints(_ view: UIView) {
         let switchStack = UIStackView(arrangedSubviews: [addNotification, addNotificationSwitch])
         switchStack.axis = .horizontal
         switchStack.spacing = 10
@@ -59,7 +59,7 @@ class NotificationTableViewCell: UITableViewCell {
             switchStack.bottomAnchor.constraint(equalTo: view.bottomAnchor,
                                                 constant: -20)
         ]
-        
+
         NSLayoutConstraint.activate([
             switchStack.topAnchor.constraint(equalTo: view.topAnchor,
                                           constant: 20),
@@ -69,23 +69,23 @@ class NotificationTableViewCell: UITableViewCell {
                                                constant: -20)
         ] + withoutPickerConstraints)
     }
-    
-     func setTimePicker(_ isHidden:Bool){
-         
+
+     func setTimePicker(_ isHidden: Bool) {
+
         if !isHidden, notificationPicker.superview == nil {
             contentView.addSubview(notificationPicker)
-            withoutPickerConstraints.forEach{$0.isActive = false}
-            withPickerConstraints.forEach{$0.isActive = true}
+            withoutPickerConstraints.forEach {$0.isActive = false}
+            withPickerConstraints.forEach {$0.isActive = true}
         }
 
         if isHidden, notificationPicker.superview != nil {
             notificationPicker.removeFromSuperview()
-            withoutPickerConstraints.forEach{$0.isActive = true}
-            withPickerConstraints.forEach{$0.isActive = false}
+            withoutPickerConstraints.forEach {$0.isActive = true}
+            withPickerConstraints.forEach {$0.isActive = false}
         }
     }
-    
-    @objc func changedSwitch(_ mySwith: UISwitch){
+
+    @objc func changedSwitch(_ mySwith: UISwitch) {
         if mySwith.isOn {
             isPickerHiden = false
             notificationPicker.isHidden = false
@@ -96,8 +96,8 @@ class NotificationTableViewCell: UITableViewCell {
             setTimePicker(isPickerHiden)
         }
     }
-    
-    func oldNotificationPickerState(_ habit: Habit, _ isReminding: Bool){
+
+    func oldNotificationPickerState(_ habit: Habit, _ isReminding: Bool) {
         addNotificationSwitch.isOn = isReminding
         notificationPicker.isHidden = !addNotificationSwitch.isOn
         setTimePicker(notificationPicker.isHidden)

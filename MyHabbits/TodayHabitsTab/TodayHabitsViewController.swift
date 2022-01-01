@@ -9,12 +9,12 @@ import UIKit
 import CoreData
 
 class TodayHabitsViewController: UIViewController {
-    
+
     let listView = ListView()
     private var done: Bool = false
     private let habitModel = HabitViewModel()
     var habits = [Habit]()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         listView.setupView(view)
@@ -24,19 +24,18 @@ class TodayHabitsViewController: UIViewController {
         habitModel.currentdayCheck(for: habits, isNewDay: NotificationsManager.shared.isNewDay)
         listView.tableView.reloadData()
     }
-    
 
     override func viewWillAppear(_ animated: Bool) {
         ManageCoreData.shared.loadTodayHabits(habit: &habits)
         listView.tableView.reloadData()
     }
-    
-    private func setDelegates(){
+
+    private func setDelegates() {
         listView.tableView.delegate = self
         listView.tableView.dataSource = self
     }
-    
-    private func configNavBar(){
+
+    private func configNavBar() {
         navigationItem.title = LocalizedString.todayHabits
         navigationController?.navigationBar.prefersLargeTitles = true
     }
@@ -49,9 +48,9 @@ extension TodayHabitsViewController: UITableViewDelegate, UITableViewDataSource 
         return habits.count
     }
 
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.mainViewCellIdentifier, for: indexPath) as! HabbitsCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.mainViewCellIdentifier,
+                                                 for: indexPath) as! HabbitsCell
         cell.selectionStyle = .none
         let habit = habits[indexPath.row]
         cell.title.text = habit.title
@@ -61,7 +60,7 @@ extension TodayHabitsViewController: UITableViewDelegate, UITableViewDataSource 
         habitModel.doneState(is: habit.isDone, cell: cell)
         return cell
     }
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
             let detailVC = AddHabitViewController()
@@ -69,15 +68,16 @@ extension TodayHabitsViewController: UITableViewDelegate, UITableViewDataSource 
             navigationController?.pushViewController(detailVC, animated: true)
 
     }
-    
-    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let done = UIContextualAction(style: .normal, title: "") { (action, view, nil) in
+
+    func tableView(_ tableView: UITableView,
+                   leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let done = UIContextualAction(style: .normal, title: "") { (_, _, _) in
             self.habits[indexPath.row].isDone = !self.habits[indexPath.row].isDone
             ManageCoreData.shared.saveData()
             tableView.reloadData()
             }
-        
-        switch self.habits[indexPath.row].isDone{
+
+        switch self.habits[indexPath.row].isDone {
         case true: done.backgroundColor = .systemYellow
 //            done.title = LocalizedString.undoneLabel
             done.image = UIImage(systemName: "arrow.uturn.backward")
@@ -85,23 +85,26 @@ extension TodayHabitsViewController: UITableViewDelegate, UITableViewDataSource 
 //            done.title = LocalizedString.doneLabel
             done.image = Constants.ImageLabels.doneImage
         }
-        
+
         let config = UISwipeActionsConfiguration(actions: [done])
         return config
     }
-    
-    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let delete = UIContextualAction(style: .destructive, title: LocalizedString.deleteLabel) { (action, view, nil) in
+
+    func tableView(_ tableView: UITableView,
+                   trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let delete = UIContextualAction(style: .destructive, title: LocalizedString.deleteLabel) { (_, _, _) in
             if let daysId = self.habits[indexPath.row].daysArray?.value(forKey: "id") as? Set<String> {
-                NotificationsManager.shared.deleteNotificiation(with: self.habits[indexPath.row].identifier?.uuidString ?? "", daysIds: Array(daysId))
+                let currentHabit = self.habits[indexPath.row]
+                NotificationsManager.shared.deleteNotificiation(with: currentHabit.identifier?.uuidString ?? "",
+                                                                daysIds: Array(daysId))
             }
-            
+
             ManageCoreData.shared.deleteItem(at: indexPath, habit: &self.habits)
             ManageCoreData.shared.saveData()
             tableView.reloadData()
         }
         delete.image = Constants.ImageLabels.trashImage
-        let update = UIContextualAction(style: .normal, title: LocalizedString.editLabel) { (action, view, nil) in
+        let update = UIContextualAction(style: .normal, title: LocalizedString.editLabel) { (_, _, _) in
             let detailVC = AddHabitViewController()
             detailVC.habit = self.habits[indexPath.row]
             self.navigationController?.pushViewController(detailVC, animated: true)

@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 55;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A0121DB49CD79F48EBAC455 /* Pods_MyHabits.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 225363ED40C094C8E5A3EFD7 /* Pods_MyHabits.framework */; };
 		2D11A09F275BD1CD00D80ED8 /* AllHabitsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D11A09E275BD1CD00D80ED8 /* AllHabitsViewCell.swift */; };
 		2D11A0A7275CE8FD00D80ED8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2D11A0A9275CE8FD00D80ED8 /* Localizable.strings */; };
 		2D59FB81273EE7ED007163CE /* NotificationsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D59FB80273EE7ED007163CE /* NotificationsManager.swift */; };
@@ -34,13 +35,14 @@
 		2D70134F2721A8F300F78FA5 /* HabbitsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D70134E2721A8F300F78FA5 /* HabbitsCell.swift */; };
 		2D70135627228C3900F78FA5 /* ManageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D70135527228C3900F78FA5 /* ManageData.swift */; };
 		2D70135827234ED200F78FA5 /* DaysButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D70135727234ED200F78FA5 /* DaysButton.swift */; };
-		2DC39124276F9DCF00D70551 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC39123276F9DCF00D70551 /* SettingsView.swift */; };
-		2DC39126276F9F9E00D70551 /* SettingsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC39125276F9F9E00D70551 /* SettingsViewCell.swift */; };
+		2D96F3142775EDB600AE71E0 /* HapsticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D96F3132775EDB600AE71E0 /* HapsticsManager.swift */; };
 		2DE99D3C274BFFE600802FCE /* HabitViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE99D3B274BFFE600802FCE /* HabitViewModel.swift */; };
 		2DE99D3E274C23CC00802FCE /* SectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE99D3D274C23CC00802FCE /* SectionCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1CD4B60754FFC02A4B3BF97A /* Pods-MyHabits.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyHabits.release.xcconfig"; path = "Target Support Files/Pods-MyHabits/Pods-MyHabits.release.xcconfig"; sourceTree = "<group>"; };
+		225363ED40C094C8E5A3EFD7 /* Pods_MyHabits.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyHabits.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D11A09E275BD1CD00D80ED8 /* AllHabitsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllHabitsViewCell.swift; sourceTree = "<group>"; };
 		2D11A0A0275CE75600D80ED8 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
 		2D11A0A1275CE75600D80ED8 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
@@ -73,10 +75,10 @@
 		2D70134E2721A8F300F78FA5 /* HabbitsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabbitsCell.swift; sourceTree = "<group>"; };
 		2D70135527228C3900F78FA5 /* ManageData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageData.swift; sourceTree = "<group>"; };
 		2D70135727234ED200F78FA5 /* DaysButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaysButton.swift; sourceTree = "<group>"; };
-		2DC39123276F9DCF00D70551 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
-		2DC39125276F9F9E00D70551 /* SettingsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewCell.swift; sourceTree = "<group>"; };
+		2D96F3132775EDB600AE71E0 /* HapsticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapsticsManager.swift; sourceTree = "<group>"; };
 		2DE99D3B274BFFE600802FCE /* HabitViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitViewModel.swift; sourceTree = "<group>"; };
 		2DE99D3D274C23CC00802FCE /* SectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionCell.swift; sourceTree = "<group>"; };
+		43FB8205EF077D4529974D30 /* Pods-MyHabits.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyHabits.debug.xcconfig"; path = "Target Support Files/Pods-MyHabits/Pods-MyHabits.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,12 +86,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A0121DB49CD79F48EBAC455 /* Pods_MyHabits.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		29543E76069BBE45307A0AC8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				225363ED40C094C8E5A3EFD7 /* Pods_MyHabits.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2B19E463300EABE0210D5FCB /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				43FB8205EF077D4529974D30 /* Pods-MyHabits.debug.xcconfig */,
+				1CD4B60754FFC02A4B3BF97A /* Pods-MyHabits.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		2D5F6BB1273066A30039C465 /* AddViewCells */ = {
 			isa = PBXGroup;
 			children = (
@@ -126,8 +146,6 @@
 			children = (
 				2D70134A27213A0E00F78FA5 /* AllHabitsViewController.swift */,
 				2D11A09E275BD1CD00D80ED8 /* AllHabitsViewCell.swift */,
-				2DC39123276F9DCF00D70551 /* SettingsView.swift */,
-				2DC39125276F9F9E00D70551 /* SettingsViewCell.swift */,
 			);
 			path = AllHabitsTab;
 			sourceTree = "<group>";
@@ -136,6 +154,7 @@
 			isa = PBXGroup;
 			children = (
 				2D5F6BB827306DC40039C465 /* CellStack.swift */,
+				2D96F3132775EDB600AE71E0 /* HapsticsManager.swift */,
 				2D5F6BAF272F2AB90039C465 /* AddViewLabel.swift */,
 			);
 			path = Helpers;
@@ -154,6 +173,8 @@
 			children = (
 				2D70132A2720969400F78FA5 /* MyHabbits */,
 				2D7013292720969400F78FA5 /* Products */,
+				2B19E463300EABE0210D5FCB /* Pods */,
+				29543E76069BBE45307A0AC8 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -224,9 +245,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2D70133F2720969600F78FA5 /* Build configuration list for PBXNativeTarget "MyHabits" */;
 			buildPhases = (
+				1175C641B85F0D1FCDBE53FC /* [CP] Check Pods Manifest.lock */,
 				2D7013242720969400F78FA5 /* Sources */,
 				2D7013252720969400F78FA5 /* Frameworks */,
 				2D7013262720969400F78FA5 /* Resources */,
+				2D96F3152780E06B00AE71E0 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -253,7 +276,7 @@
 				};
 			};
 			buildConfigurationList = 2D7013232720969400F78FA5 /* Build configuration list for PBXProject "MyHabits" */;
-			compatibilityVersion = "Xcode 13.0";
+			compatibilityVersion = "Xcode 12.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -285,6 +308,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		1175C641B85F0D1FCDBE53FC /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MyHabits-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2D96F3152780E06B00AE71E0 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "${PODS_ROOT}/SwiftLint/swiftlint\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		2D7013242720969400F78FA5 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -300,6 +365,7 @@
 				2D5F6BB927306DC40039C465 /* CellStack.swift in Sources */,
 				2D70134B27213A0E00F78FA5 /* AllHabitsViewController.swift in Sources */,
 				2D7013362720969400F78FA5 /* MyHabbits.xcdatamodeld in Sources */,
+				2D96F3142775EDB600AE71E0 /* HapsticsManager.swift in Sources */,
 				2D5F6BB5273069080039C465 /* AddHabitViewController.swift in Sources */,
 				2D70134727209AF500F78FA5 /* TabBarController.swift in Sources */,
 				2D70134927209C0B00F78FA5 /* Constants.swift in Sources */,
@@ -309,14 +375,12 @@
 				2DE99D3E274C23CC00802FCE /* SectionCell.swift in Sources */,
 				2D5F6BBB273071020039C465 /* NotificationTableViewCell.swift in Sources */,
 				2D5F6BBF273076250039C465 /* AddHabitView.swift in Sources */,
-				2DC39126276F9F9E00D70551 /* SettingsViewCell.swift in Sources */,
 				2D5F6BB3273066CC0039C465 /* NameTableViewCell.swift in Sources */,
 				2D70132C2720969400F78FA5 /* AppDelegate.swift in Sources */,
 				2D5F6BA6272D99D50039C465 /* ColorButton.swift in Sources */,
 				2D11A09F275BD1CD00D80ED8 /* AllHabitsViewCell.swift in Sources */,
 				2D70132E2720969400F78FA5 /* SceneDelegate.swift in Sources */,
 				2DE99D3C274BFFE600802FCE /* HabitViewModel.swift in Sources */,
-				2DC39124276F9DCF00D70551 /* SettingsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -473,6 +537,7 @@
 		};
 		2D7013402720969600F78FA5 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 43FB8205EF077D4529974D30 /* Pods-MyHabits.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -502,6 +567,7 @@
 		};
 		2D7013412720969600F78FA5 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1CD4B60754FFC02A4B3BF97A /* Pods-MyHabits.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

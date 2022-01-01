@@ -8,8 +8,8 @@
 import UIKit
 
 class DaysButton: UIButton {
-    
-    func configButton(title: String, tag: Int) -> UIButton{
+
+    func configButton(title: String, tag: Int) -> UIButton {
         let dayButtons = UIButton(frame: CGRect(x: 0, y: 0, width: 45, height: 45))
         dayButtons.setTitle(title, for: .normal)
         dayButtons.tag = tag + 1
@@ -18,14 +18,22 @@ class DaysButton: UIButton {
         dayButtons.clipsToBounds = true
         dayButtons.layer.borderWidth = 1
         dayButtons.translatesAutoresizingMaskIntoConstraints = false
-        dayButtons.addTarget(AddHabitViewController(), action: #selector(AddHabitViewController.dayButtonPressed), for: .touchUpInside)
+        dayButtons.addTarget(AddHabitViewController(),
+                             action: #selector(AddHabitViewController.dayButtonPressed),
+                             for: .touchUpInside)
         return dayButtons
     }
-    
+
     func createButtons() -> [UIButton] {
         var arrayOfButtons = [UIButton]()
         let daysNames = [
-            LocalizedString.mon,LocalizedString.tue,LocalizedString.wed,LocalizedString.thu, LocalizedString.fri, LocalizedString.sat,LocalizedString.sun
+            LocalizedString.mon,
+            LocalizedString.tue,
+            LocalizedString.wed,
+            LocalizedString.thu,
+            LocalizedString.fri,
+            LocalizedString.sat,
+            LocalizedString.sun
         ]
         for days in 0...daysNames.count-1 {
             let button = configButton(title: daysNames[days], tag: days)
