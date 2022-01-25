@@ -10,17 +10,15 @@ import CoreData
 
 class TodayHabitsViewController: UIViewController {
 
-    let listView = ListView()
-    private var done: Bool = false
+    private let listView = ListView()
     private let habitModel = HabitViewModel()
-    var habits = [Habit]()
+    private var habits = [Habit]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         listView.setupView(view)
         setDelegates()
         configNavBar()
-        ManageCoreData.shared.loadTodayHabits(habit: &habits)
         habitModel.currentdayCheck(for: habits, isNewDay: NotificationsManager.shared.isNewDay)
         listView.tableView.reloadData()
     }
@@ -62,11 +60,9 @@ extension TodayHabitsViewController: UITableViewDelegate, UITableViewDataSource 
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
             let detailVC = AddHabitViewController()
             detailVC.habit = habits[indexPath.row]
             navigationController?.pushViewController(detailVC, animated: true)
-
     }
 
     func tableView(_ tableView: UITableView,
@@ -77,14 +73,7 @@ extension TodayHabitsViewController: UITableViewDelegate, UITableViewDataSource 
             tableView.reloadData()
             }
 
-        switch self.habits[indexPath.row].isDone {
-        case true: done.backgroundColor = .systemYellow
-//            done.title = LocalizedString.undoneLabel
-            done.image = UIImage(systemName: "arrow.uturn.backward")
-        case false: done.backgroundColor = .systemGreen
-//            done.title = LocalizedString.doneLabel
-            done.image = Constants.ImageLabels.doneImage
-        }
+        setColorByDoneStatus(indexPath, done)
 
         let config = UISwipeActionsConfiguration(actions: [done])
         return config
@@ -93,22 +82,14 @@ extension TodayHabitsViewController: UITableViewDelegate, UITableViewDataSource 
     func tableView(_ tableView: UITableView,
                    trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let delete = UIContextualAction(style: .destructive, title: LocalizedString.deleteLabel) { (_, _, _) in
-            if let daysId = self.habits[indexPath.row].daysArray?.value(forKey: "id") as? Set<String> {
-                let currentHabit = self.habits[indexPath.row]
-                NotificationsManager.shared.deleteNotificiation(with: currentHabit.identifier?.uuidString ?? "",
-                                                                daysIds: Array(daysId))
-            }
-
-            ManageCoreData.shared.deleteItem(at: indexPath, habit: &self.habits)
-            ManageCoreData.shared.saveData()
-            tableView.reloadData()
+            self.deleteAction(tableView, indexPath)
         }
-        delete.image = Constants.ImageLabels.trashImage
         let update = UIContextualAction(style: .normal, title: LocalizedString.editLabel) { (_, _, _) in
             let detailVC = AddHabitViewController()
             detailVC.habit = self.habits[indexPath.row]
             self.navigationController?.pushViewController(detailVC, animated: true)
         }
+        delete.image = Constants.ImageLabels.trashImage
         update.backgroundColor = .systemYellow
         update.image = Constants.ImageLabels.editImage
         let config =  UISwipeActionsConfiguration(actions: [delete, update])
@@ -116,4 +97,20 @@ extension TodayHabitsViewController: UITableViewDelegate, UITableViewDataSource 
         return config
     }
 
+    fileprivate func setColorByDoneStatus(_ indexPath: IndexPath, _ done: UIContextualAction) {
+        switch self.habits[indexPath.row].isDone {
+        case true: done.backgroundColor = .systemYellow
+            done.image = UIImage(systemName: "arrow.uturn.backward")
+        case false: done.backgroundColor = .systemGreen
+            done.image = Constants.ImageLabels.doneImage
+        }
+    }
+
+    fileprivate func  deleteAction(_ tableView: UITableView, _ indexPath: IndexPath) {
+        let currentHabit = self.habits[indexPath.row]
+        ManageCoreData.shared.deleteNotificationsFor(currentHabit)
+        ManageCoreData.shared.deleteItem(at: indexPath, habit: &self.habits)
+        ManageCoreData.shared.saveData()
+        tableView.reloadData()
+    }
 }

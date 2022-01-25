@@ -9,7 +9,7 @@ import UIKit
 
 class TabBarController: UITabBarController {
 
-    let todayHabbits = TodayHabitsViewController()
+    private let todayHabbits = TodayHabitsViewController()
     private let allHabbitsVC = AllHabitsViewController()
     private lazy var middleButton: UIButton = {
         let button = UIButton()
@@ -37,19 +37,7 @@ class TabBarController: UITabBarController {
             ManageCoreData.shared.loadData(usersHabbits: &self.allHabbitsVC.habits)
             self.allHabbitsVC.collectionView.reloadData()
         }
-//        navController.modalPresentationStyle = .fullScreen
         self.present(navController, animated: true, completion: nil)
-    }
-
-    private func setNavigationVC(rootViewController: UIViewController,
-                                 title: String,
-                                 image: UIImage) -> UIViewController {
-        let navigationVC = UINavigationController(rootViewController: rootViewController)
-        let tabBaritem = UITabBarItem()
-        navigationVC.tabBarItem = tabBaritem
-        tabBaritem.title = title
-        tabBaritem.image = image
-        return navigationVC
     }
 
     private func configurationTabBar() {
@@ -67,6 +55,16 @@ class TabBarController: UITabBarController {
         tabBar.addSubview(middleButton)
     }
 
+    private func setNavigationVC(rootViewController: UIViewController,
+                                 title: String,
+                                 image: UIImage) -> UIViewController {
+        let navigationVC = UINavigationController(rootViewController: rootViewController)
+        let tabBaritem = UITabBarItem()
+        navigationVC.tabBarItem = tabBaritem
+        tabBaritem.title = title
+        tabBaritem.image = image
+        return navigationVC
+    }
 }
 
 extension TabBarController: UITabBarControllerDelegate {

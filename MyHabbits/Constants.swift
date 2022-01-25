@@ -10,9 +10,9 @@ import UIKit
 
 struct Constants {
     static let mainViewCellIdentifier = "Cell"
-    static let sectoinsCellIdentifier = "sectoinCell"
     static let nameCellIdentifier = "nameCell"
     static let daysCellIdentifier = "daysCell"
+    static let habitCellId = "habitCellId"
     static let notificationCellIdentifier = "notificationCell"
     static let colorCellIdentifier = "colorCell"
 

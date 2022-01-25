@@ -15,6 +15,7 @@ class AddHabitViewController: UIViewController {
     private var newName: String?
     private var isReminding: Bool = false
     var dismissCompletion: (() -> Void)?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         addView.setupView(view)
@@ -134,7 +135,8 @@ extension AddHabitViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.row {
-        case 0: let cell = tableView.dequeueReusableCell(withIdentifier: Constants.nameCellIdentifier,
+        case 0:
+            let cell = tableView.dequeueReusableCell(withIdentifier: Constants.nameCellIdentifier,
                                                          for: indexPath) as! NameTableViewCell
             if let habit = habit {
                 newName = habit.title ?? ""
@@ -145,7 +147,8 @@ extension AddHabitViewController: UITableViewDelegate, UITableViewDataSource {
             cell.nameTextField.becomeFirstResponder()
             cell.selectionStyle = .none
             return cell
-        case 1: let cell = tableView.dequeueReusableCell(withIdentifier: Constants.daysCellIdentifier,
+        case 1:
+            let cell = tableView.dequeueReusableCell(withIdentifier: Constants.daysCellIdentifier,
                                                          for: indexPath) as! DaysTableViewCell
 
             cell.selectionStyle = .none
@@ -156,7 +159,8 @@ extension AddHabitViewController: UITableViewDelegate, UITableViewDataSource {
                 }
             }
             return cell
-        case 2: let cell = tableView.dequeueReusableCell(withIdentifier: Constants.notificationCellIdentifier,
+        case 2:
+            let cell = tableView.dequeueReusableCell(withIdentifier: Constants.notificationCellIdentifier,
                                                          for: indexPath) as! NotificationTableViewCell
             cell.selectionStyle = .none
             if let habit = habit {
@@ -167,7 +171,8 @@ extension AddHabitViewController: UITableViewDelegate, UITableViewDataSource {
             cell.addNotificationSwitch.addTarget(self, action: #selector(setOnSwitch), for: .valueChanged)
 
             return cell
-        case 3: let cell = tableView.dequeueReusableCell(withIdentifier: Constants.colorCellIdentifier,
+        case 3:
+            let cell = tableView.dequeueReusableCell(withIdentifier: Constants.colorCellIdentifier,
                                                          for: indexPath) as! ColorTableViewCell
             cell.selectionStyle = .none
             if let habit = habit {
@@ -179,7 +184,8 @@ extension AddHabitViewController: UITableViewDelegate, UITableViewDataSource {
                 }
             }
             return cell
-        default: let cell = tableView.dequeueReusableCell(withIdentifier: Constants.notificationCellIdentifier,
+        default:
+            let cell = tableView.dequeueReusableCell(withIdentifier: Constants.notificationCellIdentifier,
                                                           for: indexPath) as! NotificationTableViewCell
             cell.selectionStyle = .none
             return cell

@@ -17,27 +17,38 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        let now = Calendar.current.dateComponents(in: .current, from: Date())
+        UserDefaults.standard.setValue(now.day, forKey: "today")
+        setTodayValueFirstTimeFrom(now)
+        checkIfNewDayStarts()
+        notifications.notificationsCenter.delegate = notifications
+        return true
+    }
 
+    fileprivate func setTodayValueFirstTimeFrom(_ now: DateComponents) {
         if UserDefaults.standard.bool(forKey: "didLaunchBefore") == false {
             // only runs the first time your app is launched
             UserDefaults.standard.set(true, forKey: "didLaunchBefore")
-            // sets the initial value for tomorrow
             let now = Calendar.current.dateComponents(in: .current, from: Date())
             UserDefaults.standard.setValue(now.day, forKey: "today")
+            // sets the initial value for tomorrow
             let tomorrow = DateComponents(year: now.year,
                                           month: now.month,
                                           day: now.day! + 1,
                                           hour: 0,
                                           minute: 0,
                                           second: 0)
-
             UserDefaults.standard.set(tomorrow.day, forKey: "tomorrow")
         }
-        let now = Calendar.current.dateComponents(in: .current, from: Date())
-        UserDefaults.standard.setValue(now.day, forKey: "today")
-        if UserDefaults.standard.object(forKey: "tomorrow") != nil { // makes sure tomorrow is not nil
+    }
+
+    fileprivate func checkIfNewDayStarts() {
+        if UserDefaults.standard.object(forKey: "tomorrow") != nil {
+            // makes sure tomorrow is not nil
             // check if today and tommorow is one day, which mean that the nex day came
-            if UserDefaults.standard.object(forKey: "today") as! Int >= UserDefaults.standard.object(forKey: "tomorrow") as! Int {
+            guard let today = UserDefaults.standard.object(forKey: "today") as? Int else { return }
+            guard let tommorow = UserDefaults.standard.object(forKey: "tomorrow") as? Int else { return }
+            if today >= tommorow {
                 // set new value for days
                 let now = Calendar.current.dateComponents(in: .current, from: Date())
                 UserDefaults.standard.setValue(now.day, forKey: "today")
@@ -49,17 +60,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                               second: 0)
                 UserDefaults.standard.set(tomorrow.day, forKey: "tomorrow")
                 NotificationsManager.shared.isNewDay = true
-                print(UserDefaults.standard.object(forKey: "today") ?? 0)
-                print(UserDefaults.standard.object(forKey: "tomorrow") ?? 0)
             } else {
                 NotificationsManager.shared.isNewDay = false
-                print(NotificationsManager.shared.isNewDay, "the status of day")
-                print(UserDefaults.standard.object(forKey: "today") ?? 0)
-                print(UserDefaults.standard.object(forKey: "tomorrow") ?? 0)
             }
         }
-        notifications.notificationsCenter.delegate = notifications
-        return true
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
@@ -87,7 +91,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     lazy var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "MyHabbits")
-        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
+        container.loadPersistentStores(completionHandler: { (_ storeDescription, error) in
             if let error = error as NSError? {
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
