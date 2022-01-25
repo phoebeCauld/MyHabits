@@ -37,7 +37,8 @@
 		2D70135827234ED200F78FA5 /* DaysButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D70135727234ED200F78FA5 /* DaysButton.swift */; };
 		2D96F3142775EDB600AE71E0 /* HapsticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D96F3132775EDB600AE71E0 /* HapsticsManager.swift */; };
 		2DE99D3C274BFFE600802FCE /* HabitViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE99D3B274BFFE600802FCE /* HabitViewModel.swift */; };
-		2DE99D3E274C23CC00802FCE /* SectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE99D3D274C23CC00802FCE /* SectionCell.swift */; };
+		2DEF875727A017C400B56876 /* CellEditManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DEF875627A017C400B56876 /* CellEditManager.swift */; };
+		2DEF875927A046C400B56876 /* ReadmeAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2DEF875827A046C400B56876 /* ReadmeAssets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -77,7 +78,8 @@
 		2D70135727234ED200F78FA5 /* DaysButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaysButton.swift; sourceTree = "<group>"; };
 		2D96F3132775EDB600AE71E0 /* HapsticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapsticsManager.swift; sourceTree = "<group>"; };
 		2DE99D3B274BFFE600802FCE /* HabitViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitViewModel.swift; sourceTree = "<group>"; };
-		2DE99D3D274C23CC00802FCE /* SectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionCell.swift; sourceTree = "<group>"; };
+		2DEF875627A017C400B56876 /* CellEditManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellEditManager.swift; sourceTree = "<group>"; };
+		2DEF875827A046C400B56876 /* ReadmeAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ReadmeAssets.xcassets; sourceTree = "<group>"; };
 		43FB8205EF077D4529974D30 /* Pods-MyHabits.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyHabits.debug.xcconfig"; path = "Target Support Files/Pods-MyHabits/Pods-MyHabits.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -146,6 +148,7 @@
 			children = (
 				2D70134A27213A0E00F78FA5 /* AllHabitsViewController.swift */,
 				2D11A09E275BD1CD00D80ED8 /* AllHabitsViewCell.swift */,
+				2DEF875627A017C400B56876 /* CellEditManager.swift */,
 			);
 			path = AllHabitsTab;
 			sourceTree = "<group>";
@@ -200,6 +203,7 @@
 				2D5F6BC527330D8B0039C465 /* Helpers */,
 				2D7013312720969400F78FA5 /* Main.storyboard */,
 				2D70134827209C0B00F78FA5 /* Constants.swift */,
+				2DEF875827A046C400B56876 /* ReadmeAssets.xcassets */,
 				2D7013372720969600F78FA5 /* Assets.xcassets */,
 				2D7013392720969600F78FA5 /* LaunchScreen.storyboard */,
 				2D11A0A9275CE8FD00D80ED8 /* Localizable.strings */,
@@ -215,7 +219,6 @@
 				2D70132F2720969400F78FA5 /* TodayHabitsViewController.swift */,
 				2DE99D3B274BFFE600802FCE /* HabitViewModel.swift */,
 				2D70134E2721A8F300F78FA5 /* HabbitsCell.swift */,
-				2DE99D3D274C23CC00802FCE /* SectionCell.swift */,
 			);
 			path = TodayHabitsTab;
 			sourceTree = "<group>";
@@ -299,6 +302,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2DEF875927A046C400B56876 /* ReadmeAssets.xcassets in Resources */,
 				2D70133B2720969600F78FA5 /* LaunchScreen.storyboard in Resources */,
 				2D11A0A7275CE8FD00D80ED8 /* Localizable.strings in Resources */,
 				2D7013382720969600F78FA5 /* Assets.xcassets in Resources */,
@@ -370,9 +374,9 @@
 				2D70134727209AF500F78FA5 /* TabBarController.swift in Sources */,
 				2D70134927209C0B00F78FA5 /* Constants.swift in Sources */,
 				2D5F6BB0272F2AB90039C465 /* AddViewLabel.swift in Sources */,
+				2DEF875727A017C400B56876 /* CellEditManager.swift in Sources */,
 				2D70135627228C3900F78FA5 /* ManageData.swift in Sources */,
 				2D5F6BA8272ECDAA0039C465 /* SelectModel.swift in Sources */,
-				2DE99D3E274C23CC00802FCE /* SectionCell.swift in Sources */,
 				2D5F6BBB273071020039C465 /* NotificationTableViewCell.swift in Sources */,
 				2D5F6BBF273076250039C465 /* AddHabitView.swift in Sources */,
 				2D5F6BB3273066CC0039C465 /* NameTableViewCell.swift in Sources */,

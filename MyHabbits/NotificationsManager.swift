@@ -9,6 +9,7 @@ import UIKit
 import UserNotifications
 
 class NotificationsManager: NSObject, UNUserNotificationCenterDelegate {
+
     static let shared = NotificationsManager()
     var isNewDay: Bool = false
     let notificationsCenter = UNUserNotificationCenter.current()
@@ -24,24 +25,11 @@ class NotificationsManager: NSObject, UNUserNotificationCenterDelegate {
             }
         })
         currentNotifCenter.getDeliveredNotifications(completionHandler: {deliveredNotifications -> Void in
-                    print("\(deliveredNotifications.count) Delivered notifications-------")
-                    for notification in deliveredNotifications {
-                        print(notification.request.identifier)
-                    }
-                })
-    }
-
-    func schedule() {
-        notificationsCenter.getNotificationSettings { settings in
-            switch settings.authorizationStatus {
-            case .notDetermined:
-                self.requestAuthorization()
-            case .authorized, .provisional:
-                self.scheduleNotifications()
-            default:
-                break
+            print("\(deliveredNotifications.count) Delivered notifications-------")
+            for notification in deliveredNotifications {
+                print(notification.request.identifier)
             }
-        }
+        })
     }
 
     func requestAuthorization() {
@@ -69,6 +57,19 @@ class NotificationsManager: NSObject, UNUserNotificationCenterDelegate {
         schedule()
     }
 
+    func schedule() {
+        notificationsCenter.getNotificationSettings { settings in
+            switch settings.authorizationStatus {
+            case .notDetermined:
+                self.requestAuthorization()
+            case .authorized, .provisional:
+                self.scheduleNotifications()
+            default:
+                break
+            }
+        }
+    }
+
     func scheduleNotifications() {
         for notification in notifications {
             let content = UNMutableNotificationContent()
@@ -77,17 +78,17 @@ class NotificationsManager: NSObject, UNUserNotificationCenterDelegate {
             content.sound = .default
 
             // если тест
-//            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+            //            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
 
-        // если не тест
-        let trigger = UNCalendarNotificationTrigger(dateMatching: notification.dayToRemind, repeats: false)
+            // если не тест
+            let trigger = UNCalendarNotificationTrigger(dateMatching: notification.dayToRemind, repeats: false)
 
-        let request = UNNotificationRequest(identifier: notification.identifier,
+            let request = UNNotificationRequest(identifier: notification.identifier,
                                                 content: content,
                                                 trigger: trigger)
             // удалить после тестов!!!!!
 
-//            notificationsCenter.removeAllPendingNotificationRequests()
+            //            notificationsCenter.removeAllPendingNotificationRequests()
 
             notificationsCenter.add(request) { error in
                 if let error = error {
@@ -106,7 +107,8 @@ class NotificationsManager: NSObject, UNUserNotificationCenterDelegate {
 
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 willPresent notification: UNNotification,
-                                withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+                                withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions)
+                                -> Void) {
         completionHandler([.banner, .sound])
     }
 

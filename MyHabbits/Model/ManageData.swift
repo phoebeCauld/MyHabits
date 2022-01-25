@@ -23,17 +23,6 @@ class ManageCoreData {
         }
     }
 
-    func getDayOfWeek() -> Int {
-        let today = Date()
-        let myCalendar = Calendar(identifier: .gregorian)
-        let weekDay = myCalendar.component(.weekday, from: today)
-        if weekDay == 1 {
-            return 7
-        } else {
-            return weekDay - 1
-        }
-    }
-
     func loadTodayHabits(habit: inout [Habit]) {
         let weekDay = getDayOfWeek()
         let sort = NSSortDescriptor(key: "isDone", ascending: true)
@@ -70,5 +59,23 @@ class ManageCoreData {
     func deleteItem(at indexPath: IndexPath, habit: inout [Habit]) {
         context.delete(habit[indexPath.row])
         habit.remove(at: indexPath.row)
+    }
+
+    fileprivate func getDayOfWeek() -> Int {
+        let today = Date()
+        let myCalendar = Calendar(identifier: .gregorian)
+        let weekDay = myCalendar.component(.weekday, from: today)
+        if weekDay == 1 {
+            return 7
+        } else {
+            return weekDay - 1
+        }
+    }
+
+    func deleteNotificationsFor(_ habit: Habit) {
+        if let daysId = habit.daysArray?.value(forKey: "id") as? Set<String> {
+            NotificationsManager.shared.deleteNotificiation(with: habit.identifier?.uuidString ?? "",
+                                                            daysIds: Array(daysId))
+        }
     }
 }

@@ -8,15 +8,15 @@
 import UIKit
 
 class AllHabitsViewController: UICollectionViewController {
+    let cellEditManager = CellEditManager()
     var habits = [Habit]()
     private let habitModel = HabitViewModel()
-    private let habitCellId = "habitCellId"
     private var isEditingMode: Bool = false {
         didSet {
             configNavBar()
         }
     }
-    private var selectedItems: [Habit: IndexPath] = [:] {
+    private var selectedItems = [Habit: IndexPath]() {
         didSet {
             if isEditingMode {
                 navigationItem.rightBarButtonItem?.isEnabled = !selectedItems.isEmpty
@@ -26,7 +26,7 @@ class AllHabitsViewController: UICollectionViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView.register(AllHabitsViewCell.self, forCellWithReuseIdentifier: habitCellId)
+        collectionView.register(AllHabitsViewCell.self, forCellWithReuseIdentifier: Constants.habitCellId)
         collectionView.contentInset = .init(top: 10, left: 10, bottom: 10, right: 10)
         ManageCoreData.shared.loadData(usersHabbits: &habits)
         addLongPressGesture()
@@ -52,26 +52,17 @@ class AllHabitsViewController: UICollectionViewController {
     }
 
     @objc fileprivate func activateLongPressGesture(_ gesture: UILongPressGestureRecognizer) {
-        var transform: CGAffineTransform = .identity
-        let currentIndexPath = gesture.location(in: collectionView)
-        guard let indexPath = collectionView?.indexPathForItem(at: currentIndexPath) else { return }
-        guard let cell = collectionView.cellForItem(at: indexPath) as? AllHabitsViewCell else { return }
+        let currentIndexPath = gesture.location(in: self.collectionView)
+        guard let indexPath = self.collectionView?.indexPathForItem(at: currentIndexPath) else { return }
+        guard let cell = self.collectionView.cellForItem(at: indexPath) as? AllHabitsViewCell else { return }
+
         if gesture.state == .began {
-            transform = .init(scaleX: 0.9, y: 0.9)
             HapsticsManager.shared.vibrate(for: .success)
         } else if gesture.state == .ended {
-            transform = .identity
             startEditing()
-            habits[indexPath.item].isSelected = true
-            selectedItems[habits[indexPath.item]] = indexPath
-            collectionView.reloadData()
+            selectHabit(for: indexPath)
         }
-        UIView.animate(withDuration: 0.5, delay: 0,
-                       usingSpringWithDamping: 1,
-                       initialSpringVelocity: 1,
-                       options: .curveEaseOut) {
-            cell.transform = transform
-        }
+        cellEditManager.transformCellFor(gesture.state, and: cell)
     }
 
     fileprivate func configNavBar() {
@@ -83,12 +74,12 @@ class AllHabitsViewController: UICollectionViewController {
                                                                 target: self,
                                                                 action: #selector(startEditing))
         } else {
-                    navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel,
-                                                                       target: self,
-                                                                       action: #selector(stopEditing))
-                    navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .trash,
-                                                                        target: self,
-                                                                        action: #selector(deleteItems))
+            navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel,
+                                                               target: self,
+                                                               action: #selector(stopEditing))
+            navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .trash,
+                                                                target: self,
+                                                                action: #selector(deleteItems))
             navigationItem.rightBarButtonItem?.isEnabled = false
         }
     }
@@ -104,11 +95,7 @@ class AllHabitsViewController: UICollectionViewController {
         navigationItem.leftBarButtonItem = nil
         isEditingMode = false
         if !selectedItems.isEmpty {
-            for (habit, _ ) in selectedItems {
-                habit.isSelected = false
-            }
-            selectedItems = [:]
-            collectionView.reloadData()
+            unselectAllHabits()
         }
     }
 
@@ -128,11 +115,10 @@ class AllHabitsViewController: UICollectionViewController {
     }
 
     fileprivate func deleteHabit() {
-        for (habit, indexPath) in selectedItems {
-            if let daysId = habit.daysArray?.value(forKey: "id") as? Set<String> {
-                NotificationsManager.shared.deleteNotificiation(with: habit.identifier?.uuidString ?? "",
-                                                                daysIds: Array(daysId))
-            }
+        let sortedItems = selectedItems.values.sorted(by: >)
+        for indexPath in sortedItems {
+            let currentHabit = habits[indexPath.row]
+            ManageCoreData.shared.deleteNotificationsFor(currentHabit)
             ManageCoreData.shared.deleteItem(at: indexPath, habit: &self.habits)
             ManageCoreData.shared.saveData()
         }
@@ -141,13 +127,27 @@ class AllHabitsViewController: UICollectionViewController {
         stopEditing()
     }
 
+    fileprivate func selectHabit(for indexPath: IndexPath) {
+        habits[indexPath.item].isSelected = true
+        selectedItems[habits[indexPath.item]] = indexPath
+        self.collectionView.reloadData()
+    }
+
+    fileprivate func unselectAllHabits() {
+        for (habit, _ ) in selectedItems {
+            habit.isSelected = false
+        }
+        selectedItems = [:]
+        collectionView.reloadData()
+    }
+
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return habits.count
     }
 
     override func collectionView(_ collectionView: UICollectionView,
                                  cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: habitCellId,
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.habitCellId,
                                                       for: indexPath) as! AllHabitsViewCell
         let habit = habits[indexPath.item]
         cell.currentHabit = habit
@@ -190,6 +190,4 @@ extension AllHabitsViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
-extension AllHabitsViewController: UIGestureRecognizerDelegate {
-
-}
+extension AllHabitsViewController: UIGestureRecognizerDelegate {}

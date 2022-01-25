@@ -10,10 +10,6 @@ import UIKit
 
 struct HabitViewModel {
 
-    var done: Bool = false
-    var currentDay = Date()
-    var oldDate: Date?
-
     func currentColorForHabit(with currentColor: String) -> UIColor {
         switch currentColor {
         case "pink": return Constants.Colors.pink
