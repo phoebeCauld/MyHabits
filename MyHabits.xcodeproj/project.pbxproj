@@ -174,7 +174,7 @@
 		2D70131F2720969400F78FA5 = {
 			isa = PBXGroup;
 			children = (
-				2D70132A2720969400F78FA5 /* MyHabbits */,
+				2D70132A2720969400F78FA5 /* MyHabits */,
 				2D7013292720969400F78FA5 /* Products */,
 				2B19E463300EABE0210D5FCB /* Pods */,
 				29543E76069BBE45307A0AC8 /* Frameworks */,
@@ -189,7 +189,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		2D70132A2720969400F78FA5 /* MyHabbits */ = {
+		2D70132A2720969400F78FA5 /* MyHabits */ = {
 			isa = PBXGroup;
 			children = (
 				2D70132B2720969400F78FA5 /* AppDelegate.swift */,
@@ -209,7 +209,7 @@
 				2D11A0A9275CE8FD00D80ED8 /* Localizable.strings */,
 				2D70133C2720969600F78FA5 /* Info.plist */,
 			);
-			path = MyHabbits;
+			path = MyHabits;
 			sourceTree = "<group>";
 		};
 		2D7013452720999300F78FA5 /* TodayHabitsTab */ = {
