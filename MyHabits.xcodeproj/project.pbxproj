@@ -12,7 +12,7 @@
 		2D11A0A7275CE8FD00D80ED8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2D11A0A9275CE8FD00D80ED8 /* Localizable.strings */; };
 		2D59FB81273EE7ED007163CE /* NotificationsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D59FB80273EE7ED007163CE /* NotificationsManager.swift */; };
 		2D5F6BA6272D99D50039C465 /* ColorButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5F6BA5272D99D50039C465 /* ColorButton.swift */; };
-		2D5F6BA8272ECDAA0039C465 /* SelectModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5F6BA7272ECDAA0039C465 /* SelectModel.swift */; };
+		2D5F6BA8272ECDAA0039C465 /* AddHabitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5F6BA7272ECDAA0039C465 /* AddHabitManager.swift */; };
 		2D5F6BB0272F2AB90039C465 /* AddViewLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5F6BAF272F2AB90039C465 /* AddViewLabel.swift */; };
 		2D5F6BB3273066CC0039C465 /* NameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5F6BB2273066CC0039C465 /* NameTableViewCell.swift */; };
 		2D5F6BB5273069080039C465 /* AddHabitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5F6BB4273069080039C465 /* AddHabitViewController.swift */; };
@@ -36,6 +36,7 @@
 		2D70135627228C3900F78FA5 /* ManageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D70135527228C3900F78FA5 /* ManageData.swift */; };
 		2D70135827234ED200F78FA5 /* DaysButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D70135727234ED200F78FA5 /* DaysButton.swift */; };
 		2D96F3142775EDB600AE71E0 /* HapsticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D96F3132775EDB600AE71E0 /* HapsticsManager.swift */; };
+		2DC2FECF27B054A300A7C12A /* NotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC2FECE27B054A300A7C12A /* NotificationModel.swift */; };
 		2DE99D3C274BFFE600802FCE /* HabitViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE99D3B274BFFE600802FCE /* HabitViewModel.swift */; };
 		2DEF875727A017C400B56876 /* CellEditManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DEF875627A017C400B56876 /* CellEditManager.swift */; };
 		2DEF875927A046C400B56876 /* ReadmeAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2DEF875827A046C400B56876 /* ReadmeAssets.xcassets */; };
@@ -51,7 +52,7 @@
 		2D11A0AA275CE90300D80ED8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2D59FB80273EE7ED007163CE /* NotificationsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsManager.swift; sourceTree = "<group>"; };
 		2D5F6BA5272D99D50039C465 /* ColorButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorButton.swift; sourceTree = "<group>"; };
-		2D5F6BA7272ECDAA0039C465 /* SelectModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectModel.swift; sourceTree = "<group>"; };
+		2D5F6BA7272ECDAA0039C465 /* AddHabitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddHabitManager.swift; sourceTree = "<group>"; };
 		2D5F6BAF272F2AB90039C465 /* AddViewLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewLabel.swift; sourceTree = "<group>"; };
 		2D5F6BB2273066CC0039C465 /* NameTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameTableViewCell.swift; sourceTree = "<group>"; };
 		2D5F6BB4273069080039C465 /* AddHabitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddHabitViewController.swift; sourceTree = "<group>"; };
@@ -77,6 +78,7 @@
 		2D70135527228C3900F78FA5 /* ManageData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageData.swift; sourceTree = "<group>"; };
 		2D70135727234ED200F78FA5 /* DaysButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaysButton.swift; sourceTree = "<group>"; };
 		2D96F3132775EDB600AE71E0 /* HapsticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapsticsManager.swift; sourceTree = "<group>"; };
+		2DC2FECE27B054A300A7C12A /* NotificationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationModel.swift; sourceTree = "<group>"; };
 		2DE99D3B274BFFE600802FCE /* HabitViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitViewModel.swift; sourceTree = "<group>"; };
 		2DEF875627A017C400B56876 /* CellEditManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellEditManager.swift; sourceTree = "<group>"; };
 		2DEF875827A046C400B56876 /* ReadmeAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ReadmeAssets.xcassets; sourceTree = "<group>"; };
@@ -128,7 +130,7 @@
 			children = (
 				2D5F6BB4273069080039C465 /* AddHabitViewController.swift */,
 				2D5F6BBE273076250039C465 /* AddHabitView.swift */,
-				2D5F6BA7272ECDAA0039C465 /* SelectModel.swift */,
+				2D5F6BA7272ECDAA0039C465 /* AddHabitManager.swift */,
 				2D5F6BB1273066A30039C465 /* AddViewCells */,
 				2D7013592723509400F78FA5 /* buttons */,
 			);
@@ -195,6 +197,7 @@
 				2D70132B2720969400F78FA5 /* AppDelegate.swift */,
 				2D70132D2720969400F78FA5 /* SceneDelegate.swift */,
 				2D59FB80273EE7ED007163CE /* NotificationsManager.swift */,
+				2DC2FECE27B054A300A7C12A /* NotificationModel.swift */,
 				2D70135427228C1200F78FA5 /* Model */,
 				2D7013452720999300F78FA5 /* TodayHabitsTab */,
 				2D5F6BC427330D7A0039C465 /* AllHabitsTab */,
@@ -375,8 +378,9 @@
 				2D70134927209C0B00F78FA5 /* Constants.swift in Sources */,
 				2D5F6BB0272F2AB90039C465 /* AddViewLabel.swift in Sources */,
 				2DEF875727A017C400B56876 /* CellEditManager.swift in Sources */,
+				2DC2FECF27B054A300A7C12A /* NotificationModel.swift in Sources */,
 				2D70135627228C3900F78FA5 /* ManageData.swift in Sources */,
-				2D5F6BA8272ECDAA0039C465 /* SelectModel.swift in Sources */,
+				2D5F6BA8272ECDAA0039C465 /* AddHabitManager.swift in Sources */,
 				2D5F6BBB273071020039C465 /* NotificationTableViewCell.swift in Sources */,
 				2D5F6BBF273076250039C465 /* AddHabitView.swift in Sources */,
 				2D5F6BB3273066CC0039C465 /* NameTableViewCell.swift in Sources */,
@@ -549,7 +553,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = RX93WCSR44;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = MyHabbits/Info.plist;
+				INFOPLIST_FILE = MyHabits/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -579,7 +583,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = RX93WCSR44;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = MyHabbits/Info.plist;
+				INFOPLIST_FILE = MyHabits/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

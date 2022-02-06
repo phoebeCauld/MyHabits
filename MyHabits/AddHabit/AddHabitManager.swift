@@ -7,17 +7,16 @@
 
 import UIKit
 
-struct SelectLogic {
+class AddHabitManager {
 
-    private let notifications = NotificationsManager()
     var selectedColor: String?
     private var arrayOfSelectedButtons = [Int]()
     var selectedTimeToRemind: Date?
     var oldReminder: Bool = false
 
-    private var dayDict = [2: false, 3: false, 4: false, 5: false, 6: false, 7: false, 1: false]
+    private var dayDict = [1: false, 2: false, 3: false, 4: false, 5: false, 6: false, 7: false]
 
-    mutating func selectDay(_ sender: UIButton) {
+     func selectDay(_ sender: UIButton) {
         sender.isSelected = !sender.isSelected
         let key = sender.tag
         dayDict[key] = !(dayDict[key] ?? false)
@@ -31,14 +30,14 @@ struct SelectLogic {
         }
     }
 
-    mutating func arrayOfSelected() -> [Int] {
+     func arrayOfSelected() -> [Int] {
         for (key, value) in dayDict where value == true {
                 arrayOfSelectedButtons.append(key)
         }
         return arrayOfSelectedButtons
     }
 
-    mutating func selectColorButton(_ self: UIViewController, _ sender: UIButton) {
+     func selectColorButton(_ self: UIViewController, _ sender: UIButton) {
         let allButtonTags = [11, 12, 13, 14]
         let currentButtonTag = sender.tag
 
@@ -61,7 +60,7 @@ struct SelectLogic {
         }
     }
 
-    mutating func addHabit(with name: String, isRemindning: Bool) {
+     func addHabit(with name: String, isRemindning: Bool) {
         let newHabit = Habit(context: ManageCoreData.shared.context)
         newHabit.title = name
         newHabit.identifier = UUID()
@@ -76,25 +75,25 @@ struct SelectLogic {
             let newDay = DaysToRemind(context: ManageCoreData.shared.context)
             newDay.days = Int16(day)
             newDay.id = UUID().uuidString
-            notifications.scheduleNotification(for: newHabit, day: notifyDay, dayId: newDay.id ?? "")
+            NotificationsManager.shared.scheduleNotification(for: newHabit, day: notifyDay, dayId: newDay.id ?? "")
             newDay.parentHabit = newHabit
         }
     }
 
-    mutating func updateHabit(habit: Habit, name: String, isReminding: Bool) {
+     func updateHabit(habit: Habit, name: String, isReminding: Bool) {
         habit.title = name
         habit.labelColor = selectedColor
         habit.isDone = false
         habit.isRemindning = isReminding
         if oldReminder && !isReminding {
-            notifications.deleteNotificiation(with: habit.identifier?.uuidString ?? "",
+            NotificationsManager.shared.deleteNotificiation(with: habit.identifier?.uuidString ?? "",
                                               daysIds: oldDaysId(for: habit))
         }
         if habit.timeToRemind != selectedTimeToRemind {
             habit.timeToRemind = selectedTimeToRemind
         }
         let selectedDays = arrayOfSelected()
-        notifications.deleteNotificiation(with: habit.identifier?.uuidString ?? "",
+         NotificationsManager.shared.deleteNotificiation(with: habit.identifier?.uuidString ?? "",
                                                       daysIds: oldDaysId(for: habit))
         habit.daysArray = []
         for day in selectedDays {
@@ -103,11 +102,11 @@ struct SelectLogic {
             newDay.days = Int16(day)
             newDay.id = UUID().uuidString
             newDay.parentHabit = habit
-            notifications.scheduleNotification(for: habit, day: notifyDay, dayId: newDay.id ?? "")
+            NotificationsManager.shared.scheduleNotification(for: habit, day: notifyDay, dayId: newDay.id ?? "")
         }
     }
 
-    mutating func updateRemindSwitch(for habit: Habit, isReminding: Bool) {
+     func updateRemindSwitch(for habit: Habit, isReminding: Bool) {
         oldReminder = habit.isRemindning
         habit.isRemindning = isReminding
     }
@@ -120,7 +119,7 @@ struct SelectLogic {
         return []
     }
 
-    mutating func selectOldDays(_ key: Int, _ button: UIButton) {
+     func selectOldDays(_ key: Int, _ button: UIButton) {
         dayDict[key] = true
         button.isSelected = true
         button.backgroundColor = .systemBlue

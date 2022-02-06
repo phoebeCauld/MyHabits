@@ -11,7 +11,7 @@ class AddHabitViewController: UIViewController {
 
     var habit: Habit?
     private let addView = AddHabitView()
-    private var selectLogic = SelectLogic()
+    private var addHabitManager = AddHabitManager()
     private var newName: String?
     private var isReminding: Bool = false
     var dismissCompletion: (() -> Void)?
@@ -49,11 +49,11 @@ class AddHabitViewController: UIViewController {
     // MARK: - Actions with buttons
 
     @objc func dayButtonPressed(_ sender: UIButton) {
-        selectLogic.selectDay(sender)
+        addHabitManager.selectDay(sender)
     }
 
     @objc func selectColorsPressed(_ sender: UIButton) {
-        selectLogic.selectColorButton(self, sender)
+        addHabitManager.selectColorButton(self, sender)
     }
 
     @objc func saveButtonPressed() {
@@ -62,11 +62,11 @@ class AddHabitViewController: UIViewController {
             return enterTextAlert()
         }
         if let habit = habit {
-            selectLogic.updateHabit(habit: habit, name: name, isReminding: isReminding)
+            addHabitManager.updateHabit(habit: habit, name: name, isReminding: isReminding)
             ManageCoreData.shared.saveData()
             navigationController?.popViewController(animated: true)
         } else {
-            selectLogic.addHabit(with: name, isRemindning: isReminding)
+            addHabitManager.addHabit(with: name, isRemindning: isReminding)
             ManageCoreData.shared.saveData()
             dismissCompletion?()
             navigationController?.dismiss(animated: true, completion: nil)
@@ -83,9 +83,9 @@ class AddHabitViewController: UIViewController {
 
     @objc func setTimeToRemind(_ timePicker: UIDatePicker) {
         if habit != nil {
-            selectLogic.selectedTimeToRemind = timePicker.date
+            addHabitManager.selectedTimeToRemind = timePicker.date
         }
-        selectLogic.selectedTimeToRemind = timePicker.date
+        addHabitManager.selectedTimeToRemind = timePicker.date
     }
 
     @objc func setOnSwitch(_ mySwitch: UISwitch) {
@@ -95,7 +95,7 @@ class AddHabitViewController: UIViewController {
         }
         addView.tableView.reloadData()
         guard let habit = habit else { return }
-        selectLogic.updateRemindSwitch(for: habit, isReminding: isReminding)
+        addHabitManager.updateRemindSwitch(for: habit, isReminding: isReminding)
         addView.tableView.reloadData()
     }
 
@@ -139,12 +139,10 @@ extension AddHabitViewController: UITableViewDelegate, UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: Constants.nameCellIdentifier,
                                                          for: indexPath) as! NameTableViewCell
             if let habit = habit {
-                newName = habit.title ?? ""
+                self.newName = habit.title ?? ""
                 cell.nameTextField.text = habit.title ?? ""
             }
-            cell.nameTextField.addTarget(self, action: #selector(textFieldDidChangeText), for: .allEditingEvents)
-            cell.nameTextField.delegate = self
-            cell.nameTextField.becomeFirstResponder()
+            configTextField(for: cell)
             cell.selectionStyle = .none
             return cell
         case 1:
@@ -153,10 +151,7 @@ extension AddHabitViewController: UITableViewDelegate, UITableViewDataSource {
 
             cell.selectionStyle = .none
             if let habit = habit {
-                let selectedDaysArray = selectLogic.oldDaysArray(habit: habit)
-                for button in selectedDaysArray {
-                    selectLogic.selectOldDays(button, cell.arrayOfButtons[button-1])
-                }
+                chooseSelectedDays(for: habit, cell)
             }
             return cell
         case 2:
@@ -176,12 +171,8 @@ extension AddHabitViewController: UITableViewDelegate, UITableViewDataSource {
                                                          for: indexPath) as! ColorTableViewCell
             cell.selectionStyle = .none
             if let habit = habit {
-                selectLogic.selectedColor = habit.labelColor
-                let colorArray = [cell.pinkButton, cell.blueButton, cell.greenButton, cell.orangeButton]
-                for button in colorArray where button.accessibilityIdentifier == habit.labelColor {
-                        button.layer.borderWidth = 1.5
-                        button.isSelected = true
-                }
+                addHabitManager.selectedColor = habit.labelColor
+                chooseSelectedColor(for: habit, cell)
             }
             return cell
         default:
@@ -189,6 +180,27 @@ extension AddHabitViewController: UITableViewDelegate, UITableViewDataSource {
                                                           for: indexPath) as! NotificationTableViewCell
             cell.selectionStyle = .none
             return cell
+        }
+    }
+
+    private func configTextField(for cell: NameTableViewCell) {
+        cell.nameTextField.addTarget(self, action: #selector(textFieldDidChangeText), for: .allEditingEvents)
+        cell.nameTextField.delegate = self
+        cell.nameTextField.becomeFirstResponder()
+    }
+
+    private func chooseSelectedDays(for habit: Habit, _ cell: DaysTableViewCell) {
+        let selectedDaysArray = addHabitManager.oldDaysArray(habit: habit)
+        for button in selectedDaysArray {
+            addHabitManager.selectOldDays(button, cell.arrayOfButtons[button-1])
+        }
+    }
+
+    private func chooseSelectedColor(for habit: Habit, _ cell: ColorTableViewCell) {
+        let colorArray = [cell.pinkButton, cell.blueButton, cell.greenButton, cell.orangeButton]
+        for button in colorArray where button.accessibilityIdentifier == habit.labelColor {
+            button.layer.borderWidth = 1.5
+            button.isSelected = true
         }
     }
 }

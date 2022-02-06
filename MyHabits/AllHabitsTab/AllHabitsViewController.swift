@@ -8,6 +8,7 @@
 import UIKit
 
 class AllHabitsViewController: UICollectionViewController {
+
     let cellEditManager = CellEditManager()
     var habits = [Habit]()
     private let habitModel = HabitViewModel()
