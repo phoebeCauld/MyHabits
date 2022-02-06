@@ -13,10 +13,7 @@ class AllHabitsViewCell: UICollectionViewCell {
         didSet {
             habitName.text = currentHabit.title
             if let time = currentHabit.timeToRemind {
-                let dateformat = DateFormatter()
-                dateformat.dateFormat = "HH:mm"
-                timeLabel.text = dateformat.string(from: time)
-                clockImage.isHidden = false
+                setTimeLabel(from: time)
             } else {
                 timeLabel.text = ""
                 clockImage.isHidden = true
@@ -44,9 +41,10 @@ class AllHabitsViewCell: UICollectionViewCell {
     }()
 
     let daysLabel: UILabel = {
-        let name = UILabel()
-        name.text = "every mon, sat, sun"
-        return name
+        let daysLabel = UILabel()
+        daysLabel.numberOfLines = 0
+        daysLabel.text = "every mon, sat, sun"
+        return daysLabel
     }()
 
     let calendarImage: UIImageView = {
@@ -104,30 +102,45 @@ class AllHabitsViewCell: UICollectionViewCell {
         ])
     }
 
+    fileprivate func setTimeLabel(from time: Date) {
+        let dateformat = DateFormatter()
+        dateformat.dateFormat = "HH:mm"
+        timeLabel.text = dateformat.string(from: time)
+        clockImage.isHidden = false
+    }
+
     fileprivate func setDaysToCalendarImage(days: [Int]) {
         var daysString = ""
-        if days.count == 7 {
-            daysString = LocalizedString.everyDay
-        } else if days.isEmpty {
+        switch days.count {
+        case 0:
             daysString = ""
             calendarImage.isHidden = true
-        } else {
-            for day in days {
-                switch day {
-                case 1: daysString.append(LocalizedString.mon + ",")
-                case 2: daysString.append(LocalizedString.tue + ",")
-                case 3: daysString.append(LocalizedString.wed + ",")
-                case 4: daysString.append(LocalizedString.thu + ",")
-                case 5: daysString.append(LocalizedString.fri + ",")
-                case 6: daysString.append(LocalizedString.sat + ",")
-                case 7: daysString.append(LocalizedString.sun + ",")
-                default: daysString.append(" ")
-                }
-            }
-            daysString.removeLast()
+        case 7:
+            daysString = LocalizedString.everyDay
+            calendarImage.isHidden = false
+        default:
+            daysString = createDaysString(days: days)
             calendarImage.isHidden = false
         }
         daysLabel.text = daysString
+    }
+
+    fileprivate func createDaysString(days: [Int]) -> String {
+        var daysString = ""
+        for day in days {
+            switch day {
+            case 1: daysString.append(LocalizedString.mon + ", ")
+            case 2: daysString.append(LocalizedString.tue + ", ")
+            case 3: daysString.append(LocalizedString.wed + ", ")
+            case 4: daysString.append(LocalizedString.thu + ", ")
+            case 5: daysString.append(LocalizedString.fri + ", ")
+            case 6: daysString.append(LocalizedString.sat + ", ")
+            case 7: daysString.append(LocalizedString.sun + ", ")
+            default: daysString.append(" ")
+            }
+        }
+        daysString.removeLast(2)
+        return daysString
     }
 
     required init?(coder: NSCoder) {

@@ -17,14 +17,13 @@ class NotificationsManager: NSObject, UNUserNotificationCenterDelegate {
 
     // проверка на наличие всех уведомлений
     func listScheduledNotifications() {
-        let currentNotifCenter = UNUserNotificationCenter.current()
-        currentNotifCenter.getPendingNotificationRequests(completionHandler: {requests -> Void in
+        notificationsCenter.getPendingNotificationRequests(completionHandler: {requests -> Void in
             print("\(requests.count) requests -------")
             for request in requests {
                 print(request.identifier)
             }
         })
-        currentNotifCenter.getDeliveredNotifications(completionHandler: {deliveredNotifications -> Void in
+        notificationsCenter.getDeliveredNotifications(completionHandler: {deliveredNotifications -> Void in
             print("\(deliveredNotifications.count) Delivered notifications-------")
             for notification in deliveredNotifications {
                 print(notification.request.identifier)
@@ -37,7 +36,7 @@ class NotificationsManager: NSObject, UNUserNotificationCenterDelegate {
             if let error = error {
                 print("failed with: \(error.localizedDescription)")
             } else if !granted {
-                NSLog("User notifications are not enabled. Please enable in settings")
+                print("User notifications are not enabled. Please enable in settings")
             } else {
                 self.scheduleNotifications()
             }
@@ -57,9 +56,11 @@ class NotificationsManager: NSObject, UNUserNotificationCenterDelegate {
         schedule()
     }
 
-    func schedule() {
+    private func schedule() {
         notificationsCenter.getNotificationSettings { settings in
             switch settings.authorizationStatus {
+            case .denied:
+                self.requestAuthorization()
             case .notDetermined:
                 self.requestAuthorization()
             case .authorized, .provisional:
@@ -70,7 +71,7 @@ class NotificationsManager: NSObject, UNUserNotificationCenterDelegate {
         }
     }
 
-    func scheduleNotifications() {
+    private func scheduleNotifications() {
         for notification in notifications {
             let content = UNMutableNotificationContent()
             content.title = notification.title
@@ -120,10 +121,4 @@ class NotificationsManager: NSObject, UNUserNotificationCenterDelegate {
         }
         completionHandler()
     }
-}
-
-struct Notification {
-    var identifier: String
-    var title: String
-    var dayToRemind: DateComponents
 }

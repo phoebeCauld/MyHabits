@@ -84,6 +84,7 @@ extension TodayHabitsViewController: UITableViewDelegate, UITableViewDataSource 
         let delete = UIContextualAction(style: .destructive, title: LocalizedString.deleteLabel) { (_, _, _) in
             self.deleteAction(tableView, indexPath)
         }
+
         let update = UIContextualAction(style: .normal, title: LocalizedString.editLabel) { (_, _, _) in
             let detailVC = AddHabitViewController()
             detailVC.habit = self.habits[indexPath.row]

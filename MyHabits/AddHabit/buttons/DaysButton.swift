@@ -14,7 +14,7 @@ class DaysButton: UIButton {
         dayButtons.setTitle(title, for: .normal)
         dayButtons.tag = tag + 1
         dayButtons.setTitleColor(.systemBlue, for: .normal)
-        dayButtons.layer.cornerRadius = 0.5 * dayButtons.bounds.size.width
+        dayButtons.layer.cornerRadius = dayButtons.frame.size.width/2
         dayButtons.clipsToBounds = true
         dayButtons.layer.borderWidth = 1
         dayButtons.translatesAutoresizingMaskIntoConstraints = false

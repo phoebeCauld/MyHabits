@@ -13,7 +13,7 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     static let shared = AppDelegate()
-    let notifications = NotificationsManager()
+//    let notifications = NotificationsManager()
 
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -21,7 +21,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UserDefaults.standard.setValue(now.day, forKey: "today")
         setTodayValueFirstTimeFrom(now)
         checkIfNewDayStarts()
-        notifications.notificationsCenter.delegate = notifications
+        NotificationsManager.shared.notificationsCenter.delegate = NotificationsManager.shared
+//        notifications.notificationsCenter.delegate = notifications
         return true
     }
 

@@ -15,7 +15,7 @@ class DaysTableViewCell: UITableViewCell {
     private let daysStack: UIStackView = {
         let daysStack = UIStackView()
         daysStack.axis = .horizontal
-        daysStack.spacing = 5
+        daysStack.spacing = 10
         daysStack.distribution = .fillEqually
         daysStack.translatesAutoresizingMaskIntoConstraints = false
         return daysStack
@@ -43,11 +43,11 @@ class DaysTableViewCell: UITableViewCell {
             cellStack.leadingAnchor.constraint(equalTo: view.leadingAnchor,
                                               constant: 20),
             cellStack.trailingAnchor.constraint(equalTo: view.trailingAnchor,
-                                               constant: -20),
+                                                constant: -20),
             cellStack.bottomAnchor.constraint(equalTo: view.bottomAnchor,
                                              constant: -20),
             daysStack.heightAnchor.constraint(equalToConstant: 45),
-            daysStack.widthAnchor.constraint(equalTo: cellStack.widthAnchor)
+            daysStack.widthAnchor.constraint(equalTo: daysStack.heightAnchor, multiplier: 8)
         ])
     }
 }
