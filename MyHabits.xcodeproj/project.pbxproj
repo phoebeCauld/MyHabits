@@ -198,7 +198,7 @@
 				2D70132D2720969400F78FA5 /* SceneDelegate.swift */,
 				2D59FB80273EE7ED007163CE /* NotificationsManager.swift */,
 				2DC2FECE27B054A300A7C12A /* NotificationModel.swift */,
-				2D70135427228C1200F78FA5 /* Model */,
+				2D70135427228C1200F78FA5 /* CoreDataModel */,
 				2D7013452720999300F78FA5 /* TodayHabitsTab */,
 				2D5F6BC427330D7A0039C465 /* AllHabitsTab */,
 				2D5F6BC227330CAC0039C465 /* AddHabit */,
@@ -226,13 +226,13 @@
 			path = TodayHabitsTab;
 			sourceTree = "<group>";
 		};
-		2D70135427228C1200F78FA5 /* Model */ = {
+		2D70135427228C1200F78FA5 /* CoreDataModel */ = {
 			isa = PBXGroup;
 			children = (
 				2D7013342720969400F78FA5 /* MyHabbits.xcdatamodeld */,
 				2D70135527228C3900F78FA5 /* ManageData.swift */,
 			);
-			path = Model;
+			path = CoreDataModel;
 			sourceTree = "<group>";
 		};
 		2D7013592723509400F78FA5 /* buttons */ = {

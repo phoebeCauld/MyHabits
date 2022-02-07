@@ -79,9 +79,8 @@ class NotificationsManager: NSObject, UNUserNotificationCenterDelegate {
             content.sound = .default
 
             // если тест
-            //            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+            //let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
 
-            // если не тест
             let trigger = UNCalendarNotificationTrigger(dateMatching: notification.dayToRemind, repeats: false)
 
             let request = UNNotificationRequest(identifier: notification.identifier,
@@ -89,7 +88,7 @@ class NotificationsManager: NSObject, UNUserNotificationCenterDelegate {
                                                 trigger: trigger)
             // удалить после тестов!!!!!
 
-            //            notificationsCenter.removeAllPendingNotificationRequests()
+            // notificationsCenter.removeAllPendingNotificationRequests()
 
             notificationsCenter.add(request) { error in
                 if let error = error {
@@ -111,14 +110,5 @@ class NotificationsManager: NSObject, UNUserNotificationCenterDelegate {
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions)
                                 -> Void) {
         completionHandler([.banner, .sound])
-    }
-
-    func userNotificationCenter(_ center: UNUserNotificationCenter,
-                                didReceive response: UNNotificationResponse,
-                                withCompletionHandler completionHandler: @escaping () -> Void) {
-        if response.notification.request.identifier == "local notification" {
-            print("now you can do smthng with it")
-        }
-        completionHandler()
     }
 }
